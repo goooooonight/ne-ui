@@ -1,0 +1,33 @@
+@use 'config.scss';
+
+// 创建类名
+@function create-var-name($list) {
+  $name: '--' + config.$namespace;
+  @each $item in $list {
+    @if $item != '' {
+      $name: $name + '-' + $item;
+    }
+  }
+  @return $name;
+}
+
+// 获取类名
+@function get-var-name($agrs...) {
+  @return create-var-name(($agrs));
+}
+
+// 根据 BEM 命名规范生成类名。
+@function bem($block, $element: '', $modifier: '') {
+  $name: config.$namespace + config.$common-separator + $block;
+
+  @if $element != '' {
+    $name: $name + config.$element-separator + $element;
+  }
+
+  @if $modifier != '' {
+    $name: $name + config.$modifier-separator + $modifier;
+  }
+
+  @debug $name;
+  @return $name;
+}

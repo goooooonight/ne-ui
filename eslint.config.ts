@@ -36,6 +36,12 @@ export default defineConfigWithVueTs(
       // 插件名作为键，值为插件模块（通过 import 引入）
       prettier: prettierPlugin
     },
+    languageOptions: {
+      globals: {
+        console: 'readonly',
+        process: 'readonly'
+      }
+    },
     rules: {
       // 使用插件提供的规则（格式：`插件名/规则名`）
       'prettier/prettier': 'error',

@@ -1,0 +1,61 @@
+@use 'function.scss' as *;
+@use 'var.scss' as *;
+@use 'config.scss';
+@use 'sass:map';
+
+// 设置主题色
+@mixin set-main-color() {
+  @each $type in $types {
+    #{create-var-name(('color', $type))}: #{map.get($colors, $type, 'base')};
+  }
+}
+// 设置主题渐变色
+@mixin set-main-light-color() {
+  @each $type in $types {
+    @for $number from 1 through 9 {
+      #{create-var-name(('color', $type, 'light', $number))}: #{map.get(
+          $colors,
+          $type,
+          'light-#{$number}'
+        )};
+    }
+  }
+}
+
+// 设置全局变量名
+@mixin set-global-name() {
+  @each $key, $values in $global {
+    @if $values != '' {
+      // e.g.: 'defult' - '14px'
+      @each $children-key, $children-value in $values {
+        #{create-var-name(($key ,$children-key))}: $children-value;
+      }
+    }
+  }
+}
+
+// BEM
+// b
+@mixin b($block) {
+  $B: config.$namespace + config.$common-separator + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+// e
+@mixin e($element) {
+  @at-root {
+    #{& + $element-separator + $element} {
+      @content;
+    }
+  }
+}
+// m
+@mixin m($modifier) {
+  @at-root {
+    #{& + $modifier-separator + $modifier} {
+      @content;
+    }
+  }
+}

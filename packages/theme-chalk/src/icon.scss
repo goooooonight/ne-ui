@@ -1,0 +1,14 @@
+@use './common/mixin.scss' as *;
+
+@include b('icon') {
+  height: 1em;
+  width: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    height: 1em;
+    width: 1em;
+  }
+}
