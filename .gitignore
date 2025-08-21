@@ -30,4 +30,5 @@ coverage
 *.tsbuildinfo
 
 # 我的修改
-examples
+play
+docs/.vitepress/cache/
