@@ -1,5 +1,5 @@
 import * as components from './components.ts'
-import { App } from 'vue'
+import { type App } from 'vue'
 
 // const FUNCTION_COMP = ['TMessage']
 // const DIRECTIVE_COMP = ['FLoading']
