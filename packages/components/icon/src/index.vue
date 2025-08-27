@@ -24,7 +24,9 @@ const style = computed(() => {
 
 <template>
   <i :class="ns.b()" :style="style">
-    <slot></slot>
+    <slot>
+      <component :is="icon"></component>
+    </slot>
   </i>
 </template>
 
