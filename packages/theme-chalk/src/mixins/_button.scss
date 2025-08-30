@@ -1,0 +1,221 @@
+@use '../common/mixin.scss' as *;
+@use '../common/function.scss' as *;
+
+// 设置朴素按钮 plain 的修改样式
+@mixin button-plain($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        $type
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-9'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-5'
+      )
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type
+      ),
+      'border-color': (
+        'color',
+        $type
+      )
+    ),
+    'active': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'dark-2'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'dark-2'
+      )
+    ),
+    'disabled': (
+      'text-color': (
+        'color',
+        $type,
+        'light-5'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-9'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-8'
+      )
+    )
+  );
+
+  @each $type, $typeMap in $button-color-types {
+    @each $typeColor, $list in $typeMap {
+      @include set-css-var(('button', $type, $typeColor), $list);
+    }
+  }
+}
+
+// 设置文字按钮 text 的修改样式
+@mixin button-text($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        $type
+      )
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        $type
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-9'
+      )
+    ),
+    'active': (
+      'text-color': (
+        'color',
+        $type,
+        'dark-2'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-6'
+      )
+    ),
+    'disabled': (
+      'text-color': (
+        'color',
+        $type,
+        'light-5'
+      )
+    )
+  );
+  @each $type, $typeMap in $button-color-types {
+    @each $typeColor, $list in $typeMap {
+      @include set-css-var(('button', $type, $typeColor), $list);
+    }
+  }
+}
+
+// 设置不同类型按钮的修改样式
+@mixin button-variant($type) {
+  $button-color-types: (
+    '': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type
+      ),
+      'border-color': (
+        'color',
+        $type
+      ),
+      'active-color': (
+        'color',
+        $type,
+        'dark-2'
+      )
+    ),
+    'hover': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-3'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-3'
+      )
+    ),
+    'active': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'dark-2'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'dark-2'
+      )
+    ),
+    'disabled': (
+      'text-color': (
+        'color',
+        'white'
+      ),
+      'bg-color': (
+        'color',
+        $type,
+        'light-5'
+      ),
+      'border-color': (
+        'color',
+        $type,
+        'light-5'
+      )
+    )
+  );
+
+  @each $type, $typeMap in $button-color-types {
+    @each $typeColor, $list in $typeMap {
+      @include set-css-var(('button', $type, $typeColor), $list);
+    }
+  }
+
+  // plain 按钮
+  &.is-plain {
+    @include button-plain($type);
+  }
+  // text 按钮
+  &.is-text {
+    @include button-text(($type));
+  }
+}
+
+// 设置不同尺寸的 circle 按钮样式
+@mixin button-circle-size($size) {
+  &.is-circle {
+    width: get-var-name-css('component-size', $size);
+    min-width: get-var-name-css('component-size', $size);
+    height: get-var-name-css('component-size', $size);
+  }
+}

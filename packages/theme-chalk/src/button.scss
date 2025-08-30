@@ -1,0 +1,138 @@
+@use 'var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use 'mixins/button' as *;
+
+@include b(button) {
+  @include set-component-css-var('button', $button);
+}
+
+@include b('button') {
+  height: get-var-name-css('component-size', 'default');
+  min-width: 80px;
+  padding: 0 get-var-name-css('button-padding', 'default');
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  background-color: get-var-name-css('button', 'bg-color');
+  border-radius: get-var-name-css('border-radius', 'default');
+  border-color: get-var-name-css('button', 'border-color');
+  border-width: 2px;
+  border-style: solid;
+  font-size: get-var-name-css('font-size', 'default');
+  color: get-var-name-css('button', 'text-color');
+  cursor: pointer;
+  word-break: keep-all;
+  outline: none;
+  transition: 0.3s;
+
+  > span {
+    // 部分字母比如 g 在行高为1时下部分会出现截断
+    line-height: 1.2;
+    overflow: hidden;
+  }
+
+  // 匹配紧邻着另一个 .ne-button 元素的 .ne-button 元素
+  & + & {
+    margin-left: 10px;
+  }
+
+  // hover状态
+  &:hover {
+    color: get-var-name-css('button', 'hover-text-color');
+    background-color: get-var-name-css('button', 'hover-bg-color');
+    border-color: get-var-name-css('button', 'hover-border-color');
+  }
+
+  // active状态
+  &:active {
+    color: get-var-name-css('button', 'active-text-color');
+    background-color: get-var-name-css('button', 'active-bg-color');
+    border-color: get-var-name-css('button', 'active-border-color');
+  }
+
+  // 圆角按钮 round
+  @include when(round) {
+    border-radius: get-var-name-css('border-radius', 'round');
+  }
+
+  // 朴素按钮 plain
+  @include when(plain) {
+    @include set-css-var(('button', 'hover', 'bg-color'), ('color', 'white'));
+    @include set-css-var(('button', 'active', 'bg-color'), ('color', 'white'));
+    @include set-css-var(
+      ('button', 'disabled', 'bg-color'),
+      ('color', 'white')
+    );
+  }
+
+  // 文字按钮 text
+  @include when(text) {
+    background-color: transparent;
+    border: transparent 0 solid;
+    &:hover {
+      background-color: get-var-name-css('button', 'hover-bg-color');
+    }
+    &:active {
+      background-color: get-var-name-css('button', 'active-bg-color');
+    }
+    // disabled状态
+    @include when(disabled) {
+      background-color: transparent;
+    }
+  }
+
+  // 圆形按钮 circle
+  @include when(circle) {
+    width: get-var-name-css('component-size', 'default');
+    min-width: get-var-name-css('component-size', 'default');
+    height: get-var-name-css('component-size', 'default');
+    padding: 0;
+    border-radius: get-var-name-css('border-radius', 'circle');
+  }
+
+  // 禁用按钮 disabled
+  @include when(disabled) {
+    cursor: not-allowed;
+    color: get-var-name-css('button', 'disabled-text-color');
+    background-color: get-var-name-css('button', 'disabled-bg-color');
+    border-color: get-var-name-css('button', 'disabled-border-color');
+  }
+
+  // 图标位置 icon-placement
+  $icon-positions: (
+    'left': 'margin-left',
+    'right': 'margin-right'
+  );
+  @each $position, $margin-property in $icon-positions {
+    @include m(icon-#{$position}) {
+      > span:not(:empty) {
+        #{$margin-property}: 5px;
+      }
+    }
+  }
+
+  // type 样式
+  @each $type in $types {
+    // 生成除了error之外的其他类型样式
+    @if $type != error {
+      @include m($type) {
+        @include button-variant($type);
+      }
+    }
+  }
+
+  // 按钮尺寸 size
+  @each $size in (small, large) {
+    @include m($size) {
+      height: get-var-name-css('component-size', $size);
+      padding: 0 get-var-name-css('button-padding', $size);
+      font-size: get-var-name-css('font-size', $size);
+      border-radius: get-var-name-css('border-radius', $size);
+      @include button-circle-size($size);
+    }
+  }
+}

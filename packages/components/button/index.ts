@@ -1,4 +1,4 @@
-import { withInstall } from '@ne-ui/utils/withInstall'
+import { withInstall } from '@ne-ui/utils/with-install'
 import _Button from './src/index.vue'
 
 export const NeButton = withInstall(_Button)

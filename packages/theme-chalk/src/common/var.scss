@@ -1,0 +1,163 @@
+@use 'sass:map';
+@use 'sass:color';
+@use './function.scss' as *;
+
+// types
+$types: primary, success, warning, danger, error, info;
+
+// Color
+$colors: () !default;
+$colors: map.deep-merge(
+  (
+    'white': #ffffff,
+    'black': #000000,
+    'primary': (
+      'base': #1f56fb
+    ),
+    'success': (
+      'base': #04b56f
+    ),
+    'warning': (
+      'base': #faad14
+    ),
+    'danger': (
+      'base': #ff4d4f
+    ),
+    'error': (
+      'base': #ff4d4f
+    ),
+    'info': (
+      'base': #909399
+    )
+  ),
+  $colors
+);
+
+$color-white: map.get($colors, 'white') !default;
+$color-black: map.get($colors, 'black') !default;
+
+// 设置主题渐变颜色
+@mixin set-mix-color($type, $number, $mode, $mix-color) {
+  $colors: map.deep-merge(
+    (
+      $type: (
+        '#{$mode}-#{$number}': color.mix(
+            $mix-color,
+            map.get($colors, $type, 'base'),
+            $number * 10%
+          )
+      )
+    ),
+    $colors
+  ) !global;
+}
+@each $type in $types {
+  @for $number from 1 through 9 {
+    // 设置主题浅渐变色
+    @include set-mix-color($type, $number, 'light', $color-white);
+  }
+  // 设置主题深渐变色
+  @include set-mix-color($type, 2, 'dark', $color-black);
+}
+
+// 文字颜色
+$text-color: () !default;
+$text-color: map.deep-merge(
+  (
+    'primary': #4d5059,
+    'light-1': #7c808c,
+    'disabled': #abb1bf,
+    'placeholder': #c9cdd9
+  ),
+  $text-color
+);
+
+// 文字尺寸
+$font-size: () !default;
+$font-size: map.deep-merge(
+  (
+    'small': 12px,
+    'default': 14px,
+    'large': 16px
+  ),
+  $font-size
+);
+
+// 组件尺寸
+$component-size: () !default;
+$component-size: map.deep-merge(
+  (
+    'small': 24px,
+    'default': 32px,
+    'large': 40px
+  ),
+  $component-size
+);
+
+// 边框
+$border-color: () !default;
+$border-color: map.deep-merge(
+  (
+    'primary': #e2e6f1,
+    'disabled': #ebeef5
+  ),
+  $border-color
+);
+
+// 边框圆角
+$border-radius: () !default;
+$border-radius: map.merge(
+  (
+    'small': 4px,
+    'default': 6px,
+    'large': 8px,
+    'round': 20px,
+    'circle': 100%
+  ),
+  $border-radius
+);
+
+// button样式变量
+$button: () !default;
+$button: map.merge(
+  (
+    // 'font-weight': get-var-name('font-weight-primary'),
+    'border-color': get-var-name-css('border-color', 'primary'),
+    'bg-color': $color-white,
+    'text-color': get-var-name-css('text-color', 'primary'),
+    'disabled-text-color': get-var-name-css('text-color', 'disabled'),
+    'disabled-bg-color': #f5f6fa,
+    'disabled-border-color': #ebeef5,
+    // 'divide-border-color': rgba($color-white, 0.5),
+    'hover-text-color': #3069ff,
+    'hover-bg-color': #eaf0ff,
+    'hover-border-color': #c1d2ff,
+    'active-text-color': #064bfb,
+    'active-border-color': #a3c1ff,
+    'active-bg-color': #a3c1ff,
+    // 'outline-color': get-var-name('color-primary', 'light-5'),
+    // 'hover-link-text-color': get-var-name('text-color', 'secondary'),
+     // 'active-color': get-var-name('text-color', 'primary')
+  ),
+  $button
+);
+// 不同尺寸内边距
+$button-padding: () !default;
+$button-padding: map.merge(
+  (
+    'small': 10px,
+    'default': 16px,
+    'large': 16px
+  ),
+  $button-padding
+);
+
+// 全局变量集合
+$global: (
+  'text-color': $text-color,
+  'font-size': $font-size,
+  'component-size': $component-size,
+  'border-color': $border-color,
+  'border-radius': $border-radius,
+  'button-padding': $button-padding
+);

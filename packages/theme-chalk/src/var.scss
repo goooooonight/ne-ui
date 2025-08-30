@@ -1,0 +1,7 @@
+@use './common/mixin.scss' as *;
+
+:root {
+  @include set-main-color();
+  @include set-main-mix-color();
+  @include set-global-name();
+}

@@ -15,6 +15,10 @@
 @function get-var-name($agrs...) {
   @return create-var-name(($agrs));
 }
+// 获取类名对应的变量
+@function get-var-name-css($agrs...) {
+  @return var(#{create-var-name($agrs)});
+}
 
 // 根据 BEM 命名规范生成类名。
 @function bem($block, $element: '', $modifier: '') {
