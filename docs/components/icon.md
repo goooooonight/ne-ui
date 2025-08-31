@@ -31,6 +31,7 @@ import { IpAgreement, IpWeixinMiniApp, IpZoomIn } from 'vue-icons-plus/ip'
 ```
 
 ## 更改颜色
+通过设置 `color` 属性控制图标的颜色
 
 <ne-icon color="#e74032"><IpAgreement /></ne-icon>
 <ne-icon color="#fbc015"><IpWeixinMiniApp /></ne-icon>
@@ -41,6 +42,7 @@ import { IpAgreement, IpWeixinMiniApp, IpZoomIn } from 'vue-icons-plus/ip'
 ```
 
 ## 更改大小
+通过设置 `size` 属性控制图标的尺寸
 
 <ne-icon size="10"><IpAgreement /></ne-icon>
 <ne-icon size="20"><IpWeixinMiniApp /></ne-icon>
@@ -50,11 +52,19 @@ import { IpAgreement, IpWeixinMiniApp, IpZoomIn } from 'vue-icons-plus/ip'
 #waiting...
 ```
 
+## icon属性
+通过 `icon` 属性可以直接传入对应的 `icon` 组件
+
+<ne-icon :icon="IpAgreement"></ne-icon>
+<ne-icon :icon="IpWeixinMiniApp"></ne-icon>
+<ne-icon :icon="IpZoomIn"></ne-icon>
+
 ## API
 
 ### Icon Props
 
 | 属性名 | 类型                 | 默认值    | 说明     |
 | ------ | -------------------- | --------- | -------- |
-| color  | `string`             | undefined | 图标颜色 |
-| size   | `string` \| `number` | undefined | 图标大小 |
+| color  | `string`             | — | 图标颜色 |
+| size   | `string` \| `number` | — | 图标大小 |
+| icon   | `object` | — | 图标组件 |
