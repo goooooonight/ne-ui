@@ -128,6 +128,9 @@
   // 按钮尺寸 size
   @each $size in (small, large) {
     @include m($size) {
+      @if $size == small {
+        min-width: auto;
+      }
       height: get-var-name-css('component-size', $size);
       padding: 0 get-var-name-css('button-padding', $size);
       font-size: get-var-name-css('font-size', $size);
