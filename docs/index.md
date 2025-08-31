@@ -2,18 +2,18 @@
 layout: home
 
 hero:
-  name: 'NeUI：基于 Vue 3 的组件库'
-  text: '轻量、灵活，赋能您的前端项目'
-  tagline: '探索 Vue 3 的边界，NeUI 助您轻松打造高性能、高颜值的交互体验'
+  name: 'NeUI：'
+  text: '基于 Vue 3 的组件库'
+  tagline: 'NeUI 助您轻松打造高性能、高颜值的交互体验'
   image:
     src: /home.png
     alt: 背景图
   actions:
     - theme: brand
-      text: '🚀 快速开始'
+      text: '快速开始'
       link: /guide/quickStart
     - theme: alt
-      text: '📖 查看文档'
+      text: '查看文档'
       link: /guide/installation
 # features:
 #   - icon: 🚀
