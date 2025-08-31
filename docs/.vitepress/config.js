@@ -1,20 +1,20 @@
-// import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
-// import {
-//   componentPreview,
-//   containerPreview
-// } from '@vitepress-demo-preview/plugin'
+import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
+import {
+  componentPreview,
+  containerPreview
+} from '@vitepress-demo-preview/plugin'
 export default {
   // 开发环境无需使用
   //   base: '/FanUI/',
   title: 'ne-ui',
   description: 'ne-ui',
-  // markdown: {
-  //   config(md) {
-  //     md.use(vitepressDemoPlugin)
-  //     md.use(componentPreview)
-  //     md.use(containerPreview)
-  //   }
-  // },
+  markdown: {
+    config(md) {
+      md.use(vitepressDemoPlugin)
+      md.use(componentPreview)
+      md.use(containerPreview)
+    }
+  },
   themeConfig: {
     logo: '../public/logo.png',
     lastUpdated: '最后更新时间',
