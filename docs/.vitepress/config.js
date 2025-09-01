@@ -3,6 +3,13 @@ import {
   componentPreview,
   containerPreview
 } from '@vitepress-demo-preview/plugin'
+import path from 'path'
+import { fileURLToPath } from 'node:url'
+import { dirname } from 'node:path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 export default {
   // 开发环境无需使用
   //   base: '/FanUI/',
@@ -10,7 +17,10 @@ export default {
   description: 'ne-ui',
   markdown: {
     config(md) {
-      md.use(vitepressDemoPlugin)
+      md.use(vitepressDemoPlugin, {
+        // 配置 demo 文件指定目录
+        demoDir: path.resolve(__dirname, '../demos')
+      })
       md.use(componentPreview)
       md.use(containerPreview)
     }

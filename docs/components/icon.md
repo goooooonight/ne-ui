@@ -12,22 +12,22 @@ $ pnpm install vue-icons-plus --save
 
 ## 基础用法
 
-<demo vue="../example/icon/Basic.vue" />
+<demo vue="icon/Basic.vue" />
 
 ## 更改颜色
 通过设置 `color` 属性控制图标的颜色
 
-<demo vue="../example/icon/Color.vue" />
+<demo vue="icon/Color.vue" />
 
 ## 更改大小
 通过设置 `size` 属性控制图标的尺寸
 
-<demo vue="../example/icon/Size.vue" />
+<demo vue="icon/Size.vue" />
 
 ## icon属性
 通过 `icon` 属性可以直接传入对应的 `icon` 组件
 
-<demo vue="../example/icon/Icon.vue" />
+<demo vue="icon/Icon.vue" />
 
 ## API
 

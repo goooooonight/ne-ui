@@ -3,43 +3,43 @@
 ## 基础用法
 使用 `type` 来定义按钮的样式。
 
-<demo vue="../example/button/basic.vue" />
+<demo vue="button/basic.vue" />
 
 ## 禁用按钮
 使用 `disabled` 来禁用按钮，同时按钮样式也会改变
 
-<demo vue="../example/button/disabled.vue" />
+<demo vue="button/disabled.vue" />
 
 ## 按钮尺寸
 通过设置 `size` 为 `large`、`default`、`small` 分别把按钮设为大、中、小尺寸，默认尺寸为 `default`
 
-<demo vue="../example/button/Size.vue" />
+<demo vue="button/Size.vue" />
 
 ## 圆角按钮
 使用 `round` 来设置圆角按钮
 
-<demo vue="../example/button/Round.vue" />
+<demo vue="button/Round.vue" />
 
 ## 朴素按钮
 使用 `plain` 来设置朴素按钮
 
-<demo vue="../example/button/Plain.vue" />
+<demo vue="button/Plain.vue" />
 
 ## 文字按钮
 使用 `text` 来设置文字按钮
 
-<demo vue="../example/button/Text.vue" />
+<demo vue="button/Text.vue" />
 
 ## 圆形按钮
 使用 `circle` 来设置圆形按钮
 
-<demo vue="../example/button/Circle.vue" />
+<demo vue="button/Circle.vue" />
 
 
 ## 图标位置
 通过设置 `icon-placement` 为 `left`、`right` 来控制图标组件在按钮中的位置
 
-<demo vue="../example/button/IconPlacement.vue" />
+<demo vue="button/IconPlacement.vue" />
 
 ## API
 
