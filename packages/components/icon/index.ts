@@ -1,5 +1,5 @@
 import { withInstall } from '@ne-ui/utils/with-install'
-import _Icon from './src/index.vue'
+import _Icon from './src/Icon.vue'
 
 export const NeIcon = withInstall(_Icon)
 
