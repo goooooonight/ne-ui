@@ -11,8 +11,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export default {
-  // 开发环境无需使用
-  //   base: '/FanUI/',
+  base: '/ne-ui/',
   title: 'ne-ui',
   description: 'ne-ui',
   markdown: {

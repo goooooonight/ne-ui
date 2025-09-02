@@ -3,12 +3,12 @@
 ## 基础用法
 使用 `type` 来定义按钮的样式。
 
-<demo vue="button/basic.vue" />
+<demo vue="button/Basic.vue" />
 
 ## 禁用按钮
 使用 `disabled` 来禁用按钮，同时按钮样式也会改变
 
-<demo vue="button/disabled.vue" />
+<demo vue="button/Disabled.vue" />
 
 ## 按钮尺寸
 通过设置 `size` 为 `large`、`default`、`small` 分别把按钮设为大、中、小尺寸，默认尺寸为 `default`

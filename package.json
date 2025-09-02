@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "pnpm -C play dev",
     "docs:dev": "pnpm -C docs dev",
+    "docs:build": "pnpm -C docs build",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
