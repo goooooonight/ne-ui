@@ -39,7 +39,8 @@ export default defineConfigWithVueTs(
     languageOptions: {
       globals: {
         console: 'readonly',
-        process: 'readonly'
+        process: 'readonly',
+        MouseEvent: 'readonly'
       }
     },
     rules: {

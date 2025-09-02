@@ -42,7 +42,6 @@ const classCustom = computed(() => {
 const emits = defineEmits(buttonEmits)
 
 // 鼠标点击事件
-// eslint-disable-next-line no-undef
 const handleClick = (evt: MouseEvent) => {
   emits('click', evt)
 }

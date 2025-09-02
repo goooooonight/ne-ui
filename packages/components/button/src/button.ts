@@ -56,7 +56,6 @@ export const buttonProps = {
 
 // 组件emits
 export const buttonEmits = {
-  // eslint-disable-next-line no-undef
   click: (evt: MouseEvent) => evt instanceof MouseEvent
 }
 
