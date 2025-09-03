@@ -4,32 +4,41 @@
 @use './var.scss' as *;
 
 @include b(input) {
-    @include set-component-css-var('input', $input);
+  @include set-component-css-var('input', $input);
 }
 
 @include b('input') {
-    width: 100%;
-    height: get-var-name-css('component-size', 'default');
-    padding-left: 8px;
-    display: inline-block;
-    box-sizing: border-box;
-    font-size: get-var-name-css('font-size', 'default');
-    color: get-var-name-css('input', 'focus-text-color');
-    border: get-var-name-css('input', 'default-border-color') 1px solid;
-    border-radius: get-var-name-css('border-radius', 'small');
-    outline: none;
-    transition: 0.2s ease;
+  width: 100%;
+  height: get-var-name-css('component-size', 'default');
+  padding: 0 get-var-name-css('input-padding', 'default');
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: get-var-name-css('font-size', 'default');
+  color: get-var-name-css('text-color', 'primary');
+  border: get-var-name-css('input', 'default-border-color') 1px solid;
+  border-radius: get-var-name-css('border-radius', 'small');
+  outline: none;
+  transition: 0.2s ease;
 
-    &::placeholder {
-        color: get-var-name-css('text-color', 'placeholder');
-    }
+  &::placeholder {
+    color: get-var-name-css('text-color', 'placeholder');
+  }
 
-    &:hover {
-        border-color: get-var-name-css('input', 'hover-border-color');
-    }
+  &:hover {
+    border-color: get-var-name-css('input', 'hover-border-color');
+  }
 
-    &:focus {
-        border-color: get-var-name-css('input', 'focus-border-color');
-        box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
+  &:focus {
+    border-color: get-var-name-css('input', 'focus-border-color');
+    box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
+  }
+
+  // 尺寸样式
+  @each $size in ('small', 'large') {
+    @include m($size) {
+      height: get-var-name-css('component-size', $size);
+      padding: 0 get-var-name-css('input-padding', $size);
+      font-size: get-var-name-css('font-size', $size);
     }
+  }
 }

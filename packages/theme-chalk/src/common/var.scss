@@ -159,13 +159,21 @@ $input: () !default;
 $input: map.merge(
   (
     'default-border-color': get-var-name-css('border-color', 'primary'),
-    'hover-text-color': get-var-name-css('text-color', 'primary'),
     'hover-border-color': get-var-name-css('color', 'primary', 'light', '6'),
-    'focus-text-color': get-var-name-css('text-color', 'primary'),
     'focus-border-color': get-var-name-css('color', 'primary', 'light', '6'),
     'focus-box-shadow-color': get-var-name-css('color', 'primary', 'light', '6')
   ),
   $input
+);
+// 不同尺寸内边距
+$input-padding: () !default;
+$input-padding: map.merge(
+  (
+    'small': 6px,
+    'default': 8px,
+    'large': 8px
+  ),
+  $input-padding
 );
 
 // 全局变量集合
@@ -175,5 +183,6 @@ $global: (
   'component-size': $component-size,
   'border-color': $border-color,
   'border-radius': $border-radius,
-  'button-padding': $button-padding
+  'button-padding': $button-padding,
+  'input-padding': $input-padding
 );
