@@ -51,11 +51,13 @@ $color-black: map.get($colors, 'black') !default;
     $colors
   ) !global;
 }
+
 @each $type in $types {
   @for $number from 1 through 9 {
     // 设置主题浅渐变色
     @include set-mix-color($type, $number, 'light', $color-white);
   }
+
   // 设置主题深渐变色
   @include set-mix-color($type, 2, 'dark', $color-black);
 }
@@ -150,6 +152,20 @@ $button-padding: map.merge(
     'large': 16px
   ),
   $button-padding
+);
+
+// input样式变量
+$input: () !default;
+$input: map.merge(
+  (
+    'default-border-color': get-var-name-css('border-color', 'primary'),
+    'hover-text-color': get-var-name-css('text-color', 'primary'),
+    'hover-border-color': get-var-name-css('color', 'primary', 'light', '6'),
+    'focus-text-color': get-var-name-css('text-color', 'primary'),
+    'focus-border-color': get-var-name-css('color', 'primary', 'light', '6'),
+    'focus-box-shadow-color': get-var-name-css('color', 'primary', 'light', '6')
+  ),
+  $input
 );
 
 // 全局变量集合
