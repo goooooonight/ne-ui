@@ -11,6 +11,11 @@ export const inputProps = {
   type: {
     type: String as PropType<Type>,
     default: 'text'
+  },
+  // 密码框属性
+  showPassword: {
+    type: Boolean,
+    default: false
   }
 }
 

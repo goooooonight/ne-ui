@@ -18,6 +18,7 @@
   color: get-var-name-css('text-color', 'primary');
   border: get-var-name-css('input', 'default-border-color') 1px solid;
   border-radius: get-var-name-css('border-radius', 'small');
+  outline: none;
   transition: 0.2s ease;
 
   &:hover {
@@ -37,6 +38,11 @@
     border: none;
     outline: none;
     background: none;
+    appearance: none;
+    // 禁用Edge浏览器的密码显示图标
+    &::-ms-reveal {
+      display: none;
+    }
     &::placeholder {
       color: get-var-name-css('text-color', 'placeholder');
     }
@@ -44,6 +50,7 @@
   @include e('suffix'){
     flex-shrink: 0;
     display: inline-flex;
+    cursor: pointer;
   }
 
   // 尺寸样式
