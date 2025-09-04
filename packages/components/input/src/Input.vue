@@ -20,7 +20,10 @@ const classCustom = computed(() => {
 </script>
 
 <template>
-  <input :placeholder="ns.b()" :class="classCustom" />
+  <div :class="classCustom">
+    <input :placeholder="ns.b()" :class="ns.e('inner')" />
+    <span :class="ns.e('suffix')">show</span>
+  </div>
 </template>
 
 <style scoped></style>

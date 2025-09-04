@@ -3,34 +3,47 @@
 @use './common/function.scss' as *;
 @use './var.scss' as *;
 
-@include b(input) {
+@include b('input') {
   @include set-component-css-var('input', $input);
 }
 
 @include b('input') {
   width: 100%;
   height: get-var-name-css('component-size', 'default');
-  padding: 0 get-var-name-css('input-padding', 'default');
-  display: inline-block;
+  padding: 2px get-var-name-css('input-padding', 'default');
+  display: inline-flex;
+  align-items: center;
   box-sizing: border-box;
   font-size: get-var-name-css('font-size', 'default');
   color: get-var-name-css('text-color', 'primary');
   border: get-var-name-css('input', 'default-border-color') 1px solid;
   border-radius: get-var-name-css('border-radius', 'small');
-  outline: none;
   transition: 0.2s ease;
-
-  &::placeholder {
-    color: get-var-name-css('text-color', 'placeholder');
-  }
 
   &:hover {
     border-color: get-var-name-css('input', 'hover-border-color');
   }
 
-  &:focus {
+  &:focus-within {
     border-color: get-var-name-css('input', 'focus-border-color');
     box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
+  }
+
+  @include e('inner'){
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: none;
+    &::placeholder {
+      color: get-var-name-css('text-color', 'placeholder');
+    }
+  }
+  @include e('suffix'){
+    flex-shrink: 0;
+    display: inline-flex;
   }
 
   // 尺寸样式
@@ -39,6 +52,9 @@
       height: get-var-name-css('component-size', $size);
       padding: 0 get-var-name-css('input-padding', $size);
       font-size: get-var-name-css('font-size', $size);
+      .ne-input__inner{
+        font-size: get-var-name-css('font-size', $size);
+      }
     }
   }
 }
