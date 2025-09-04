@@ -21,7 +21,7 @@ const classCustom = computed(() => {
 
 <template>
   <div :class="classCustom">
-    <input :placeholder="ns.b()" :class="ns.e('inner')" />
+    <input :type="type" :placeholder="ns.b()" :class="ns.e('inner')" />
     <span :class="ns.e('suffix')">show</span>
   </div>
 </template>
