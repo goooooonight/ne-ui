@@ -72,6 +72,7 @@ const handleBlur = (event: FocusEvent) => {
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
+      v-bind="$attrs"
     />
     <!-- 后缀内容 -->
     <span :class="ns.e('suffix')">
