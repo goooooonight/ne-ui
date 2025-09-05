@@ -2,7 +2,7 @@
 import { createNameSpace } from '@ne-ui/utils'
 import { computed, ref } from 'vue'
 import { inputProps, inputEmits } from './input'
-import { IpPreviewOpen, IpPreviewCloseOne } from 'vue-icons-plus/ip'
+import { IpPreviewOpen, IpPreviewCloseOne, IpCloseOne } from 'vue-icons-plus/ip'
 // 组件命名
 defineOptions({ name: 'ne-input' })
 
@@ -30,6 +30,12 @@ const togglePswVisible = () => {
     pswVisible.value = !pswVisible.value
     inputType.value = pswVisible.value ? 'text' : 'password'
   }
+}
+
+// 一键清除输入内容
+const handleClear = () => {
+  emits('update:modelValue', '')
+  emits('input', '')
 }
 
 // 处理输入事件
@@ -68,14 +74,21 @@ const handleBlur = (event: FocusEvent) => {
       @blur="handleBlur"
     />
     <!-- 后缀内容 -->
-    <span
-      :class="ns.e('suffix')"
-      v-if="showPassword && modelValue && !disabled"
-    >
-      <ne-icon
-        :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
-        @click="togglePswVisible"
-      ></ne-icon>
+    <span :class="ns.e('suffix')">
+      <span :class="ns.e('suffix-inner')">
+        <!-- 切换密码显示/隐藏 -->
+        <ne-icon
+          v-if="showPassword && modelValue && !disabled"
+          :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
+          @click="togglePswVisible"
+        ></ne-icon>
+        <!-- 一键清除 -->
+        <ne-icon
+          v-if="clearable && modelValue && !disabled"
+          :icon="IpCloseOne"
+          @click="handleClear"
+        ></ne-icon>
+      </span>
     </span>
   </div>
 </template>

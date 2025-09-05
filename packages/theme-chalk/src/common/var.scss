@@ -163,7 +163,9 @@ $input: map.merge(
     'focus-border-color': get-var-name-css('color', 'primary', 'light', '6'),
     'focus-box-shadow-color': get-var-name-css('color', 'primary', 'light', '6'),
     'disabled-border-color': get-var-name-css('border-color', 'disabled'),
-    'disabled-bg-color': #f5f6fa
+    'disabled-bg-color': #f5f6fa,
+    'default-icon-color': #00000073,
+    'hover-icon-color': #000000A0
   ),
   $input
 );

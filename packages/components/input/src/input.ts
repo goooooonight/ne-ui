@@ -30,6 +30,11 @@ export const inputProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  // 一键清空
+  clearable: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -46,5 +51,5 @@ export const inputEmits = {
   blur: (event: FocusEvent) => event instanceof FocusEvent
 }
 
-export type ButtonProps = ExtractPropTypes<typeof inputProps>
-// export type InputEmits = typeof inputEmits
+export type InputProps = ExtractPropTypes<typeof inputProps>
+export type InputEmits = typeof inputEmits

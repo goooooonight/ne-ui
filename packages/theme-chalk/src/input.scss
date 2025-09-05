@@ -42,26 +42,45 @@
     background: none;
     appearance: none;
     cursor: inherit;
+
     // 禁用Edge浏览器的密码显示图标
     &::-ms-reveal {
       display: none;
     }
+
     &::placeholder {
       color: get-var-name-css('text-color', 'placeholder');
     }
   }
 
-  // 后缀内容样式
+  // 后缀区域样式
   @include e('suffix') {
     flex-shrink: 0;
     display: inline-flex;
     cursor: pointer;
   }
 
+  // 后缀区域内容样式
+  @include e('suffix-inner') {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    // 图标样式
+    svg {
+      color: get-var-name-css('input', 'default-icon-color');
+
+      &:hover {
+        color: get-var-name-css('input', 'hover-icon-color');
+      }
+    }
+  }
+
   // disabled 禁用样式
   @include when('disabled') {
     cursor: not-allowed;
     background-color: get-var-name-css('input', 'disabled-bg-color');
+
     // 禁用交互样式
     &:hover,
     &:focus-within {
@@ -76,6 +95,7 @@
       height: get-var-name-css('component-size', $size);
       padding: 0 get-var-name-css('input-padding', $size);
       font-size: get-var-name-css('font-size', $size);
+
       .#{$namespace}-input__inner {
         font-size: get-var-name-css('font-size', $size);
       }
