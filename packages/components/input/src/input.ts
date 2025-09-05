@@ -4,7 +4,8 @@ import type { Size, Type } from './type'
 export const inputProps = {
   // 绑定值
   modelValue: {
-    type: [String, Number]
+    type: [String, Number] as PropType<string | number>,
+    default: ''
   },
   // 输入框尺寸
   size: {
@@ -24,6 +25,11 @@ export const inputProps = {
   // 占位文本
   placeholder: {
     type: String
+  },
+  // 禁用状态
+  disabled: {
+    type: Boolean,
+    default: false
   }
 }
 

@@ -16,14 +16,21 @@ const emits = defineEmits(inputEmits)
 
 // 生成样式
 const classCustom = computed(() => {
-  const { size } = props
-  return [ns.b(), ns.m(size)]
+  const { size, disabled } = props
+  return [ns.b(), ns.m(size), ns.is('disabled', disabled)]
 })
 
 // 管理输入框类型（用于密码显示/隐藏功能）
 const inputType = ref(props.showPassword ? 'password' : props.type)
 // 密码是否可见
 const pswVisible = ref(!props.showPassword)
+// 切换密码显示状态
+const togglePswVisible = () => {
+  if (props.showPassword) {
+    pswVisible.value = !pswVisible.value
+    inputType.value = pswVisible.value ? 'text' : 'password'
+  }
+}
 
 // 处理输入事件
 // 实现v-model双向绑定
@@ -45,14 +52,6 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   emits('blur', event)
 }
-
-// 切换密码显示状态
-const togglePswVisible = () => {
-  if (props.showPassword) {
-    pswVisible.value = !pswVisible.value
-    inputType.value = pswVisible.value ? 'text' : 'password'
-  }
-}
 </script>
 
 <template>
@@ -62,14 +61,17 @@ const togglePswVisible = () => {
       :value="modelValue"
       :type="inputType"
       :placeholder="placeholder"
+      :disabled="disabled"
       :class="ns.e('inner')"
-      :autocomplete="showPassword ? 'new-password' : 'off'"
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
     />
     <!-- 后缀内容 -->
-    <span :class="ns.e('suffix')" v-if="showPassword">
+    <span
+      :class="ns.e('suffix')"
+      v-if="showPassword && modelValue && !disabled"
+    >
       <ne-icon
         :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
         @click="togglePswVisible"

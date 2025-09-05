@@ -1,6 +1,7 @@
 @use './common/mixin.scss' as *;
 @use './common/var.scss' as *;
 @use './common/function.scss' as *;
+@use './common/config.scss' as *;
 @use './var.scss' as *;
 
 @include b('input') {
@@ -30,7 +31,8 @@
     box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
   }
 
-  @include e('inner'){
+  // 输入框样式
+  @include e('inner') {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -39,6 +41,7 @@
     outline: none;
     background: none;
     appearance: none;
+    cursor: inherit;
     // 禁用Edge浏览器的密码显示图标
     &::-ms-reveal {
       display: none;
@@ -47,10 +50,24 @@
       color: get-var-name-css('text-color', 'placeholder');
     }
   }
-  @include e('suffix'){
+
+  // 后缀内容样式
+  @include e('suffix') {
     flex-shrink: 0;
     display: inline-flex;
     cursor: pointer;
+  }
+
+  // disabled 禁用样式
+  @include when('disabled') {
+    cursor: not-allowed;
+    background-color: get-var-name-css('input', 'disabled-bg-color');
+    // 禁用交互样式
+    &:hover,
+    &:focus-within {
+      border-color: get-var-name-css('input', 'disabled-border-color');
+      box-shadow: none;
+    }
   }
 
   // 尺寸样式
@@ -59,7 +76,7 @@
       height: get-var-name-css('component-size', $size);
       padding: 0 get-var-name-css('input-padding', $size);
       font-size: get-var-name-css('font-size', $size);
-      .ne-input__inner{
+      .#{$namespace}-input__inner {
         font-size: get-var-name-css('font-size', $size);
       }
     }
