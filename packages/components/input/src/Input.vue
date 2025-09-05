@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
 import { computed, ref } from 'vue'
-import { inputProps } from './input'
+import { inputProps, inputEmits } from './input'
 import { IpPreviewOpen, IpPreviewCloseOne } from 'vue-icons-plus/ip'
 // 组件命名
 defineOptions({ name: 'ne-input' })
@@ -11,6 +11,8 @@ const ns = createNameSpace('input')
 
 // 获取传入参数
 const props = defineProps(inputProps)
+// 定义emit事件
+const emits = defineEmits(inputEmits)
 
 // 生成样式
 const classCustom = computed(() => {
@@ -22,6 +24,28 @@ const classCustom = computed(() => {
 const inputType = ref(props.showPassword ? 'password' : props.type)
 // 密码是否可见
 const pswVisible = ref(!props.showPassword)
+
+// 处理输入事件
+// 实现v-model双向绑定
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  const value = target.value
+  // 触发v-model更新
+  emits('update:modelValue', value)
+  // 触发input事件
+  emits('input', value)
+}
+
+// 处理焦点事件
+const handleFocus = (event: FocusEvent) => {
+  emits('focus', event)
+}
+
+// 处理失焦事件
+const handleBlur = (event: FocusEvent) => {
+  emits('blur', event)
+}
+
 // 切换密码显示状态
 const togglePswVisible = () => {
   if (props.showPassword) {
@@ -33,7 +57,18 @@ const togglePswVisible = () => {
 
 <template>
   <div :class="classCustom" tabindex="0">
-    <input :type="inputType" :placeholder="ns.b()" :class="ns.e('inner')" />
+    <!-- 输入框 -->
+    <input
+      :value="modelValue"
+      :type="inputType"
+      :placeholder="placeholder"
+      :class="ns.e('inner')"
+      :autocomplete="showPassword ? 'new-password' : 'off'"
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+    />
+    <!-- 后缀内容 -->
     <span :class="ns.e('suffix')" v-if="showPassword">
       <ne-icon
         :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"

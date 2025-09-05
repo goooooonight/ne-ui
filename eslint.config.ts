@@ -40,7 +40,10 @@ export default defineConfigWithVueTs(
       globals: {
         console: 'readonly',
         process: 'readonly',
-        MouseEvent: 'readonly'
+        MouseEvent: 'readonly',
+        FocusEvent: 'readonly',
+        Event: 'readonly',
+        HTMLInputElement: 'readonly'
       }
     },
     rules: {

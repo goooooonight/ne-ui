@@ -2,6 +2,10 @@ import type { PropType, ExtractPropTypes } from 'vue'
 import type { Size, Type } from './type'
 
 export const inputProps = {
+  // 绑定值
+  modelValue: {
+    type: [String, Number]
+  },
   // 输入框尺寸
   size: {
     type: String as PropType<Size>,
@@ -16,7 +20,24 @@ export const inputProps = {
   showPassword: {
     type: Boolean,
     default: false
+  },
+  // 占位文本
+  placeholder: {
+    type: String
   }
+}
+
+export const inputEmits = {
+  // v-model语法糖支持 - 当输入值改变时触发
+  'update:modelValue': (value: string | number) =>
+    typeof value === 'string' || typeof value === 'number',
+  // 输入事件 - 当用户输入时触发
+  input: (value: string | number) =>
+    typeof value === 'string' || typeof value === 'number',
+  // 焦点事件
+  focus: (event: FocusEvent) => event instanceof FocusEvent,
+  // 失焦事件
+  blur: (event: FocusEvent) => event instanceof FocusEvent
 }
 
 export type ButtonProps = ExtractPropTypes<typeof inputProps>
