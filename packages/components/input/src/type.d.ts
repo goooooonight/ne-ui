@@ -22,7 +22,11 @@ export type Type =
   | 'submit'
   | 'tel'
   | 'text'
+  | 'textarea'
   | 'time'
   | 'url'
   | 'week'
   | 'datetime'
+
+// textarea 调整大小方式
+export type Resize = 'none' | 'both' | 'horizontal' | 'vertical'

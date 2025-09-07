@@ -119,6 +119,18 @@ $border-radius: map.merge(
   $border-radius
 );
 
+// 背景色
+$background-color: () !default;
+$background-color: map.merge(
+  (
+    'primary': #f5f6fa,
+    'light': #fafbff,
+    'scrollbar': #d5d9e4,
+    'scrollbar-hover': #e1e3eb
+  ),
+  $background-color
+);
+
 // button样式变量
 $button: () !default;
 $button: map.merge(
@@ -163,9 +175,9 @@ $input: map.merge(
     'focus-border-color': get-var-name-css('color', 'primary', 'light', '6'),
     'focus-box-shadow-color': get-var-name-css('color', 'primary', 'light', '6'),
     'disabled-border-color': get-var-name-css('border-color', 'disabled'),
-    'disabled-bg-color': #f5f6fa,
+    'disabled-bg-color': get-var-name-css('background-color', 'primary'),
     'default-icon-color': #00000073,
-    'hover-icon-color': #000000A0
+    'hover-icon-color': #000000a0
   ),
   $input
 );
@@ -179,6 +191,36 @@ $input-padding: map.merge(
   ),
   $input-padding
 );
+// textarea 最小高度
+$textarea-min-height: () !default;
+$textarea-min-height: map.merge(
+  (
+    'small': 60px,
+    'default': 80px,
+    'large': 100px
+  ),
+  $textarea-min-height
+);
+// textarea 垂直内边距
+$textarea-padding-vertical: () !default;
+$textarea-padding-vertical: map.merge(
+  (
+    'small': 6px,
+    'default': 8px,
+    'large': 10px
+  ),
+  $textarea-padding-vertical
+);
+// textarea 水平内边距
+$textarea-padding-horizontal: () !default;
+$textarea-padding-horizontal: map.merge(
+  (
+    'small': 8px,
+    'default': 12px,
+    'large': 12px
+  ),
+  $textarea-padding-horizontal
+);
 
 // 全局变量集合
 $global: (
@@ -187,6 +229,10 @@ $global: (
   'component-size': $component-size,
   'border-color': $border-color,
   'border-radius': $border-radius,
+  'background-color': $background-color,
   'button-padding': $button-padding,
-  'input-padding': $input-padding
+  'input-padding': $input-padding,
+  'textarea-min-height': $textarea-min-height,
+  'textarea-padding-vertical': $textarea-padding-vertical,
+  'textarea-padding-horizontal': $textarea-padding-horizontal
 );

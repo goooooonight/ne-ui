@@ -76,6 +76,50 @@
     }
   }
 
+  // textarea 样式
+  &:has(.#{$namespace}-input__textarea) {
+    height: auto;
+    min-height: 80px;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  @include e('textarea') {
+    height: auto;
+    min-height: get-var-name-css('textarea-min-height', 'default');
+    padding: get-var-name-css('textarea-padding-vertical', 'default')
+      get-var-name-css('textarea-padding-horizontal', 'default');
+    font-family: inherit;
+    line-height: 1.5;
+    // 只对边框和背景色等进行过渡，避免影响拖拽调整大小的流畅性
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    // 修改默认的滚动条样式
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: get-var-name-css('background-color', 'scrollbar');
+      border-radius: 3px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: get-var-name-css(
+          'background-color',
+          'scrollbar-hover'
+        );
+      }
+    }
+  }
+
   // disabled 禁用样式
   @include when('disabled') {
     cursor: not-allowed;
@@ -98,6 +142,13 @@
 
       .#{$namespace}-input__inner {
         font-size: get-var-name-css('font-size', $size);
+      }
+
+      // textarea 在不同尺寸下的样式
+      .#{$namespace}-input__textarea {
+        min-height: get-var-name-css('textarea-min-height', $size);
+        padding: get-var-name-css('textarea-padding-vertical', $size)
+          get-var-name-css('textarea-padding-horizontal', $size);
       }
     }
   }

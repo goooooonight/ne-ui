@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { Size, Type } from './type'
+import type { Size, Type, Resize } from './type'
 
 export const inputProps = {
   // 绑定值
@@ -35,6 +35,20 @@ export const inputProps = {
   clearable: {
     type: Boolean,
     default: false
+  },
+  // textarea 行数
+  rows: {
+    type: Number,
+    default: 3
+  },
+  // textarea 列数
+  cols: {
+    type: Number
+  },
+  // textarea 调整大小方式
+  resize: {
+    type: String as PropType<Resize>,
+    default: 'vertical'
   }
 }
 

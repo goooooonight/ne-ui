@@ -41,7 +41,7 @@ const handleClear = () => {
 // 处理输入事件
 // 实现v-model双向绑定
 const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
+  const target = event.target as HTMLInputElement | HTMLTextAreaElement
   const value = target.value
   // 触发v-model更新
   emits('update:modelValue', value)
@@ -62,12 +62,15 @@ const handleBlur = (event: FocusEvent) => {
 
 <template>
   <div :class="classCustom" tabindex="0">
-    <!-- 输入框 -->
+    <!-- 单行输入框 -->
     <input
+      v-if="type !== 'textarea'"
       :value="modelValue"
       :type="inputType"
       :placeholder="placeholder"
       :disabled="disabled"
+      :minlength="minlength"
+      :maxlength="maxlength"
       :class="ns.e('inner')"
       @input="handleInput"
       @focus="handleFocus"
@@ -75,7 +78,7 @@ const handleBlur = (event: FocusEvent) => {
       v-bind="$attrs"
     />
     <!-- 后缀内容 -->
-    <span :class="ns.e('suffix')">
+    <span v-if="type !== 'textarea'" :class="ns.e('suffix')">
       <span :class="ns.e('suffix-inner')">
         <!-- 切换密码显示/隐藏 -->
         <ne-icon
@@ -91,6 +94,21 @@ const handleBlur = (event: FocusEvent) => {
         ></ne-icon>
       </span>
     </span>
+    <!-- 多行文本输入框 -->
+    <textarea
+      v-else
+      :value="modelValue"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :rows="rows"
+      :cols="cols"
+      :style="{ resize: resize }"
+      :class="[ns.e('textarea'), ns.e('inner')]"
+      @input="handleInput"
+      @focus="handleFocus"
+      @blur="handleBlur"
+      v-bind="$attrs"
+    ></textarea>
   </div>
 </template>
 
