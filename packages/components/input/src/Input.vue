@@ -58,12 +58,39 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   emits('blur', event)
 }
+
+// 条件渲染 - 是否显示后缀区域
+const showSuffix = computed(() => {
+  return (
+    (props.showPassword || props.clearable) &&
+    !props.disabled &&
+    props.modelValue
+  )
+})
+
+// 条件渲染 - 是否显示密码切换图标
+const showPasswordToggle = computed(() => {
+  return props.showPassword && props.modelValue && !props.disabled
+})
+
+// 条件渲染 - 是否显示清除按钮
+const showClearButton = computed(() => {
+  return props.clearable && props.modelValue && !props.disabled
+})
+
+// 条件渲染 - 是否为多行文本输入框
+const isTextarea = computed(() => props.type === 'textarea')
+
+// 条件渲染 - 是否显示字数统计
+const showWordCount = computed(() => {
+  return props.showWordLimit && props.maxlength
+})
 </script>
 
 <template>
   <div :class="classCustom" tabindex="0">
     <!-- 单行输入框 -->
-    <div v-if="type !== 'textarea'" :class="ns.e('wrapper')">
+    <div v-if="!isTextarea" :class="ns.e('wrapper')">
       <input
         :value="modelValue"
         :type="inputType"
@@ -78,30 +105,30 @@ const handleBlur = (event: FocusEvent) => {
         v-bind="$attrs"
       />
       <!-- 后缀内容 -->
-      <span v-if="showPassword || clearable" :class="ns.e('suffix')">
+      <span v-if="showSuffix" :class="ns.e('suffix')">
         <span :class="ns.e('suffix-inner')">
           <!-- 切换密码显示/隐藏 -->
           <ne-icon
-            v-if="showPassword && modelValue && !disabled"
+            v-if="showPasswordToggle"
             :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
             @click="togglePswVisible"
           ></ne-icon>
           <!-- 一键清除 -->
           <ne-icon
-            v-if="clearable && modelValue && !disabled"
+            v-if="showClearButton"
             :icon="IpCloseOne"
             @click="handleClear"
           ></ne-icon>
         </span>
       </span>
       <!-- 字数显示 -->
-      <span v-if="showWordLimit" :class="ns.e('count-inner')">
+      <span v-if="showWordCount" :class="ns.e('count-inner')">
         {{ String(modelValue).length }} / {{ maxlength }}
       </span>
     </div>
     <!-- 多行文本输入框 -->
     <textarea
-      v-else
+      v-if="isTextarea"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -117,10 +144,7 @@ const handleBlur = (event: FocusEvent) => {
       v-bind="$attrs"
     ></textarea>
     <!-- textarea - 字数显示 -->
-    <span
-      v-if="type === 'textarea' && showWordLimit"
-      :class="ns.e('count-textarea')"
-    >
+    <span v-if="isTextarea && showWordCount" :class="ns.e('count-textarea')">
       {{ String(modelValue).length }} / {{ maxlength }}
     </span>
   </div>
