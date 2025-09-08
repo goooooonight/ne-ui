@@ -89,6 +89,10 @@ const showWordCount = computed(() => {
 
 <template>
   <div :class="classCustom" tabindex="0">
+    <!-- 复合输入框 - 前置内容 -->
+    <div v-if="$slots.prepend" :class="ns.e('prepend')">
+      <slot name="prepend"></slot>
+    </div>
     <!-- 单行输入框 -->
     <div v-if="!isTextarea" :class="ns.e('wrapper')">
       <input
@@ -147,6 +151,10 @@ const showWordCount = computed(() => {
     <span v-if="isTextarea && showWordCount" :class="ns.e('count-textarea')">
       {{ String(modelValue).length }} / {{ maxlength }}
     </span>
+    <!-- 复合输入框 - 后置内容 -->
+    <div v-if="$slots.append" :class="ns.e('append')">
+      <slot name="append"></slot>
+    </div>
   </div>
 </template>
 

@@ -4,10 +4,12 @@
 @use './common/config.scss' as *;
 @use './var.scss' as *;
 
+// 设置组件CSS变量
 @include b('input') {
   @include set-component-css-var('input', $input);
 }
 
+// 输入框主样式
 @include b('input') {
   width: 100%;
   height: get-var-name-css('component-size', 'default');
@@ -22,6 +24,7 @@
   transition: 0.2s ease;
   position: relative;
 
+  // 基础交互效果
   &:hover {
     border-color: get-var-name-css('input', 'hover-border-color');
   }
@@ -31,15 +34,17 @@
     box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
   }
 
-  // 输入框包裹
+  // 输入框包裹容器 wrapper
   @include e('wrapper') {
     width: 100%;
     height: 100%;
     padding: 0 get-var-name-css('input-padding', 'default');
     display: inline-flex;
+    border-radius: get-var-name-css('border-radius', 'small');
+    box-sizing: border-box;
   }
 
-  // 输入框样式
+  // 输入框内部元素
   @include e('inner') {
     width: 100%;
     height: 100%;
@@ -84,7 +89,25 @@
     }
   }
 
-  // textarea 样式
+  // 字数统计功能
+  @include e('count-inner') {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-left: 6px;
+    flex-shrink: 0;
+    color: get-var-name-css('text-color', 'placeholder');
+  }
+
+  @include e('count-textarea') {
+    flex-shrink: 0;
+    color: get-var-name-css('text-color', 'placeholder');
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  // 多行文本输入框
   &:has(.#{$namespace}-input__textarea) {
     height: auto;
     min-height: 80px;
@@ -95,7 +118,8 @@
   @include e('textarea') {
     height: auto;
     min-height: get-var-name-css('textarea-min-height', 'default');
-    padding: get-var-name-css('textarea-padding-vertical', 'default') get-var-name-css('textarea-padding-horizontal', 'default');
+    padding: get-var-name-css('textarea-padding-vertical', 'default')
+      get-var-name-css('textarea-padding-horizontal', 'default');
     font-family: inherit;
     line-height: 1.5;
     // 只对边框和背景色等进行过渡，避免影响拖拽调整大小的流畅性
@@ -119,31 +143,80 @@
       cursor: pointer;
 
       &:hover {
-        background-color: get-var-name-css('background-color',
-            'scrollbar-hover'
-          );
+        background-color: get-var-name-css(
+          'background-color',
+          'scrollbar-hover'
+        );
       }
     }
   }
 
-  // show-word-limit 字数显示
-  // type 为 textarea 时
-  @include e('count-textarea') {
-    flex-shrink: 0;
-    color: get-var-name-css('text-color', 'placeholder');
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
+  // 复合输入框
+  // 复合输入框容器交互样式
+  @each $slot, $direction in ('prepend': 'left', 'append': 'right') {
+    &:has(.#{$namespace}-input__#{$slot}) {
+      // 移除组件边框以及交互样式
+      border: none;
+
+      &:focus-within {
+        box-shadow: none;
+      }
+
+      // wrapper获得交互样式
+      .#{$namespace}-input__wrapper {
+        border: get-var-name-css('input', 'default-border-color') 1px solid;
+        border-top-#{$direction}-radius: 0;
+        border-bottom-#{$direction}-radius: 0;
+        transition: 0.2s ease;
+
+        &:hover {
+          border-color: get-var-name-css('input', 'hover-border-color');
+        }
+
+        &:focus-within {
+          border-color: get-var-name-css('input', 'focus-border-color');
+          box-shadow: 0
+            0
+            4px
+            get-var-name-css('input', 'focus-box-shadow-color');
+        }
+      }
+    }
   }
 
-  // type 为其他类型时
-  @include e('count-inner') {
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-    margin-left: 6px;
-    flex-shrink: 0;
-    color: get-var-name-css('text-color', 'placeholder');
+  // 复合输入框插槽样式
+  @each $slot, $direction in ('prepend': 'right', 'append': 'left') {
+    @include e($slot) {
+      min-height: 100%;
+      display: inline-flex;
+      flex-shrink: 0;
+      justify-content: center;
+      align-items: center;
+      border-radius: get-var-name-css('border-radius', 'small');
+      background-color: get-var-name-css('background-color', 'primary');
+      border: get-var-name-css('border-color', 'primary') 1px solid;
+      box-sizing: border-box;
+      border-#{$direction}: none;
+      border-top-#{$direction}-radius: 0;
+      border-bottom-#{$direction}-radius: 0;
+
+      // 默认文本内容样式
+      color: get-var-name-css('text-color', 'placeholder');
+      padding: 0 10px;
+
+      // 当包含按钮组件时，移除默认样式
+      &:has(.ne-button) {
+        padding: 0;
+        background-color: transparent;
+        border-color: transparent;
+
+        .ne-button {
+          border-#{$direction}: none;
+          border-top-#{$direction}-radius: 0;
+          border-bottom-#{$direction}-radius: 0;
+        }
+      }
+    }
   }
 
   // disabled 禁用样式
@@ -168,7 +241,8 @@
       // textarea 在不同尺寸下的样式
       .#{$namespace}-input__textarea {
         min-height: get-var-name-css('textarea-min-height', $size);
-        padding: get-var-name-css('textarea-padding-vertical', $size) get-var-name-css('textarea-padding-horizontal', $size);
+        padding: get-var-name-css('textarea-padding-vertical', $size)
+          get-var-name-css('textarea-padding-horizontal', $size);
       }
     }
   }
