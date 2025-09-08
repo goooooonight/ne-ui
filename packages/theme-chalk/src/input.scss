@@ -11,7 +11,6 @@
 @include b('input') {
   width: 100%;
   height: get-var-name-css('component-size', 'default');
-  padding: 2px get-var-name-css('input-padding', 'default');
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
@@ -32,11 +31,19 @@
     box-shadow: 0 0 4px get-var-name-css('input', 'focus-box-shadow-color');
   }
 
+  // 输入框包裹
+  @include e('wrapper') {
+    width: 100%;
+    height: 100%;
+    padding: 0 get-var-name-css('input-padding', 'default');
+    display: inline-flex;
+  }
+
   // 输入框样式
   @include e('inner') {
     width: 100%;
     height: 100%;
-    padding: 0;
+    font-size: inherit;
     flex-grow: 1;
     border: none;
     outline: none;
@@ -88,8 +95,7 @@
   @include e('textarea') {
     height: auto;
     min-height: get-var-name-css('textarea-min-height', 'default');
-    padding: get-var-name-css('textarea-padding-vertical', 'default')
-      get-var-name-css('textarea-padding-horizontal', 'default');
+    padding: get-var-name-css('textarea-padding-vertical', 'default') get-var-name-css('textarea-padding-horizontal', 'default');
     font-family: inherit;
     line-height: 1.5;
     // 只对边框和背景色等进行过渡，避免影响拖拽调整大小的流畅性
@@ -113,10 +119,9 @@
       cursor: pointer;
 
       &:hover {
-        background-color: get-var-name-css(
-          'background-color',
-          'scrollbar-hover'
-        );
+        background-color: get-var-name-css('background-color',
+            'scrollbar-hover'
+          );
       }
     }
   }
@@ -130,9 +135,13 @@
     right: 8px;
     bottom: 8px;
   }
+
   // type 为其他类型时
   @include e('count-inner') {
-    padding-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    margin-left: 6px;
     flex-shrink: 0;
     color: get-var-name-css('text-color', 'placeholder');
   }
@@ -154,18 +163,12 @@
   @each $size in ('small', 'large') {
     @include m($size) {
       height: get-var-name-css('component-size', $size);
-      padding: 0 get-var-name-css('input-padding', $size);
       font-size: get-var-name-css('font-size', $size);
-
-      .#{$namespace}-input__inner {
-        font-size: get-var-name-css('font-size', $size);
-      }
 
       // textarea 在不同尺寸下的样式
       .#{$namespace}-input__textarea {
         min-height: get-var-name-css('textarea-min-height', $size);
-        padding: get-var-name-css('textarea-padding-vertical', $size)
-          get-var-name-css('textarea-padding-horizontal', $size);
+        padding: get-var-name-css('textarea-padding-vertical', $size) get-var-name-css('textarea-padding-horizontal', $size);
       }
     }
   }

@@ -63,37 +63,42 @@ const handleBlur = (event: FocusEvent) => {
 <template>
   <div :class="classCustom" tabindex="0">
     <!-- 单行输入框 -->
-    <input
-      v-if="type !== 'textarea'"
-      :value="modelValue"
-      :type="inputType"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :minlength="minlength"
-      :maxlength="maxlength"
-      :class="ns.e('inner')"
-      @input="handleInput"
-      @focus="handleFocus"
-      @blur="handleBlur"
-      v-bind="$attrs"
-    />
-    <!-- 后缀内容 -->
-    <span v-if="type !== 'textarea'" :class="ns.e('suffix')">
-      <span :class="ns.e('suffix-inner')">
-        <!-- 切换密码显示/隐藏 -->
-        <ne-icon
-          v-if="showPassword && modelValue && !disabled"
-          :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
-          @click="togglePswVisible"
-        ></ne-icon>
-        <!-- 一键清除 -->
-        <ne-icon
-          v-if="clearable && modelValue && !disabled"
-          :icon="IpCloseOne"
-          @click="handleClear"
-        ></ne-icon>
+    <div v-if="type !== 'textarea'" :class="ns.e('wrapper')">
+      <input
+        :value="modelValue"
+        :type="inputType"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :minlength="minlength"
+        :maxlength="maxlength"
+        :class="ns.e('inner')"
+        @input="handleInput"
+        @focus="handleFocus"
+        @blur="handleBlur"
+        v-bind="$attrs"
+      />
+      <!-- 后缀内容 -->
+      <span v-if="showPassword || clearable" :class="ns.e('suffix')">
+        <span :class="ns.e('suffix-inner')">
+          <!-- 切换密码显示/隐藏 -->
+          <ne-icon
+            v-if="showPassword && modelValue && !disabled"
+            :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
+            @click="togglePswVisible"
+          ></ne-icon>
+          <!-- 一键清除 -->
+          <ne-icon
+            v-if="clearable && modelValue && !disabled"
+            :icon="IpCloseOne"
+            @click="handleClear"
+          ></ne-icon>
+        </span>
       </span>
-    </span>
+      <!-- 字数显示 -->
+      <span v-if="showWordLimit" :class="ns.e('count-inner')">
+        {{ String(modelValue).length }} / {{ maxlength }}
+      </span>
+    </div>
     <!-- 多行文本输入框 -->
     <textarea
       v-else
@@ -111,12 +116,10 @@ const handleBlur = (event: FocusEvent) => {
       @blur="handleBlur"
       v-bind="$attrs"
     ></textarea>
-    <!-- 字数显示 -->
+    <!-- textarea - 字数显示 -->
     <span
-      v-if="showWordLimit"
-      :class="
-        type === 'textarea' ? ns.e('count-textarea') : ns.e('count-inner')
-      "
+      v-if="type === 'textarea' && showWordLimit"
+      :class="ns.e('count-textarea')"
     >
       {{ String(modelValue).length }} / {{ maxlength }}
     </span>
