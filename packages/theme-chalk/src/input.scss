@@ -21,6 +21,7 @@
   border-radius: get-var-name-css('border-radius', 'small');
   outline: none;
   transition: 0.2s ease;
+  position: relative;
 
   &:hover {
     border-color: get-var-name-css('input', 'hover-border-color');
@@ -118,6 +119,22 @@
         );
       }
     }
+  }
+
+  // show-word-limit 字数显示
+  // type 为 textarea 时
+  @include e('count-textarea') {
+    flex-shrink: 0;
+    color: get-var-name-css('text-color', 'placeholder');
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+  }
+  // type 为其他类型时
+  @include e('count-inner') {
+    padding-left: 10px;
+    flex-shrink: 0;
+    color: get-var-name-css('text-color', 'placeholder');
   }
 
   // disabled 禁用样式

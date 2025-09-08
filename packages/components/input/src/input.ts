@@ -49,6 +49,19 @@ export const inputProps = {
   resize: {
     type: String as PropType<Resize>,
     default: 'vertical'
+  },
+  // 最小输入长度
+  minlength: {
+    type: [String, Number] as PropType<string | number>
+  },
+  // 最大输入长度
+  maxlength: {
+    type: [String, Number] as PropType<string | number>
+  },
+  // 显示限制长度
+  showWordLimit: {
+    type: Boolean,
+    default: false
   }
 }
 

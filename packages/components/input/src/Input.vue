@@ -102,6 +102,8 @@ const handleBlur = (event: FocusEvent) => {
       :disabled="disabled"
       :rows="rows"
       :cols="cols"
+      :minlength="minlength"
+      :maxlength="maxlength"
       :style="{ resize: resize }"
       :class="[ns.e('textarea'), ns.e('inner')]"
       @input="handleInput"
@@ -109,6 +111,15 @@ const handleBlur = (event: FocusEvent) => {
       @blur="handleBlur"
       v-bind="$attrs"
     ></textarea>
+    <!-- 字数显示 -->
+    <span
+      v-if="showWordLimit"
+      :class="
+        type === 'textarea' ? ns.e('count-textarea') : ns.e('count-inner')
+      "
+    >
+      {{ String(modelValue).length }} / {{ maxlength }}
+    </span>
   </div>
 </template>
 
