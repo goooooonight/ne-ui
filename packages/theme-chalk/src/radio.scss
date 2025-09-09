@@ -1,0 +1,75 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+@use './var.scss' as *;
+
+// 设置组件CSS变量
+@include b('radio') {
+  @include set-component-css-var('radio', $radio);
+}
+
+@include b('radio') {
+  line-height: 1.5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: get-var-name-css('radio', 'default-text-color');
+  font-size: get-var-name-css('font-size', 'default');
+  transition: 0.2s ease;
+  cursor: pointer;
+
+  // 交互样式
+  @each $state in ('hover', 'active') {
+    &:#{$state} {
+      .#{$namespace}-radio__input {
+        border-color: get-var-name-css('radio', '#{$state}-border-color');
+      }
+    }
+  }
+
+  // 单选输入框样式
+  @include e('input') {
+    width: 12px;
+    height: 12px;
+    border: get-var-name-css('radio', 'default-border-color') 1px solid;
+    border-radius: get-var-name-css('border-radius', 'circle');
+    transition: 0.2s ease;
+    position: relative;
+  }
+
+  // 原生input radio
+  @include e('original') {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  // checked 选中状态
+  @include when('checked') {
+    color: get-var-name-css('radio', 'checked-text-color');
+
+    .#{$namespace}-radio__input {
+      border-color: get-var-name-css('radio', 'checked-border-color');
+      background-color: get-var-name-css('radio', 'checked-bg-color');
+      position: relative;
+
+      .#{$namespace}-radio__inner {
+        &::after {
+          content: '';
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

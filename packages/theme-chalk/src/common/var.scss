@@ -222,6 +222,31 @@ $textarea-padding-horizontal: map.merge(
   $textarea-padding-horizontal
 );
 
+// radio样式变量
+$radio: () !default;
+$radio: map.merge(
+  (
+    'default-border-color': get-var-name-css('border-color', 'primary'),
+    'hover-border-color': get-var-name-css('color', 'primary', 'light', '6'),
+    'active-border-color': get-var-name-css('color', 'primary'),
+    'default-text-color': get-var-name-css('text-color', 'primary'),
+    'checked-text-color': get-var-name-css('color', 'primary'),
+    'checked-border-color': get-var-name-css('color', 'primary'),
+    'checked-bg-color': get-var-name-css('color', 'primary')
+  ),
+  $radio
+);
+// radio尺寸变量
+$radio-size: () !default;
+$radio-size: map.deep-merge(
+  (
+    'small': 24px,
+    'default': 32px,
+    'large': 40px
+  ),
+  $radio-size
+);
+
 // 全局变量集合
 $global: (
   'text-color': $text-color,
@@ -234,5 +259,6 @@ $global: (
   'input-padding': $input-padding,
   'textarea-min-height': $textarea-min-height,
   'textarea-padding-vertical': $textarea-padding-vertical,
-  'textarea-padding-horizontal': $textarea-padding-horizontal
+  'textarea-padding-horizontal': $textarea-padding-horizontal,
+  'radio-size': $radio-size
 );
