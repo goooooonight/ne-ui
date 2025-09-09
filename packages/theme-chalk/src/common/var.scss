@@ -215,9 +215,9 @@ $textarea-padding-vertical: map.merge(
 $textarea-padding-horizontal: () !default;
 $textarea-padding-horizontal: map.merge(
   (
-    'small': 8px,
-    'default': 12px,
-    'large': 12px
+    'small': 6px,
+    'default': 8px,
+    'large': 8px
   ),
   $textarea-padding-horizontal
 );

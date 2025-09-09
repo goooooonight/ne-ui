@@ -110,7 +110,6 @@
   // 多行文本输入框
   &:has(.#{$namespace}-input__textarea) {
     height: auto;
-    min-height: 80px;
     align-items: stretch;
     padding: 0;
   }
@@ -211,6 +210,7 @@
         border-color: transparent;
 
         .ne-button {
+          border-width: 1px;
           border-#{$direction}: none;
           border-top-#{$direction}-radius: 0;
           border-bottom-#{$direction}-radius: 0;
@@ -243,6 +243,11 @@
         min-height: get-var-name-css('textarea-min-height', $size);
         padding: get-var-name-css('textarea-padding-vertical', $size)
           get-var-name-css('textarea-padding-horizontal', $size);
+      }
+
+      // 复合输入框 按钮组件
+      .ne-button {
+        height: get-var-name-css('component-size', $size);
       }
     }
   }
