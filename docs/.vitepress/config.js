@@ -52,12 +52,21 @@ export default {
       ],
       '/components/': [
         {
-          text: 'Basic基础组件',
+          text: 'Basic 基础组件',
           items: [
-            { text: 'Icon', link: '/components/icon' },
+            { text: 'Icon - 图标', link: '/components/icon' },
             {
-              text: 'Button',
+              text: 'Button - 按钮',
               link: '/components/button'
+            }
+          ]
+        },
+        {
+          text: 'Form 表单组件',
+          items: [
+            {
+              text: 'Input - 输入框',
+              link: '/components/input'
             }
           ]
         }
