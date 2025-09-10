@@ -72,4 +72,35 @@
       }
     }
   }
+
+  // disabled 禁用状态
+  @include when('disabled') {
+    color: get-var-name-css('radio', 'disabled-text-color');
+    cursor: not-allowed;
+
+    // 输入框禁用样式
+    &,
+    &:hover,
+    &:active {
+      .#{$namespace}-radio__input {
+        border-color: get-var-name-css('radio', 'disabled-border-color');
+      }
+    }
+
+    // 选中禁用样式
+    &.is-checked {
+      .#{$namespace}-radio__input {
+        background-color: get-var-name-css('radio', 'disabled-bg-color');
+      }
+
+      .#{$namespace}-radio__inner {
+        &::after {
+          background-color: get-var-name-css(
+            'radio',
+            'disabled-after-bg-color'
+          );
+        }
+      }
+    }
+  }
 }

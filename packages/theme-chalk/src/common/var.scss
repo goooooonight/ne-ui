@@ -131,6 +131,16 @@ $background-color: map.merge(
   $background-color
 );
 
+// 填充色
+$fill-color: () !default;
+$fill-color: map.merge(
+  (
+    'dark': #f5f5f5,
+    'darker': #b8b8b8
+  ),
+  $fill-color
+);
+
 // button样式变量
 $button: () !default;
 $button: map.merge(
@@ -232,7 +242,11 @@ $radio: map.merge(
     'default-text-color': get-var-name-css('text-color', 'primary'),
     'checked-text-color': get-var-name-css('color', 'primary'),
     'checked-border-color': get-var-name-css('color', 'primary'),
-    'checked-bg-color': get-var-name-css('color', 'primary')
+    'checked-bg-color': get-var-name-css('color', 'primary'),
+    'disabled-text-color': get-var-name-css('text-color', 'disabled'),
+    'disabled-border-color': get-var-name-css('border-color', 'disabled'),
+    'disabled-bg-color': get-var-name-css('fill-color', 'dark'),
+    'disabled-after-bg-color': get-var-name-css('fill-color', 'darker')
   ),
   $radio
 );
@@ -255,6 +269,7 @@ $global: (
   'border-color': $border-color,
   'border-radius': $border-radius,
   'background-color': $background-color,
+  'fill-color': $fill-color,
   'button-padding': $button-padding,
   'input-padding': $input-padding,
   'textarea-min-height': $textarea-min-height,

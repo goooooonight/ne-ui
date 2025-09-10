@@ -1,12 +1,24 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { ref } from 'vue'
+import { radioProps, radioEmits } from './radio'
+import { computed } from 'vue'
 
 // 创建命名空间
 const ns = createNameSpace('radio')
 
-//
-const value = ref<boolean>(false)
+// 定义props和emits
+const props = defineProps(radioProps)
+const emit = defineEmits(radioEmits)
+
+// 生成样式
+const classCustom = computed(() => {
+  const { modelValue, value, disabled } = props
+  return [
+    ns.b(),
+    ns.is('checked', modelValue === value),
+    ns.is('disabled', disabled)
+  ]
+})
 
 /**
  * 处理radio选中状态变化
@@ -14,18 +26,21 @@ const value = ref<boolean>(false)
  */
 const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement
-  value.value = target.checked
+  if (target.checked) {
+    emit('update:modelValue', props.value as string | number | boolean)
+  }
 }
 </script>
 
 <template>
-  <label :class="[ns.b(), value && ns.is('checked', value)]">
+  <label :class="classCustom">
     <span :class="ns.e('input')">
       <input
         type="radio"
+        :value="value"
+        :checked="modelValue === value"
+        :disabled="disabled"
         :class="ns.e('original')"
-        v-model="value"
-        :checked="value"
         @change="handleChange"
       />
       <span :class="ns.e('inner')"></span>
