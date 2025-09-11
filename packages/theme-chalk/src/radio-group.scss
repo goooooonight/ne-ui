@@ -1,0 +1,8 @@
+@use './common/mixin.scss' as *;
+
+@include b('radio-group') {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0;
+}

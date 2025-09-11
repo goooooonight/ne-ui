@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import { computed, inject } from 'vue'
 import { createNameSpace } from '@ne-ui/utils'
 import { radioProps, radioEmits } from './radio'
-import { computed } from 'vue'
+import { radioGroupKey } from './radio-group-key'
+
+// 组件命名
+defineOptions({ name: 'ne-radio' })
 
 // 创建命名空间
 const ns = createNameSpace('radio')
@@ -10,12 +14,23 @@ const ns = createNameSpace('radio')
 const props = defineProps(radioProps)
 const emit = defineEmits(radioEmits)
 
+// 注入RadioGroup上下文
+const radioGroup = inject(radioGroupKey, null)
+
+// 计算当前选中状态
+const isChecked = computed(() => {
+  if (radioGroup) {
+    return radioGroup.modelValue.value === props.value
+  }
+  return props.modelValue === props.value
+})
+
 // 生成样式
 const classCustom = computed(() => {
-  const { modelValue, value, disabled } = props
+  const { disabled } = props
   return [
     ns.b(),
-    ns.is('checked', modelValue === value),
+    ns.is('checked', isChecked.value),
     ns.is('disabled', disabled)
   ]
 })
@@ -27,7 +42,13 @@ const classCustom = computed(() => {
 const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement
   if (target.checked) {
-    emit('update:modelValue', props.value as string | number | boolean)
+    if (radioGroup) {
+      // 如果在RadioGroup中，使用RadioGroup的更新方法
+      radioGroup.updateValue(props.value)
+    } else {
+      // 独立使用时，直接触发事件
+      emit('update:modelValue', props.value as string | number | boolean)
+    }
   }
 }
 </script>
@@ -38,7 +59,7 @@ const handleChange = (event: Event) => {
       <input
         type="radio"
         :value="value"
-        :checked="modelValue === value"
+        :checked="isChecked"
         :disabled="disabled"
         :class="ns.e('original')"
         @change="handleChange"

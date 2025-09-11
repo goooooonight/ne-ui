@@ -7,8 +7,7 @@ export const radioProps = {
   },
   // radio的值
   value: {
-    type: [String, Number, Boolean] as PropType<string | number | boolean>,
-    required: true
+    type: [String, Number, Boolean] as PropType<string | number | boolean>
   },
   // 是否禁用
   disabled: {
