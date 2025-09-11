@@ -1,15 +1,14 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-
-export type RadioGroupValue = string | number | boolean
+import type { RadioValueType } from './type'
 
 export const radioProps = {
   // v-model绑定的值
   modelValue: {
-    type: [String, Number, Boolean] as PropType<RadioGroupValue>
+    type: [String, Number, Boolean] as PropType<RadioValueType>
   },
   // radio的值
   value: {
-    type: [String, Number, Boolean] as PropType<RadioGroupValue>
+    type: [String, Number, Boolean] as PropType<RadioValueType>
   },
   // 是否禁用
   disabled: {
@@ -28,12 +27,12 @@ export const radioProps = {
 
 export const radioEmits = {
   // v-model语法糖支持 - 当输入值改变时触发
-  'update:modelValue': (value: RadioGroupValue) =>
+  'update:modelValue': (value: RadioValueType) =>
     typeof value === 'string' ||
     typeof value === 'number' ||
     typeof value === 'boolean',
   // change事件 - 绑定值发生变化时触发
-  change: (value: RadioGroupValue) =>
+  change: (value: RadioValueType) =>
     typeof value === 'string' ||
     typeof value === 'number' ||
     typeof value === 'boolean'
