@@ -72,7 +72,9 @@ const handleChange = (event: Event) => {
       <span :class="ns.e('inner')"></span>
     </span>
     <span :class="ns.e('label')">
-      <slot></slot>
+      <slot>
+        {{ label }}
+      </slot>
     </span>
   </label>
 </template>

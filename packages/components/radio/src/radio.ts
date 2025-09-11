@@ -17,6 +17,10 @@ export const radioProps = {
   // 原生name属性
   name: {
     type: String
+  },
+  // 标签label
+  label: {
+    type: String
   }
 }
 
