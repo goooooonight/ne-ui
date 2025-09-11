@@ -26,6 +26,7 @@ const updateValue = (value: string | number | boolean | undefined) => {
 provide(radioGroupKey, {
   modelValue: toRef(props, 'modelValue'),
   disabled: toRef(props, 'disabled'),
+  name: toRef(props, 'name'),
   updateValue
 })
 </script>

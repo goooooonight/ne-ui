@@ -13,6 +13,10 @@ export const radioProps = {
   disabled: {
     type: Boolean as PropType<boolean>,
     default: false
+  },
+  // 原生name属性
+  name: {
+    type: String
   }
 }
 

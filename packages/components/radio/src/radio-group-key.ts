@@ -8,6 +8,8 @@ export interface RadioGroupContext {
   modelValue: Ref<string | number | boolean | undefined>
   /** 禁用状态 */
   disabled: Ref<boolean>
+  /** 原生name属性 */
+  name: Ref<string | undefined>
   /** 更新选中值的方法 */
   updateValue: (value: string | number | boolean | undefined) => void
 }

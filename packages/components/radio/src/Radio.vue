@@ -65,6 +65,7 @@ const handleChange = (event: Event) => {
         :value="value"
         :checked="isChecked"
         :disabled="isDisabled"
+        :name="radioGroup ? radioGroup.name.value : name"
         :class="ns.e('original')"
         @change="handleChange"
       />
