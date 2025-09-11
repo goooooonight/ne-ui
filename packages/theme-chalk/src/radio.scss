@@ -4,6 +4,26 @@
 @use './common/config.scss' as *;
 @use './var.scss' as *;
 
+@keyframes radioClickShadow {
+  0% {
+    box-shadow:
+      0 0 0 0 get-var-name-css('radio', 'click-shadow-color'),
+      0 2px 4px get-var-name-css('radio', 'click-box-shadow-color');
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 10px get-var-name-css('radio', 'click-shadow-spread-color'),
+      0 8px 15px get-var-name-css('radio', 'click-box-shadow-active-color');
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 get-var-name-css('radio', 'click-shadow-spread-color'),
+      0 2px 4px get-var-name-css('radio', 'click-box-shadow-color');
+  }
+}
+
 // 设置组件CSS变量
 @include b('radio') {
   @include set-component-css-var('radio', $radio);
@@ -18,6 +38,10 @@
   font-size: get-var-name-css('font-size', 'default');
   transition: 0.2s ease;
   cursor: pointer;
+
+  & + & {
+    margin-left: 16px;
+  }
 
   // 交互样式
   @each $state in ('hover', 'active') {
@@ -56,6 +80,9 @@
       border-color: get-var-name-css('radio', 'checked-border-color');
       background-color: get-var-name-css('radio', 'checked-bg-color');
       position: relative;
+
+      // 点击阴影效果
+      animation: radioClickShadow 0.4s ease-out;
 
       .#{$namespace}-radio__inner {
         &::after {

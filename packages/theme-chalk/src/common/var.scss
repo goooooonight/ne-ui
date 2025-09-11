@@ -246,7 +246,15 @@ $radio: map.merge(
     'disabled-text-color': get-var-name-css('text-color', 'disabled'),
     'disabled-border-color': get-var-name-css('border-color', 'disabled'),
     'disabled-bg-color': get-var-name-css('fill-color', 'dark'),
-    'disabled-after-bg-color': get-var-name-css('fill-color', 'darker')
+    'disabled-after-bg-color': get-var-name-css('fill-color', 'darker'),
+    // 点击动画阴影颜色
+    'click-shadow-color': rgba(33, 150, 243, 0.4),
+    // 点击动画扩散时的透明色
+    'click-shadow-spread-color': rgba(33, 150, 243, 0),
+    // 点击动画基础阴影颜色
+    'click-box-shadow-color': rgba(0, 0, 0, 0.1),
+    // 点击动画激活时阴影颜色
+    'click-box-shadow-active-color': rgba(0, 0, 0, 0.3)
   ),
   $radio
 );
