@@ -4,8 +4,10 @@ import type { InjectionKey, Ref } from 'vue'
  * RadioGroup上下文类型定义
  */
 export interface RadioGroupContext {
-  /** 当前选中的值 */
+  /** v-model绑定值 */
   modelValue: Ref<string | number | boolean | undefined>
+  /** 禁用状态 */
+  disabled: Ref<boolean>
   /** 更新选中值的方法 */
   updateValue: (value: string | number | boolean | undefined) => void
 }

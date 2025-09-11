@@ -1,10 +1,15 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 
 export const radioGroupProps = {
-  // v-model绑定的值
+  // v-model绑定值
   modelValue: {
     type: [String, Number, Boolean] as PropType<string | number | boolean>,
     default: undefined
+  },
+  // 禁用状态
+  disabled: {
+    type: Boolean as PropType<boolean>,
+    default: false
   }
 }
 

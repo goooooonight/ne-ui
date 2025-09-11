@@ -25,6 +25,7 @@ const updateValue = (value: string | number | boolean | undefined) => {
 // 向子Radio组件提供上下文
 provide(radioGroupKey, {
   modelValue: toRef(props, 'modelValue'),
+  disabled: toRef(props, 'disabled'),
   updateValue
 })
 </script>

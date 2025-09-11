@@ -25,13 +25,17 @@ const isChecked = computed(() => {
   return props.modelValue === props.value
 })
 
+// 计算禁用状态
+const isDisabled = computed(() => {
+  return radioGroup ? radioGroup.disabled.value : props.disabled
+})
+
 // 生成样式
 const classCustom = computed(() => {
-  const { disabled } = props
   return [
     ns.b(),
     ns.is('checked', isChecked.value),
-    ns.is('disabled', disabled)
+    ns.is('disabled', isDisabled.value)
   ]
 })
 
@@ -60,7 +64,7 @@ const handleChange = (event: Event) => {
         type="radio"
         :value="value"
         :checked="isChecked"
-        :disabled="disabled"
+        :disabled="isDisabled"
         :class="ns.e('original')"
         @change="handleChange"
       />
