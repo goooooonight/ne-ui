@@ -53,6 +53,8 @@ const handleChange = (event: Event) => {
       // 独立使用时，直接触发事件
       emit('update:modelValue', props.value as string | number | boolean)
     }
+    // 触发change事件，传递当前选中的值
+    emit('change', props.value as string | number | boolean)
   }
 }
 </script>
