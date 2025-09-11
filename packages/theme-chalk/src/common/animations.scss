@@ -1,0 +1,24 @@
+@use './function.scss' as *;
+
+/**
+ * Radio组件点击阴影动画
+ */
+@keyframes radioClickShadow {
+  0% {
+    box-shadow:
+      0 0 0 0 get-var-name-css('radio-animation', 'click-shadow-color'),
+      0 2px 4px get-var-name-css('radio-animation', 'click-box-shadow-color');
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 10px get-var-name-css('radio-animation', 'click-shadow-spread-color'),
+      0 8px 15px get-var-name-css('radio-animation', 'click-box-shadow-active-color');
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 get-var-name-css('radio-animation', 'click-shadow-spread-color'),
+      0 2px 4px get-var-name-css('radio-animation', 'click-box-shadow-color');
+  }
+}

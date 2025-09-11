@@ -2,27 +2,8 @@
 @use './common/var.scss' as *;
 @use './common/function.scss' as *;
 @use './common/config.scss' as *;
+@use './common/animations.scss' as *;
 @use './var.scss' as *;
-
-@keyframes radioClickShadow {
-  0% {
-    box-shadow:
-      0 0 0 0 get-var-name-css('radio', 'click-shadow-color'),
-      0 2px 4px get-var-name-css('radio', 'click-box-shadow-color');
-  }
-
-  70% {
-    box-shadow:
-      0 0 0 10px get-var-name-css('radio', 'click-shadow-spread-color'),
-      0 8px 15px get-var-name-css('radio', 'click-box-shadow-active-color');
-  }
-
-  100% {
-    box-shadow:
-      0 0 0 0 get-var-name-css('radio', 'click-shadow-spread-color'),
-      0 2px 4px get-var-name-css('radio', 'click-box-shadow-color');
-  }
-}
 
 // 设置组件CSS变量
 @include b('radio') {
