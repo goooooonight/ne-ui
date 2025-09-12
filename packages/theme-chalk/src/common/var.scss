@@ -278,6 +278,16 @@ $radio-button: map.deep-merge(
   ),
   $radio-button
 );
+// radio-button不同尺寸内边距
+$radio-button-padding-horizontal: () !default;
+$radio-button-padding-horizontal: map.merge(
+  (
+    'small': 11px,
+    'default': 19px,
+    'large': 23px
+  ),
+    $radio-button-padding-horizontal
+);
 // radio动画颜色变量
 $radio-animation: () !default;
 $radio-animation: map.deep-merge(
@@ -309,5 +319,6 @@ $global: (
   'textarea-padding-vertical': $textarea-padding-vertical,
   'textarea-padding-horizontal': $textarea-padding-horizontal,
   'radio-size': $radio-size,
+  'radio-button-padding-horizontal': $radio-button-padding-horizontal,
   'radio-animation': $radio-animation
 );

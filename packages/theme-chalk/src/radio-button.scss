@@ -13,7 +13,8 @@
   height: get-var-name-css('component-size', 'default');
   display: inline-block;
   text-align: center;
-  line-height: get-var-name-css('component-size', 'default');
+  line-height: calc(get-var-name-css('component-size', 'default') - 2px);
+  box-sizing: border-box;
   border: get-var-name-css('radio-button', 'default-border-color') 1px solid;
   border-radius: get-var-name-css('border-radius', 'default');
   color: get-var-name-css('radio-button', 'default-text-color');
@@ -81,7 +82,20 @@
   }
 
   // 内部容器
-  @include e('inner'){
-    padding: 0 19px;
+  @include e('inner') {
+    padding: 0 get-var-name-css('radio-button-padding-horizontal', 'default');
+  }
+
+  // size 尺寸
+  @each $size in ('small', 'large') {
+    @include m($size) {
+      height: get-var-name-css('component-size', $size);
+      line-height: calc(get-var-name-css('component-size', $size) - 2px);
+      font-size: get-var-name-css('font-size', $size);
+
+      .#{$namespace}-radio-button__inner {
+        padding: 0 get-var-name-css('radio-button-padding-horizontal', $size);
+      }
+    }
   }
 }

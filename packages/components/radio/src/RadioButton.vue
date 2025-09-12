@@ -31,7 +31,8 @@ const classCustom = computed(() => {
   return [
     ns.b(),
     ns.is('checked', isChecked.value),
-    ns.is('disabled', isDisabled.value)
+    ns.is('disabled', isDisabled.value),
+    ns.m(radioGroup?.size.value)
   ]
 })
 
