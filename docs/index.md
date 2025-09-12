@@ -13,8 +13,8 @@ hero:
       text: '快速开始'
       link: /guide/quickStart
     - theme: alt
-      text: '查看文档'
-      link: /guide/installation
+      text: '组件文档'
+      link: /components/icon
 # features:
 #   - icon: 🚀
 #     title: '组件库构建流程'

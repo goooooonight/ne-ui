@@ -6,37 +6,37 @@
 
 
 ## 文本域
-通过设置 `type` 为 `textarea` 将输入框设置为文本域，用于多行输入
+通过设置 `type` 为 `textarea` 将输入框设置为文本域，用于多行输入。
 
 <demo vue="input/Textarea.vue" />
 
 ## 三种尺寸
-通过设置 `size` 为 `small`、`default`、`large` 分别把输入框设置为小、中、大三种尺寸，默认为 `default`
+通过设置 `size` 为 `small`、`default`、`large` 分别把输入框设置为小、中、大三种尺寸，默认为 `default` 。
 
 <demo vue="input/Size.vue" />
 
 ## 复合输入框
-使用 `prepend`、 `append` 插槽定制你的复合输入框
+使用 `prepend`、 `append` 插槽定制你的复合输入框。
 
 <demo vue="input/Group.vue" />
 
 ## 禁用状态
-通过设置 `disabled` 属性使输入框处于禁用状态
+通过设置 `disabled` 属性使输入框处于禁用状态。
 
 <demo vue="input/Disabled.vue" />
 
 ## 输入字数限制
-使用 `minlength` 和 `maxlength` 属性来限制输入框的最小、最大输入字数，同时使用 `show-word-limit` 可以显示统计字数和字数限制
+使用 `minlength` 和 `maxlength` 属性来限制输入框的最小、最大输入字数，同时使用 `show-word-limit` 可以显示统计字数和字数限制。
 
 <demo vue="input/WordLimit.vue" />
 
 ## 密码输入框
-使用 `show-password` 属性获得一个可以显示 / 隐藏密码的输入框
+使用 `show-password` 属性获得一个可以显示 / 隐藏密码的输入框。
 
 <demo vue="input/ShowPassword.vue" />
 
 ## 一键清除
-使用 `clearable` 属性获得一个可以一键清除输入内容的输入框，点击清除图标删除所有输入内容
+使用 `clearable` 属性获得一个可以一键清除输入内容的输入框，点击清除图标删除所有输入内容。
 
 <demo vue="input/Clearable.vue" />
 
