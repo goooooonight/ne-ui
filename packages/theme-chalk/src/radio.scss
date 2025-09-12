@@ -39,6 +39,7 @@
     height: get-var-name-css('radio-size', 'default');
     border: get-var-name-css('radio', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'circle');
+    box-sizing: content-box;
     transition: 0.2s ease;
     position: relative;
   }
