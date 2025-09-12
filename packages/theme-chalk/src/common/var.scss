@@ -135,8 +135,9 @@ $background-color: map.merge(
 $fill-color: () !default;
 $fill-color: map.merge(
   (
-    'dark': #f5f5f5,
-    'darker': #b8b8b8
+    'light': #f5f5f5,
+    'base': #d9d9d9,
+    'dark': #b8b8b8
   ),
   $fill-color
 );
@@ -244,8 +245,8 @@ $radio: map.merge(
     'checked-bg-color': get-var-name-css('color', 'primary'),
     'disabled-text-color': get-var-name-css('text-color', 'disabled'),
     'disabled-border-color': get-var-name-css('border-color', 'disabled'),
-    'disabled-bg-color': get-var-name-css('fill-color', 'dark'),
-    'disabled-after-bg-color': get-var-name-css('fill-color', 'darker')
+    'disabled-bg-color': get-var-name-css('fill-color', 'light'),
+    'disabled-after-bg-color': get-var-name-css('fill-color', 'dark')
   ),
   $radio
 );
@@ -258,6 +259,24 @@ $radio-size: map.deep-merge(
     'large': 40px
   ),
   $radio-size
+);
+// radio-button样式变量
+$radio-button: () !default;
+$radio-button: map.deep-merge(
+  (
+    'default-border-color': get-var-name-css('border-color', 'primary'),
+    'hover-border-color': get-var-name-css('color', 'primary', 'light', '6'),
+    'default-text-color': get-var-name-css('text-color', 'primary'),
+    'hover-text-color': get-var-name-css('color', 'primary'),
+    'checked-text-color': get-var-name-css('color', 'white'),
+    'checked-border-color': get-var-name-css('color', 'primary', 'light', '1'),
+    'checked-bg-color': get-var-name-css('color', 'primary', 'light', '1'),
+    'disabled-text-color': get-var-name-css('text-color', 'disabled'),
+    'disabled-border-color': get-var-name-css('fill-color', 'base'),
+    'disabled-bg-color': get-var-name-css('fill-color', 'light'),
+    'disabled-checked-bg-color': get-var-name-css('fill-color', 'base')
+  ),
+  $radio-button
 );
 // radio动画颜色变量
 $radio-animation: () !default;
@@ -290,5 +309,5 @@ $global: (
   'textarea-padding-vertical': $textarea-padding-vertical,
   'textarea-padding-horizontal': $textarea-padding-horizontal,
   'radio-size': $radio-size,
-  'radio-animation':$radio-animation
+  'radio-animation': $radio-animation
 );

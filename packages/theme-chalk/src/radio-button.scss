@@ -1,0 +1,87 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+@use './common/animations.scss' as *;
+@use './var.scss' as *;
+
+@include b('radio-button') {
+  @include set-component-css-var('radio-button', $radio-button);
+}
+
+@include b('radio-button') {
+  height: get-var-name-css('component-size', 'default');
+  display: inline-block;
+  text-align: center;
+  line-height: get-var-name-css('component-size', 'default');
+  border: get-var-name-css('radio-button', 'default-border-color') 1px solid;
+  border-radius: get-var-name-css('border-radius', 'default');
+  color: get-var-name-css('radio-button', 'default-text-color');
+  font-size: get-var-name-css('font-size', 'default');
+  transition: 0.2s ease;
+  cursor: pointer;
+
+  // 按钮单选框组连接样式
+  &:not(:first-child) {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  // hover状态
+  &:hover {
+    color: get-var-name-css('radio-button', 'hover-text-color');
+  }
+
+  // checked 选中状态
+  @include when('checked') {
+    color: get-var-name-css('radio-button', 'checked-text-color');
+    border-color: get-var-name-css('radio-button', 'checked-border-color');
+    background-color: get-var-name-css('radio-button', 'checked-bg-color');
+
+    // 点击阴影效果
+    animation: radioClickShadow 0.4s ease-out;
+  }
+
+  // disabled 禁用状态
+  @include when('disabled') {
+    color: get-var-name-css('radio-button', 'disabled-text-color');
+    cursor: not-allowed;
+
+    // 输入框禁用样式
+    &,
+    &:hover,
+    &:active {
+      border-color: get-var-name-css('radio-button', 'disabled-border-color');
+      background-color: get-var-name-css('radio-button', 'disabled-bg-color');
+    }
+
+    // 选中禁用样式
+    &.is-checked {
+      background-color: get-var-name-css(
+        'radio-button',
+        'disabled-checked-bg-color'
+      );
+    }
+  }
+
+  // 原生input radio
+  @include e('original') {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  // 内部容器
+  @include e('inner'){
+    padding: 0 19px;
+  }
+}
