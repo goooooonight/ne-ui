@@ -20,6 +20,12 @@ const emit = defineEmits(radioGroupEmits)
  */
 const updateValue = (value: string | number | boolean | undefined) => {
   emit('update:modelValue', value)
+
+  // 只有值真正改变时才触发change事件
+  const oldValue = props.modelValue
+  if (oldValue !== value) {
+    emit('change', value)
+  }
 }
 
 // 向子Radio组件提供上下文

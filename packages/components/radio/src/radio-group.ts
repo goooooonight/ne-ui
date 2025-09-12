@@ -27,6 +27,11 @@ export const radioGroupEmits = {
   'update:modelValue': (value: string | number | boolean | undefined) =>
     typeof value === 'string' ||
     typeof value === 'number' ||
+    typeof value === 'boolean',
+  // change事件 - 绑定值发生变化时触发
+  change: (value: string | number | boolean | undefined) =>
+    typeof value === 'string' ||
+    typeof value === 'number' ||
     typeof value === 'boolean'
 }
 
