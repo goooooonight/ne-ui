@@ -91,16 +91,13 @@
     &:hover,
     &:active {
       .#{$namespace}-radio__input {
+        background-color: get-var-name-css('radio', 'disabled-bg-color');
         border-color: get-var-name-css('radio', 'disabled-border-color');
       }
     }
 
     // 选中禁用样式
     &.is-checked {
-      .#{$namespace}-radio__input {
-        background-color: get-var-name-css('radio', 'disabled-bg-color');
-      }
-
       .#{$namespace}-radio__inner {
         &::after {
           background-color: get-var-name-css(
