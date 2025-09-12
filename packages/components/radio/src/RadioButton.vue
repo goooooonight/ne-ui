@@ -23,7 +23,7 @@ const isChecked = computed(() => {
 
 // 计算禁用状态
 const isDisabled = computed(() => {
-  return radioGroup ? radioGroup.disabled.value : props.disabled
+  return radioGroup?.disabled.value || props.disabled
 })
 
 // 生成样式
