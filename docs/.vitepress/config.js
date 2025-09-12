@@ -67,6 +67,10 @@ export default {
             {
               text: 'Input - 输入框',
               link: '/components/input'
+            },
+            {
+              text: 'Radio - 单选框',
+              link: '/components/radio'
             }
           ]
         }
