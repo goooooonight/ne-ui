@@ -27,6 +27,7 @@ provide(radioGroupKey, {
   modelValue: toRef(props, 'modelValue'),
   disabled: toRef(props, 'disabled'),
   name: toRef(props, 'name'),
+  size: toRef(props, 'size'),
   updateValue
 })
 </script>

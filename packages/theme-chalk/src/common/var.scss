@@ -254,9 +254,9 @@ $radio: map.merge(
 $radio-size: () !default;
 $radio-size: map.deep-merge(
   (
-    'small': 24px,
-    'default': 32px,
-    'large': 40px
+    'small': 10px,
+    'default': 12px,
+    'large': 14px
   ),
   $radio-size
 );

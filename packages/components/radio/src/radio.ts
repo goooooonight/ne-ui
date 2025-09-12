@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { RadioValueType } from './type'
+import type { RadioValueType, Size } from './type'
 
 export const radioProps = {
   // v-model绑定的值
@@ -22,6 +22,10 @@ export const radioProps = {
   // 标签label
   label: {
     type: String
+  },
+  // size 尺寸
+  size: {
+    type: String as PropType<Size>
   }
 }
 

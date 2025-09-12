@@ -10,6 +10,8 @@ export interface RadioGroupContext {
   disabled: Ref<boolean>
   /** 原生name属性 */
   name: Ref<string | undefined>
+  /** size尺寸 */
+  size: Ref<string>
   /** 更新选中值的方法 */
   updateValue: (value: string | number | boolean | undefined) => void
 }

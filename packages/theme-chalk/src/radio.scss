@@ -35,8 +35,8 @@
 
   // 单选输入框样式
   @include e('input') {
-    width: 12px;
-    height: 12px;
+    width: get-var-name-css('radio-size', 'default');
+    height: get-var-name-css('radio-size', 'default');
     border: get-var-name-css('radio', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'circle');
     transition: 0.2s ease;
@@ -105,6 +105,18 @@
             'disabled-after-bg-color'
           );
         }
+      }
+    }
+  }
+
+  // size 尺寸
+  @each $size in ('small', 'large'){
+    @include m($size){
+      font-size: get-var-name-css('font-size', $size);
+
+      .#{$namespace}-radio__input{
+          width: get-var-name-css('radio-size', $size);
+          height: get-var-name-css('radio-size', $size);
       }
     }
   }

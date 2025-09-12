@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { RadioValueType } from './type'
+import type { RadioValueType, Size } from './type'
 
 export const radioGroupProps = {
   // v-model绑定值
@@ -15,6 +15,11 @@ export const radioGroupProps = {
   // 原生name属性
   name: {
     type: String
+  },
+  // size尺寸
+  size: {
+    type: String as PropType<Size>,
+    default: 'default'
   }
 }
 

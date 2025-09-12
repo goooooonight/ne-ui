@@ -30,12 +30,18 @@ const isDisabled = computed(() => {
   return radioGroup ? radioGroup.disabled.value : props.disabled
 })
 
+// 计算尺寸
+const size = computed(() => {
+  return props.size || radioGroup?.size.value
+})
+
 // 生成样式
 const classCustom = computed(() => {
   return [
     ns.b(),
     ns.is('checked', isChecked.value),
-    ns.is('disabled', isDisabled.value)
+    ns.is('disabled', isDisabled.value),
+    ns.m(size.value)
   ]
 })
 
