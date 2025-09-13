@@ -11,7 +11,11 @@ const ns = createNameSpace('checkbox')
 
 // 生成自定义类名
 const classCustom = computed(() => {
-  return [ns.b(), ns.is('checked', isChecked.value)]
+  return [
+    ns.b(),
+    ns.is('checked', isChecked.value),
+    ns.is('disabled', props.disabled)
+  ]
 })
 
 // 获取 props 和 emits
@@ -26,7 +30,7 @@ const isChecked = computed(() => {
   return props.modelValue === true
 })
 
-//
+// 值改变事件
 const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement
   // 如果定义了 trueValue 和 falseValue，则根据选中状态返回对应的值
@@ -50,6 +54,7 @@ const handleChange = (event: Event) => {
         type="checkbox"
         :value="value"
         :checked="isChecked"
+        :disabled="disabled"
         :class="ns.e('original')"
         @change="handleChange"
       />

@@ -1,13 +1,14 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import type { CheckboxValueType } from './type'
 
 export const checkboxProps = {
   // v-model 绑定值
   modelValue: {
-    type: [String, Number, Boolean] as PropType<string | number | boolean>
+    type: [String, Number, Boolean] as PropType<CheckboxValueType>
   },
   // checkbox的值
   value: {
-    type: [String, Number, Boolean] as PropType<string | number | boolean>
+    type: [String, Number, Boolean] as PropType<CheckboxValueType>
   },
   // 选中时的值
   trueValue: {
@@ -20,15 +21,20 @@ export const checkboxProps = {
   // 文本标签
   label: {
     type: String
+  },
+  // 禁用状态
+  disabled: {
+    type: Boolean,
+    default: false
   }
 }
 
 export const checkboxEmits = {
-  'update:modelValue': (value: string | number | boolean) =>
+  'update:modelValue': (value: CheckboxValueType) =>
     typeof value === 'string' ||
     typeof value === 'number' ||
     typeof value === 'boolean'
 }
 
-export type InputProps = ExtractPropTypes<typeof checkboxProps>
-export type InputEmits = typeof checkboxEmits
+export type ChekboxProps = ExtractPropTypes<typeof checkboxProps>
+export type ChekboxEmits = typeof checkboxEmits

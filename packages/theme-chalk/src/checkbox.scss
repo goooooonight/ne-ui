@@ -57,7 +57,7 @@
     .#{$namespace}-checkbox__inner {
       border-color: get-var-name-css('color', 'primary');
       background-color: get-var-name-css('color', 'primary');
-      
+
       // 使用伪元素绘制√符号
       &::after {
         content: '';
@@ -70,6 +70,30 @@
         transform: translate(-50%, -50%) rotate(45deg);
         top: 45%;
         left: 50%;
+      }
+    }
+  }
+
+  // disabled 禁用状态
+  @include when('disabled') {
+    color: get-var-name-css('checkbox', 'disabled-text-color');
+    cursor: not-allowed;
+
+    // 输入框的禁用状态
+    &,
+    &:hover {
+      .#{$namespace}-checkbox__inner {
+        border-color: get-var-name-css('checkbox', 'disabled-border-color');
+        background-color: get-var-name-css('checkbox', 'disabled-bg-color');
+      }
+    }
+
+    // 选中状态下的禁用状态
+    &.is-checked {
+      .#{$namespace}-checkbox__inner {
+        &::after {
+          border-color: get-var-name-css('checkbox', 'disabled-after-color');
+        }
       }
     }
   }
