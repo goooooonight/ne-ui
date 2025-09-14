@@ -10,6 +10,14 @@ export const checkboxGroupProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  // 可选中的最小数量
+  min: {
+    type: Number
+  },
+  // 可选中的最大数量
+  max: {
+    type: Number
   }
 }
 

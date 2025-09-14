@@ -8,6 +8,10 @@ export interface CheckboxGroupContext {
   modelValue: Ref<any>
   /** 禁用状态 */
   disabled: Ref<boolean>
+  /** 可选中的最小数量 */
+  min: Ref<number | undefined>
+  /** 可选中的最大数量 */
+  max: Ref<number | undefined>
   /** 更新选中值的方法 */
   updateValue: (value: string[] | number[]) => void
 }

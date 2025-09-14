@@ -26,6 +26,8 @@ const updateValue = (value: string[] | number[]) => {
 provide(checkboxGroupKey, {
   modelValue: toRef(props, 'modelValue'),
   disabled: toRef(props, 'disabled'),
+  min: toRef(props, 'min'),
+  max: toRef(props, 'max'),
   updateValue
 })
 </script>

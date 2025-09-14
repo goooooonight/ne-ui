@@ -43,7 +43,26 @@ const isChecked = computed(() => {
 
 // 计算是否处于禁用状态
 const isDisabled = computed(() => {
-  return checkboxGroup ? checkboxGroup.disabled.value : props.disabled
+  // 如果没有 checkboxGroup，直接返回 props.disabled
+  if (!checkboxGroup?.modelValue) {
+    return props.disabled
+  }
+
+  const currentCount = checkboxGroup.modelValue.value.length
+  const minValue = checkboxGroup.min?.value
+  const maxValue = checkboxGroup.max?.value
+
+  // 检查最小值限制：当前已选中且选中数量已达到最小值时，禁用取消选中
+  if (minValue && isChecked.value && currentCount <= minValue) {
+    return true
+  }
+
+  // 检查最大值限制：当前未选中且选中数量已达到最大值时，禁用选中
+  if (maxValue && !isChecked.value && currentCount >= maxValue) {
+    return true
+  }
+
+  return checkboxGroup.disabled.value
 })
 
 // 值改变事件
