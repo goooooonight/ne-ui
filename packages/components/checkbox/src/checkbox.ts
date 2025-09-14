@@ -33,6 +33,11 @@ export const checkboxEmits = {
   'update:modelValue': (value: CheckboxValueType) =>
     typeof value === 'string' ||
     typeof value === 'number' ||
+    typeof value === 'boolean',
+  // change事件 - 绑定值发生变化时触发
+  change: (value: CheckboxValueType) =>
+    typeof value === 'string' ||
+    typeof value === 'number' ||
     typeof value === 'boolean'
 }
 

@@ -12,14 +12,15 @@ const ns = createNameSpace('checkbox-group')
 
 // 定义props和emits
 const props = defineProps(checkboxGroupProps)
-const emit = defineEmits(checkboxGroupEmits)
+const emits = defineEmits(checkboxGroupEmits)
 
 /**
  * 更新选中值
  * @param value - 新的选中值
  */
 const updateValue = (value: string[] | number[]) => {
-  emit('update:modelValue', value)
+  emits('update:modelValue', value)
+  emits('change', value)
 }
 
 // 向子Checkbox组件提供上下文

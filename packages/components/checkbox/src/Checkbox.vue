@@ -84,6 +84,8 @@ const handleChange = (event: Event) => {
         )
       )
     }
+    // 触发change事件，传递当前选中的值
+    emits('change', target.checked)
   }
   // 没有 checkbox-group 时
   else {
@@ -96,8 +98,9 @@ const handleChange = (event: Event) => {
       : props.falseValue
         ? props.falseValue
         : false
-
     emits('update:modelValue', newValue)
+    // 触发change事件，传递当前选中的值
+    emits('change', newValue)
   }
 }
 </script>

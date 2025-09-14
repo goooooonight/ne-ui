@@ -22,7 +22,9 @@ export const checkboxGroupProps = {
 }
 
 export const checkboxGroupEmits = {
-  'update:modelValue': (value: string[] | number[]) => Array.isArray(value)
+  'update:modelValue': (value: string[] | number[]) => Array.isArray(value),
+  // change事件 - 绑定值发生变化时触发
+  change: (value: string[] | number[]) => Array.isArray(value)
 }
 
 export type CheckboxGroupProps = ExtractPropTypes<typeof checkboxGroupProps>
