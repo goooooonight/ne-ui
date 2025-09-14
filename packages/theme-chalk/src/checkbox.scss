@@ -97,4 +97,21 @@
       }
     }
   }
+
+  // indeterminate 中间状态
+  @include when('indeterminate') {
+    .#{$namespace}-checkbox__inner {
+      // 使用伪元素绘制中间状态符号
+        &::after {
+          content: '';
+          width: 7px;
+          height: 7px;
+          background-color: get-var-name-css('checkbox', 'checked-bg-color');
+          position: absolute;
+          transform: translate(-50%, -50%);
+          top: 50%;
+          left: 50%;
+        }
+    }
+  }
 }

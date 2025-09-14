@@ -26,6 +26,11 @@ export const checkboxProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  // 中间状态
+  indeterminate: {
+    type: Boolean,
+    default: false
   }
 }
 
