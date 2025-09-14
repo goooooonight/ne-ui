@@ -55,8 +55,8 @@
     color: get-var-name-css('checkbox', 'checked-text-color');
 
     .#{$namespace}-checkbox__inner {
-      border-color: get-var-name-css('color', 'primary');
-      background-color: get-var-name-css('color', 'primary');
+      border-color: get-var-name-css('checkbox', 'checked-border-color');
+      background-color: get-var-name-css('checkbox', 'checked-bg-color');
 
       // 使用伪元素绘制√符号
       &::after {

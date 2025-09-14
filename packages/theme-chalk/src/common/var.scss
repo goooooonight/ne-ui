@@ -311,6 +311,8 @@ $checkbox: map.deep-merge(
     'hover-border-color': get-var-name-css('color', 'primary', 'light', '2'),
     'default-text-color': get-var-name-css('text-color', 'primary'),
     'checked-text-color': get-var-name-css('color', 'primary'),
+    'checked-border-color': get-var-name-css('color', 'primary'),
+    'checked-bg-color': get-var-name-css('color', 'primary'),
     'disabled-text-color': get-var-name-css('text-color', 'disabled'),
     'disabled-border-color': get-var-name-css('fill-color', 'base'),
     'disabled-bg-color': get-var-name-css('fill-color', 'light'),
