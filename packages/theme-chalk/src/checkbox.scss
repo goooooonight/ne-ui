@@ -18,6 +18,10 @@
   color: get-var-name-css('checkbox', 'default-text-color');
   cursor: pointer;
 
+  & + & {
+    margin-left: 20px;
+  }
+
   &:hover {
     .#{$namespace}-checkbox__inner {
       border-color: get-var-name-css('checkbox', 'hover-border-color');

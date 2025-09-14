@@ -1,0 +1,6 @@
+@use './common/mixin.scss' as *;
+
+@include b('checkbox-group') {
+    line-height: 0;
+    font-size: 0;
+}
