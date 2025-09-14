@@ -14,7 +14,7 @@ hero:
       link: /guide/quickStart
     - theme: alt
       text: '组件文档'
-      link: /components/icon
+      link: /components/button
 # features:
 #   - icon: 🚀
 #     title: '组件库构建流程'
