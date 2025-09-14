@@ -16,7 +16,8 @@ const classCustom = computed(() => {
     ns.b(),
     ns.is('checked', isChecked.value),
     ns.is('disabled', isDisabled.value),
-    ns.is('indeterminate', props.indeterminate)
+    ns.is('indeterminate', props.indeterminate),
+    ns.m(size.value)
   ]
 })
 
@@ -64,6 +65,11 @@ const isDisabled = computed(() => {
   }
 
   return checkboxGroup.disabled.value
+})
+
+// 计算尺寸
+const size = computed(() => {
+  return props.size || checkboxGroup?.size.value
 })
 
 // 值改变事件

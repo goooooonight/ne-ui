@@ -12,6 +12,8 @@ export interface CheckboxGroupContext {
   min: Ref<number | undefined>
   /** 可选中的最大数量 */
   max: Ref<number | undefined>
+  /** 尺寸 */
+  size: Ref<string>
   /** 更新选中值的方法 */
   updateValue: (value: string[] | number[]) => void
 }

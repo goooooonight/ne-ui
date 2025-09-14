@@ -29,6 +29,7 @@ provide(checkboxGroupKey, {
   disabled: toRef(props, 'disabled'),
   min: toRef(props, 'min'),
   max: toRef(props, 'max'),
+  size: toRef(props, 'size'),
   updateValue
 })
 </script>

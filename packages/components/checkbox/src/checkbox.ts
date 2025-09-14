@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { CheckboxValueType } from './type'
+import type { CheckboxValueType, Size } from './type'
 
 export const checkboxProps = {
   // v-model 绑定值
@@ -31,6 +31,10 @@ export const checkboxProps = {
   indeterminate: {
     type: Boolean,
     default: false
+  },
+  // 尺寸
+  size: {
+    type: String as PropType<Size>
   }
 }
 

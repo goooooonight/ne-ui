@@ -46,8 +46,8 @@
 
   // 输入框内部容器
   @include e('inner') {
-    width: 12px;
-    height: 12px;
+    width: get-var-name-css('choice-size', 'default');
+    height: get-var-name-css('choice-size', 'default');
     border: get-var-name-css('checkbox', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'small');
     position: relative;
@@ -65,8 +65,8 @@
       // 使用伪元素绘制√符号
       &::after {
         content: '';
-        width: 3px;
-        height: 6px;
+        width: calc(#{get-var-name-css('choice-size', 'default')} / 4);
+        height: calc(#{get-var-name-css('choice-size', 'default')} / 2);
         border: get-var-name-css('color', 'white') solid;
         border-width: 0 2px 2px 0;
         border-radius: 0 0 1px 0;
@@ -106,16 +106,49 @@
   @include when('indeterminate') {
     .#{$namespace}-checkbox__inner {
       // 使用伪元素绘制中间状态符号
-        &::after {
-          content: '';
-          width: 7px;
-          height: 7px;
-          background-color: get-var-name-css('checkbox', 'checked-bg-color');
-          position: absolute;
-          transform: translate(-50%, -50%);
-          top: 50%;
-          left: 50%;
+      &::after {
+        content: '';
+        width: calc(#{get-var-name-css('choice-size', 'default')} / 2);
+        height: calc(#{get-var-name-css('choice-size', 'default')} / 2);
+        background-color: get-var-name-css('checkbox', 'checked-bg-color');
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+    }
+  }
+
+  // size 尺寸
+  @each $size in ('small', 'large') {
+    @include m($size) {
+      font-size: get-var-name-css('font-size', $size);
+
+      // 输入框尺寸
+      .#{$namespace}-checkbox__inner {
+        width: get-var-name-css('choice-size', $size);
+        height: get-var-name-css('choice-size', $size);
+      }
+
+      // 选中伪元素尺寸
+      &.is-checked {
+        .#{$namespace}-checkbox__inner {
+          &::after {
+            width: calc(#{get-var-name-css('choice-size', $size)} / 4);
+            height: calc(#{get-var-name-css('choice-size', $size)} / 2);
+          }
         }
+      }
+
+      // 中间状态伪元素尺寸
+      &.is-indeterminate {
+        .#{$namespace}-checkbox__inner {
+          &::after {
+            width: calc(#{get-var-name-css('choice-size', $size)} / 2);
+            height: calc(#{get-var-name-css('choice-size', $size)} / 2);
+          }
+        }
+      }
     }
   }
 }

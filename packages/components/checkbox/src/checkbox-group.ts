@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
+import type { Size } from './type'
 
 export const checkboxGroupProps = {
   // v-model 绑定值
@@ -18,6 +19,11 @@ export const checkboxGroupProps = {
   // 可选中的最大数量
   max: {
     type: Number
+  },
+  // 尺寸
+  size: {
+    type: String as PropType<Size>,
+    default: 'default'
   }
 }
 
