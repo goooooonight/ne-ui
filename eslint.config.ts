@@ -54,6 +54,7 @@ export default defineConfigWithVueTs(
       // 黑马文档部分额外规则
       'vue/multi-word-component-names': 'off', // 关闭vue组件名称多单词组成的检查
       'vue/no-setup-props-destructure': ['off'], // 关闭 props 解构的校验
+      '@typescript-eslint/no-explicit-any': 'off', // 关闭 any 类型报错
       // 💡 添加未定义变量错误提示，create-vue@3.6.3 关闭，这里加上是为了支持下一个章节演示。
       'no-undef': 'error'
     }

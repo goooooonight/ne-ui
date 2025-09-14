@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import { checkboxProps, checkboxEmits } from './checkbox'
+import { checkboxGroupKey } from './checkbox-group-key'
 
 // 组件命名
 defineOptions({ name: 'ne-checkbox' })
@@ -14,7 +15,7 @@ const classCustom = computed(() => {
   return [
     ns.b(),
     ns.is('checked', isChecked.value),
-    ns.is('disabled', props.disabled)
+    ns.is('disabled', isDisabled.value)
   ]
 })
 
@@ -22,28 +23,63 @@ const classCustom = computed(() => {
 const props = defineProps(checkboxProps)
 const emits = defineEmits(checkboxEmits)
 
+// 注入CheckboxGroup上下文
+const checkboxGroup = inject(checkboxGroupKey, null)
+
 // 计算是否选中
 const isChecked = computed(() => {
-  if (props.trueValue) {
-    return props.modelValue === props.trueValue
+  // 在 checkbox-group 中时，判断绑定数组是否含有该value
+  if (checkboxGroup) {
+    return checkboxGroup.modelValue.value.includes(props.value)
   }
-  return props.modelValue === true
+  // 没有 checkbox-group 时
+  else {
+    if (props.trueValue) {
+      return props.modelValue === props.trueValue
+    }
+    return props.modelValue === true
+  }
+})
+
+// 计算是否处于禁用状态
+const isDisabled = computed(() => {
+  return checkboxGroup ? checkboxGroup.disabled.value : props.disabled
 })
 
 // 值改变事件
 const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement
-  // 如果定义了 trueValue 和 falseValue，则根据选中状态返回对应的值
-  // 否则，返回布尔值
-  const newValue = target.checked
-    ? props.trueValue
+  // 在 checkbox-group 中时
+  if (checkboxGroup) {
+    // 当前为选中操作时， 将value加入绑定数组
+    if (target.checked) {
+      checkboxGroup.updateValue(
+        checkboxGroup.modelValue.value.concat(props.value)
+      )
+    }
+    // 当前为取消选中操作时， 将value过滤出绑定数组
+    else {
+      checkboxGroup.updateValue(
+        checkboxGroup.modelValue.value.filter(
+          (value: string | number) => value != props.value
+        )
+      )
+    }
+  }
+  // 没有 checkbox-group 时
+  else {
+    // 如果定义了 trueValue 和 falseValue，则根据选中状态返回对应的值
+    // 否则，返回布尔值
+    const newValue = target.checked
       ? props.trueValue
-      : true
-    : props.falseValue
-      ? props.falseValue
-      : false
+        ? props.trueValue
+        : true
+      : props.falseValue
+        ? props.falseValue
+        : false
 
-  emits('update:modelValue', newValue)
+    emits('update:modelValue', newValue)
+  }
 }
 </script>
 
@@ -54,7 +90,7 @@ const handleChange = (event: Event) => {
         type="checkbox"
         :value="value"
         :checked="isChecked"
-        :disabled="disabled"
+        :disabled="isDisabled"
         :class="ns.e('original')"
         @change="handleChange"
       />
