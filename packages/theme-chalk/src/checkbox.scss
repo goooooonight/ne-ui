@@ -50,6 +50,7 @@
     height: get-var-name-css('choice-size', 'default');
     border: get-var-name-css('checkbox', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'small');
+    box-sizing: content-box;
     position: relative;
     transition: 0.2s ease;
   }
@@ -70,6 +71,7 @@
         border: get-var-name-css('color', 'white') solid;
         border-width: 0 2px 2px 0;
         border-radius: 0 0 1px 0;
+        box-sizing: content-box;
         position: absolute;
         transform: translate(-50%, -50%) rotate(45deg);
         top: 45%;
@@ -97,6 +99,15 @@
       .#{$namespace}-checkbox__inner {
         &::after {
           border-color: get-var-name-css('checkbox', 'disabled-after-color');
+        }
+      }
+    }
+
+    // 中间状态下的禁用状态
+    &.is-indeterminate {
+      .#{$namespace}-checkbox__inner {
+        &::after {
+          background-color: get-var-name-css('checkbox', 'disabled-after-color');
         }
       }
     }
