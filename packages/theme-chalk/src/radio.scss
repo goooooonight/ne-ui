@@ -35,8 +35,8 @@
 
   // 单选输入框样式
   @include e('input') {
-    width: get-var-name-css('radio-size', 'default');
-    height: get-var-name-css('radio-size', 'default');
+    width: get-var-name-css('choice-size', 'default');
+    height: get-var-name-css('choice-size', 'default');
     border: get-var-name-css('radio', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'circle');
     box-sizing: content-box;
@@ -116,8 +116,8 @@
       font-size: get-var-name-css('font-size', $size);
 
       .#{$namespace}-radio__input{
-          width: get-var-name-css('radio-size', $size);
-          height: get-var-name-css('radio-size', $size);
+          width: get-var-name-css('choice-size', $size);
+          height: get-var-name-css('choice-size', $size);
       }
     }
   }

@@ -250,15 +250,15 @@ $radio: map.merge(
   ),
   $radio
 );
-// radio尺寸变量
-$radio-size: () !default;
-$radio-size: map.deep-merge(
+// radio、checkbox尺寸变量
+$choice-size: () !default;
+$choice-size: map.deep-merge(
   (
     'small': 10px,
     'default': 12px,
     'large': 14px
   ),
-  $radio-size
+  $choice-size
 );
 // radio-button样式变量
 $radio-button: () !default;
@@ -285,7 +285,7 @@ $radio-button-padding-horizontal: map.merge(
     'default': 19px,
     'large': 23px
   ),
-    $radio-button-padding-horizontal
+  $radio-button-padding-horizontal
 );
 // radio动画颜色变量
 $radio-animation: () !default;
@@ -335,7 +335,7 @@ $global: (
   'textarea-min-height': $textarea-min-height,
   'textarea-padding-vertical': $textarea-padding-vertical,
   'textarea-padding-horizontal': $textarea-padding-horizontal,
-  'radio-size': $radio-size,
+  'choice-size': $choice-size,
   'radio-button-padding-horizontal': $radio-button-padding-horizontal,
   'radio-animation': $radio-animation
 );
