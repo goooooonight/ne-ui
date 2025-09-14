@@ -35,6 +35,10 @@ export const checkboxProps = {
   // 尺寸
   size: {
     type: String as PropType<Size>
+  },
+  // 原生 name 属性
+  name: {
+    type: String
   }
 }
 

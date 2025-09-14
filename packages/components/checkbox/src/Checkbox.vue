@@ -117,6 +117,7 @@ const handleChange = (event: Event) => {
     <span :class="ns.e('input')">
       <input
         type="checkbox"
+        :name="name"
         :value="value"
         :checked="isChecked"
         :disabled="isDisabled"
