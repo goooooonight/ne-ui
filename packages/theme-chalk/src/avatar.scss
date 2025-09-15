@@ -1,0 +1,14 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+
+@include b('avatar'){
+    width: 64px;
+    height: 64px;
+    color: get-var-name-css('color', 'white');
+    background-color: #bfbfbf;
+    border-radius: get-var-name-css('border-radius', 'small');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
