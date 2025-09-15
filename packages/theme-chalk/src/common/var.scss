@@ -322,6 +322,14 @@ $checkbox: map.deep-merge(
   $checkbox
 );
 
+// avatar样式变量
+$avatar: () !default;
+$avatar: map.deep-merge(
+  (
+    'icon-size' : 18px
+  ),
+  $avatar
+);
 // avatar尺寸
 $avatar-size: () !default;
 $avatar-size: map.deep-merge(

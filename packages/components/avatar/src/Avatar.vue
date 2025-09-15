@@ -22,14 +22,25 @@ const classCustom = computed(() => {
 const style = computed(() => {
   // 当 size 为 number 类型时，自定义宽高
   return typeof props.size === 'number'
-    ? { width: `${props.size}px`, height: `${props.size}px` }
+    ? {
+        width: `${props.size}px`,
+        height: `${props.size}px`
+      }
     : undefined
 })
 </script>
 
 <template>
   <span :class="classCustom" :style="style">
-    <slot></slot>
+    <img
+      v-if="src"
+      :src="src"
+      :alt="alt"
+      :srcset="srcset"
+      :style="{ 'object-fit': fit }"
+    />
+    <ne-icon v-else-if="icon" :icon="icon" :class="ns.m('icon')"></ne-icon>
+    <slot v-else></slot>
   </span>
 </template>
 

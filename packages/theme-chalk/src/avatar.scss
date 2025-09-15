@@ -3,14 +3,25 @@
 @use './common/function.scss' as *;
 
 @include b('avatar') {
+  @include set-component-css-var('avatar', $avatar);
+}
+
+@include b('avatar') {
   width: get-var-name-css('avatar-size', 'default');
   height: get-var-name-css('avatar-size', 'default');
+  font-size: get-var-name-css('font-size', 'default');
   color: get-var-name-css('color', 'white');
   background-color: get-var-name-css('fill-color', 'avatar');
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 
   // shape 形状 - 圆形
   @include m('circle') {
@@ -20,6 +31,11 @@
   // shape 形状 - 正方形
   @include m('square') {
     border-radius: get-var-name-css('border-radius', 'small');
+  }
+
+  // 图标尺寸
+  @include m(icon) {
+    font-size: get-var-name-css('avatar', 'icon-size');
   }
 
   // size 尺寸
