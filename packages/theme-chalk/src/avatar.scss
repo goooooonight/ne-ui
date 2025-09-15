@@ -2,13 +2,31 @@
 @use './common/var.scss' as *;
 @use './common/function.scss' as *;
 
-@include b('avatar'){
-    width: 64px;
-    height: 64px;
-    color: get-var-name-css('color', 'white');
-    background-color: #bfbfbf;
+@include b('avatar') {
+  width: get-var-name-css('avatar-size', 'default');
+  height: get-var-name-css('avatar-size', 'default');
+  color: get-var-name-css('color', 'white');
+  background-color: get-var-name-css('fill-color', 'avatar');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  // shape 形状 - 圆形
+  @include m('circle') {
+    border-radius: get-var-name-css('border-radius', 'circle');
+  }
+
+  // shape 形状 - 正方形
+  @include m('square') {
     border-radius: get-var-name-css('border-radius', 'small');
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+
+  // size 尺寸
+  @each $size in ('small', 'large') {
+    @include m($size) {
+      width: get-var-name-css('avatar-size', $size);
+      height: get-var-name-css('avatar-size', $size);
+    }
+  }
 }
