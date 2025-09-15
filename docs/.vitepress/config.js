@@ -38,7 +38,7 @@ export default {
         activeMatch: ''
       },
       { text: '指南', link: '/guide/installation', activeMatch: '/guide/' },
-      { text: '组件', link: '/components/icon', activeMatch: '/components/' }
+      { text: '组件', link: '/components/button', activeMatch: '/components/' }
     ],
     sidebar: {
       '/guide/': [
@@ -75,6 +75,15 @@ export default {
             {
               text: 'Radio - 单选框',
               link: '/components/radio'
+            }
+          ]
+        },
+        {
+          text: 'Data 数据展示',
+          items: [
+            {
+              text: 'Avatar - 头像',
+              link: '/components/avatar'
             }
           ]
         }
