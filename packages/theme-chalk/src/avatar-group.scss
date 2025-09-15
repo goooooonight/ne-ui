@@ -1,0 +1,20 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+
+@include b('avatar-group') {
+  display: inline-flex;
+  line-height: 0;
+  font-size: 0;
+
+  .#{$namespace}-avatar {
+    box-sizing: content-box;
+    border: get-var-name-css('color', 'white') 1px solid;
+  }
+
+  .#{$namespace}-avatar + .#{$namespace}-avatar {
+    // 负边距产生重叠效果
+    margin-left: -8px;
+  }
+}
