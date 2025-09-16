@@ -1,0 +1,38 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+
+// 设置组件CSS变量
+@include b('card') {
+  @include set-component-css-var('card', $card);
+}
+
+@include b('card') {
+  color: get-var-name-css('text-color', 'primary');
+  border: get-var-name-css('border-color', 'primary') 1px solid;
+  border-radius: get-var-name-css('border-radius', 'large');
+  box-sizing: border-box;
+  transition: 0.2s ease;
+
+  // 交互阴影
+  &:hover {
+    box-shadow: 0 4px 12px #d3d3d3;
+  }
+
+  // 卡片标题样式
+  @include e('header') {
+    padding: get-var-name-css('card', 'padding');
+    border-bottom: get-var-name-css('border-color', 'primary') 1px solid;
+  }
+
+  // 卡片内容样式
+  @include e('body') {
+    padding: get-var-name-css('card', 'padding');
+  }
+
+  // 卡片页脚样式
+  @include e('footer') {
+    padding: get-var-name-css('card', 'padding');
+    border-top: get-var-name-css('border-color', 'primary') 1px solid;
+  }
+}

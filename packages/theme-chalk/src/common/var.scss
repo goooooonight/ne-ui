@@ -341,6 +341,15 @@ $avatar-size: map.deep-merge(
   $avatar-size
 );
 
+// card样式变量
+$card: () !default;
+$card: map.deep-merge(
+  ( 
+    'padding' : 18px
+  ),
+  $card
+);
+
 // 全局变量集合
 $global: (
   'text-color': $text-color,
