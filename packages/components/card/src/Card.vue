@@ -14,8 +14,12 @@ const props = defineProps(cardProps)
 
 // 生成自定义类名
 const classCustom = computed(() => {
-  const { shadow } = props
-  return [ns.b(), ns.is(`${shadow}-shadow`, shadow)]
+  const { shadow, bordered } = props
+  return [
+    ns.b(),
+    ns.is(`${shadow}-shadow`, shadow),
+    ns.is('bordered', bordered)
+  ]
 })
 
 // 计算 header 类名

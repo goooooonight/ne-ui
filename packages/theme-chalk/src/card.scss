@@ -9,9 +9,10 @@
 
 @include b('card') {
   color: get-var-name-css('text-color', 'primary');
-  border: get-var-name-css('border-color', 'primary') 1px solid;
   border-radius: get-var-name-css('border-radius', 'large');
+  background-color: get-var-name-css('color', 'white');
   box-sizing: border-box;
+  overflow: hidden;
   transition: 0.2s ease;
 
   // 卡片标题样式
@@ -39,5 +40,10 @@
   }
   @include when('always-shadow') {
     box-shadow: get-var-name-css('card', 'box-shadow');
+  }
+
+  // 卡片显示边框
+  @include when('bordered') {
+    border: get-var-name-css('border-color', 'primary') 1px solid;
   }
 }

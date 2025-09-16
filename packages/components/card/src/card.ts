@@ -29,6 +29,11 @@ export const cardProps = {
   // footer 自定义类名
   footerClass: {
     type: String
+  },
+  // 是否显示卡片边框
+  bordered: {
+    type: Boolean,
+    default: true
   }
 } as const // 只读
 
