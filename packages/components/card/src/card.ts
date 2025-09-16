@@ -1,4 +1,5 @@
-import type { ExtractPropTypes } from 'vue'
+import type { PropType, ExtractPropTypes } from 'vue'
+import type { Shadow } from './type'
 
 /**
  * Card组件的props定义
@@ -11,6 +12,11 @@ export const cardProps = {
   // 卡片页脚
   footer: {
     type: String
+  },
+  // 阴影触发时机
+  shadow: {
+    type: String as PropType<Shadow>,
+    default: 'never'
   }
 } as const // 只读
 

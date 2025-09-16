@@ -14,11 +14,6 @@
   box-sizing: border-box;
   transition: 0.2s ease;
 
-  // 交互阴影
-  &:hover {
-    box-shadow: 0 4px 12px #d3d3d3;
-  }
-
   // 卡片标题样式
   @include e('header') {
     padding: get-var-name-css('card', 'padding');
@@ -34,5 +29,15 @@
   @include e('footer') {
     padding: get-var-name-css('card', 'padding');
     border-top: get-var-name-css('border-color', 'primary') 1px solid;
+  }
+
+  // 阴影显示样式
+  @include when('hover-shadow') {
+    &:hover {
+      box-shadow: get-var-name-css('card', 'box-shadow');
+    }
+  }
+  @include when('always-shadow') {
+    box-shadow: get-var-name-css('card', 'box-shadow');
   }
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
 import { computed } from 'vue'
-// import { cardProps } from './card'
+import { cardProps } from './card'
 
 // 组件命名
 defineOptions({ name: 'ne-card' })
@@ -10,11 +10,12 @@ defineOptions({ name: 'ne-card' })
 const ns = createNameSpace('card')
 
 // 获取 props
-// const props = defineProps(cardProps)
+const props = defineProps(cardProps)
 
 // 生成自定义类名
 const classCustom = computed(() => {
-  return [ns.b()]
+  const { shadow } = props
+  return [ns.b(), ns.is(`${shadow}-shadow`, shadow)]
 })
 </script>
 

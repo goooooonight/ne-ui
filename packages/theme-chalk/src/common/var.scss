@@ -345,7 +345,8 @@ $avatar-size: map.deep-merge(
 $card: () !default;
 $card: map.deep-merge(
   ( 
-    'padding' : 18px
+    'padding': 18px,
+    'box-shadow':  0 4px 12px rgba(0, 0, 0, 0.15)
   ),
   $card
 );
