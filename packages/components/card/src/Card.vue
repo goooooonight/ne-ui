@@ -17,19 +17,34 @@ const classCustom = computed(() => {
   const { shadow } = props
   return [ns.b(), ns.is(`${shadow}-shadow`, shadow)]
 })
+
+// 计算 header 类名
+const headerClass = computed(() => {
+  return [ns.e('header'), props.headerClass].filter(Boolean)
+})
+
+// 计算 body 类名
+const bodyClass = computed(() => {
+  return [ns.e('body'), props.bodyClass].filter(Boolean)
+})
+
+// 计算 footer 类名
+const footerClass = computed(() => {
+  return [ns.e('footer'), props.footerClass].filter(Boolean)
+})
 </script>
 
 <template>
   <div :class="classCustom">
-    <div v-if="$slots.header || header" :class="ns.e('header')">
+    <div v-if="$slots.header || header" :class="headerClass">
       <slot name="header">
         {{ header }}
       </slot>
     </div>
-    <div v-if="$slots.default" :class="ns.e('body')">
+    <div v-if="$slots.default" :class="bodyClass">
       <slot></slot>
     </div>
-    <div v-if="$slots.footer || footer" :class="ns.e('footer')">
+    <div v-if="$slots.footer || footer" :class="footerClass">
       <slot name="footer">
         {{ footer }}
       </slot>

@@ -17,6 +17,18 @@ export const cardProps = {
   shadow: {
     type: String as PropType<Shadow>,
     default: 'never'
+  },
+  // header 自定义类名
+  headerClass: {
+    type: String
+  },
+  // body 自定义类名
+  bodyClass: {
+    type: String
+  },
+  // footer 自定义类名
+  footerClass: {
+    type: String
   }
 } as const // 只读
 
