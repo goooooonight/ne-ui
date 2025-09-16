@@ -20,14 +20,18 @@ const classCustom = computed(() => {
 
 <template>
   <div :class="classCustom">
-    <div v-if="$slots.header" :class="ns.e('header')">
-      <slot name="header"></slot>
+    <div v-if="$slots.header || header" :class="ns.e('header')">
+      <slot name="header">
+        {{ header }}
+      </slot>
     </div>
     <div v-if="$slots.default" :class="ns.e('body')">
       <slot></slot>
     </div>
-    <div v-if="$slots.footer" :class="ns.e('footer')">
-      <slot name="footer"></slot>
+    <div v-if="$slots.footer || footer" :class="ns.e('footer')">
+      <slot name="footer">
+        {{ footer }}
+      </slot>
     </div>
   </div>
 </template>
