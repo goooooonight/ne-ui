@@ -1,0 +1,56 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+
+// 设置组件CSS变量
+@include b('message') {
+  @include set-component-css-var('message', $message);
+}
+@include b('message') {
+  width: fit-content;
+  padding: get-var-name-css('message', 'padding-vertical')
+    get-var-name-css('message', 'padding-horizontal');
+  border-radius: get-var-name-css('border-radius', 'default');
+  background-color: get-var-name-css('color', 'white');
+  box-shadow: get-var-name-css('box-shadow', 'light');
+  color: get-var-name-css('text-color', 'primary');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  // 图标样式
+  @include e('icon') {
+    font-size: get-var-name-css('message', 'icon-font-size');
+
+    // type 类型样式
+    @each $type in $types {
+      @include m($type) {
+        color: get-var-name-css('color', $type);
+      }
+    }
+  }
+
+  // 内容样式
+  @include e('content') {
+    display: inline-block;
+    font-size: get-var-name-css('message', 'content-font-size');
+  }
+}
+
+// .ne-message-enter-from,
+// .ne-message-leave-to {
+//     opacity: 0;
+//     transform: translateY(-20px);
+// }
+
+// .ne-message-enter-to,
+// .ne-message-leave-from {
+//     opacity: 1;
+//     transform: translateY(0);
+// }
+
+// .ne-message-enter-active,
+// .ne-message-leave-active {
+//     transition: all 0.3s ease;
+// }

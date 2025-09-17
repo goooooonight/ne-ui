@@ -143,6 +143,15 @@ $fill-color: map.merge(
   $fill-color
 );
 
+// 盒子阴影
+$box-shadow: () !default;
+$box-shadow: map.merge(
+  (
+    'light': 0 4px 12px rgba(0, 0, 0, 0.15)
+  ),
+  $box-shadow
+);
+
 // button样式变量
 $button: () !default;
 $button: map.merge(
@@ -326,7 +335,7 @@ $checkbox: map.deep-merge(
 $avatar: () !default;
 $avatar: map.deep-merge(
   (
-    'icon-size' : 18px
+    'icon-size': 18px
   ),
   $avatar
 );
@@ -344,11 +353,23 @@ $avatar-size: map.deep-merge(
 // card样式变量
 $card: () !default;
 $card: map.deep-merge(
-  ( 
+  (
     'padding': 18px,
-    'box-shadow':  0 4px 12px rgba(0, 0, 0, 0.15)
+    'box-shadow': 0 4px 12px rgba(0, 0, 0, 0.15)
   ),
   $card
+);
+
+// message样式变量
+$message: () !default;
+$message: map.deep-merge(
+  (
+    'padding-vertical': 10px,
+    'padding-horizontal': 20px,
+    'content-font-size': get-var-name-css('font-size', 'default'),
+    'icon-font-size': 18px
+  ),
+  $message
 );
 
 // 全局变量集合
@@ -360,6 +381,7 @@ $global: (
   'border-radius': $border-radius,
   'background-color': $background-color,
   'fill-color': $fill-color,
+  'box-shadow': $box-shadow,
   'button-padding': $button-padding,
   'input-padding': $input-padding,
   'textarea-min-height': $textarea-min-height,
