@@ -2,7 +2,13 @@
 import { createNameSpace } from '@ne-ui/utils'
 import { computed, onMounted, ref } from 'vue'
 import { messageProps } from './message'
-import { IpInfo, IpCheckOne, IpCloseOne, IpAttention } from 'vue-icons-plus/ip'
+import {
+  IpInfo,
+  IpCheckOne,
+  IpCloseOne,
+  IpAttention,
+  IpClose
+} from 'vue-icons-plus/ip'
 import { NeIcon } from '@ne-ui/components/icon'
 
 // 组件命名
@@ -56,6 +62,12 @@ defineExpose({
     <div :class="classCustom" v-show="visible">
       <ne-icon :icon="typeIconMap[type]" :class="iconClass"></ne-icon>
       <span :class="ns.e('content')">{{ message }}</span>
+      <ne-icon
+        v-if="closable"
+        :icon="IpClose"
+        :class="ns.m('closeBtn')"
+        @click="close"
+      ></ne-icon>
     </div>
   </transition>
 </template>

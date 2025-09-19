@@ -19,6 +19,11 @@ export const messageProps = {
   duration: {
     type: Number,
     default: DEFAULT_MESSAGE_DURATION
+  },
+  // 是否可关闭
+  closable: {
+    type: Boolean,
+    default: false
   }
 } as const // 只读
 
