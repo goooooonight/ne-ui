@@ -17,7 +17,7 @@
   gap: 6px;
   color: get-var-name-css('radio', 'default-text-color');
   font-size: get-var-name-css('font-size', 'default');
-  transition: 0.2s ease;
+  transition: get-var-name-css('transition', 'fast');
   cursor: pointer;
 
   & + & {
@@ -40,7 +40,7 @@
     border: get-var-name-css('radio', 'default-border-color') 1px solid;
     border-radius: get-var-name-css('border-radius', 'circle');
     box-sizing: content-box;
-    transition: 0.2s ease;
+    transition: get-var-name-css('transition', 'fast');
     position: relative;
   }
 

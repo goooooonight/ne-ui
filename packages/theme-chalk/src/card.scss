@@ -13,7 +13,7 @@
   background-color: get-var-name-css('color', 'white');
   box-sizing: border-box;
   overflow: hidden;
-  transition: 0.2s ease;
+  transition: get-var-name-css('transition', 'fast');
 
   // 卡片标题样式
   @include e('header') {

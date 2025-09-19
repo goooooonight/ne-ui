@@ -152,27 +152,32 @@ $box-shadow: map.merge(
   $box-shadow
 );
 
+// 过渡样式
+$transition: () !default;
+$transition: map.merge(
+  (
+    'fast': 0.2s ease,
+    'base': 0.4s ease
+  ),
+  $transition
+);
+
 // button样式变量
 $button: () !default;
 $button: map.merge(
   (
-    // 'font-weight': get-var-name('font-weight-primary'),
     'border-color': get-var-name-css('border-color', 'primary'),
     'bg-color': $color-white,
     'text-color': get-var-name-css('text-color', 'primary'),
     'disabled-text-color': get-var-name-css('text-color', 'disabled'),
     'disabled-bg-color': #f5f6fa,
     'disabled-border-color': #ebeef5,
-    // 'divide-border-color': rgba($color-white, 0.5),
     'hover-text-color': #3069ff,
     'hover-bg-color': #eaf0ff,
     'hover-border-color': #c1d2ff,
     'active-text-color': #064bfb,
     'active-border-color': #a3c1ff,
-    'active-bg-color': #a3c1ff,
-    // 'outline-color': get-var-name('color-primary', 'light-5'),
-    // 'hover-link-text-color': get-var-name('text-color', 'secondary'),
-     // 'active-color': get-var-name('text-color', 'primary')
+    'active-bg-color': #a3c1ff
   ),
   $button
 );
@@ -382,6 +387,7 @@ $global: (
   'background-color': $background-color,
   'fill-color': $fill-color,
   'box-shadow': $box-shadow,
+  'transition': $transition,
   'button-padding': $button-padding,
   'input-padding': $input-padding,
   'textarea-min-height': $textarea-min-height,

@@ -21,7 +21,7 @@
   border: get-var-name-css('input', 'default-border-color') 1px solid;
   border-radius: get-var-name-css('border-radius', 'small');
   outline: none;
-  transition: 0.2s ease;
+  transition: get-var-name-css('transition', 'fast');
   position: relative;
 
   // 基础交互效果
@@ -166,7 +166,7 @@
         border: get-var-name-css('input', 'default-border-color') 1px solid;
         border-top-#{$direction}-radius: 0;
         border-bottom-#{$direction}-radius: 0;
-        transition: 0.2s ease;
+        transition: get-var-name-css('transition', 'fast');
 
         &:hover {
           border-color: get-var-name-css('input', 'hover-border-color');

@@ -19,7 +19,7 @@
   border-radius: get-var-name-css('border-radius', 'default');
   color: get-var-name-css('radio-button', 'default-text-color');
   font-size: get-var-name-css('font-size', 'default');
-  transition: 0.2s ease;
+  transition: get-var-name-css('transition', 'fast');
   cursor: pointer;
 
   // 按钮单选框组连接样式

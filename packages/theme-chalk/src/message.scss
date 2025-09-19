@@ -9,7 +9,7 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  transition: 0.4s ease;
+  transition: get-var-name-css('transition', 'base');
 }
 
 // 设置组件CSS变量
@@ -50,7 +50,7 @@
   // 关闭按钮
   @include m('closeBtn') {
     color: get-var-name-css('text-color', 'light-1');
-    transition: 0.2s ease;
+    transition: get-var-name-css('transition', 'fast');
     cursor: pointer;
     &:hover {
       color: get-var-name-css('text-color', 'primary');

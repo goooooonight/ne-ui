@@ -20,14 +20,14 @@
   background-color: get-var-name-css('button', 'bg-color');
   border-radius: get-var-name-css('border-radius', 'default');
   border-color: get-var-name-css('button', 'border-color');
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   font-size: get-var-name-css('font-size', 'default');
   color: get-var-name-css('button', 'text-color');
   cursor: pointer;
   word-break: keep-all;
   outline: none;
-  transition: 0.3s;
+  transition: get-var-name-css('transition', 'fast');
 
   > span {
     // 部分字母比如 g 在行高为1时下部分会出现截断

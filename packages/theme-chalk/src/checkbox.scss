@@ -31,7 +31,7 @@
   // 输入框容器
   @include e('input') {
     display: inline-flex;
-    transition: 0.2s ease;
+    transition: get-var-name-css('transition', 'fast');
   }
 
   // 原生input checkbox
@@ -52,7 +52,7 @@
     border-radius: get-var-name-css('border-radius', 'small');
     box-sizing: content-box;
     position: relative;
-    transition: 0.2s ease;
+    transition: get-var-name-css('transition', 'fast');
   }
 
   // checked 选中状态
