@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IpSearch } from 'vue-icons-plus/ip'
+import { Search } from '@icon-park/vue-next'
 </script>
 
 <template>
@@ -18,7 +18,7 @@ import { IpSearch } from 'vue-icons-plus/ip'
     </ne-input>
     <ne-input placeholder="Search anything...">
       <template #append>
-        <ne-button :icon="IpSearch" type="primary"></ne-button>
+        <ne-button :icon="Search" type="primary"></ne-button>
       </template>
     </ne-input>
   </div>

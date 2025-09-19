@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IpAirpods } from 'vue-icons-plus/ip'
+import { Airpods } from '@icon-park/vue-next'
 </script>
 
 <template>
@@ -15,9 +15,9 @@ import { IpAirpods } from 'vue-icons-plus/ip'
       <ne-button size="large" round>large</ne-button>
     </div>
     <div>
-      <ne-button size="small" circle :icon="IpAirpods"></ne-button>
-      <ne-button size="default" circle :icon="IpAirpods"></ne-button>
-      <ne-button size="large" circle :icon="IpAirpods"></ne-button>
+      <ne-button size="small" circle :icon="Airpods"></ne-button>
+      <ne-button size="default" circle :icon="Airpods"></ne-button>
+      <ne-button size="large" circle :icon="Airpods"></ne-button>
     </div>
   </div>
 </template>

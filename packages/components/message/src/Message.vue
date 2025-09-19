@@ -2,13 +2,7 @@
 import { createNameSpace } from '@ne-ui/utils'
 import { computed, onMounted, ref } from 'vue'
 import { messageProps } from './message'
-import {
-  IpInfo,
-  IpCheckOne,
-  IpCloseOne,
-  IpAttention,
-  IpClose
-} from 'vue-icons-plus/ip'
+import { Info, CheckOne, CloseOne, Attention, Close } from '@icon-park/vue-next'
 import { NeIcon } from '@ne-ui/components/icon'
 
 // 组件命名
@@ -32,11 +26,11 @@ const iconClass = computed(() => {
 
 // 建立 icon 和 type 映射关系
 const typeIconMap = {
-  primary: IpInfo,
-  success: IpCheckOne,
-  warning: IpAttention,
-  error: IpCloseOne,
-  info: IpInfo
+  primary: Info,
+  success: CheckOne,
+  warning: Attention,
+  error: CloseOne,
+  info: Info
 }
 
 // 消息是否可见
@@ -64,7 +58,7 @@ defineExpose({
       <span :class="ns.e('content')">{{ message }}</span>
       <ne-icon
         v-if="closable"
-        :icon="IpClose"
+        :icon="Close"
         :class="ns.m('closeBtn')"
         @click="close"
       ></ne-icon>

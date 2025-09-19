@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { IpUser } from 'vue-icons-plus/ip'
+import { User } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="example-basic">
-    <ne-avatar :icon="IpUser"></ne-avatar>
-    <ne-avatar :icon="IpUser" shape="square"></ne-avatar>
+    <ne-avatar :icon="User"></ne-avatar>
+    <ne-avatar :icon="User" shape="square"></ne-avatar>
   </div>
 </template>
 

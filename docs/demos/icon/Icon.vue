@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { IpVolumeDown, IpVolumeUp, IpVolumeMute } from 'vue-icons-plus/ip'
+import { VolumeDown, VolumeUp, VolumeMute } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="icons-group">
-    <ne-icon :icon="IpVolumeDown"></ne-icon>
-    <ne-icon :icon="IpVolumeUp"></ne-icon>
-    <ne-icon :icon="IpVolumeMute"></ne-icon>
+    <ne-icon :icon="VolumeDown"></ne-icon>
+    <ne-icon :icon="VolumeUp"></ne-icon>
+    <ne-icon :icon="VolumeMute"></ne-icon>
   </div>
 </template>
 

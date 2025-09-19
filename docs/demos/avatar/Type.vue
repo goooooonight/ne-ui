@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { IpWoman } from 'vue-icons-plus/ip'
+import { Woman } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="example-type">
     <ne-avatar>Kris</ne-avatar>
-    <ne-avatar :icon="IpWoman"></ne-avatar>
+    <ne-avatar :icon="Woman"></ne-avatar>
     <ne-avatar
       src="https://api.dicebear.com/9.x/bottts-neutral/svg?seed=Avery"
     ></ne-avatar>

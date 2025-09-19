@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { IpLike, IpLocalTwo, IpMail } from 'vue-icons-plus/ip'
+import { Like, LocalTwo, Mail } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="icons-group">
-    <ne-icon size="30"><IpLike /></ne-icon>
-    <ne-icon size="20"><IpLocalTwo /></ne-icon>
-    <ne-icon size="10"><IpMail /></ne-icon>
+    <ne-icon size="30"><Like /></ne-icon>
+    <ne-icon size="20"><LocalTwo /></ne-icon>
+    <ne-icon size="10"><Mail /></ne-icon>
   </div>
 </template>
 

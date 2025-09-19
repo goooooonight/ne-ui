@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { IpAgreement, IpWeixinMiniApp, IpZoomIn } from 'vue-icons-plus/ip'
+import { Agreement, WeixinMiniApp, ZoomIn } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="icons-group">
-    <ne-icon color="#e74032"><IpAgreement /></ne-icon>
-    <ne-icon color="#fbc015"><IpWeixinMiniApp /></ne-icon>
-    <ne-icon color="#239442"><IpZoomIn /></ne-icon>
+    <ne-icon color="#e74032"><Agreement /></ne-icon>
+    <ne-icon color="#fbc015"><WeixinMiniApp /></ne-icon>
+    <ne-icon color="#239442"><ZoomIn /></ne-icon>
   </div>
 </template>
 

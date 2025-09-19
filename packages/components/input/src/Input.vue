@@ -2,7 +2,7 @@
 import { createNameSpace } from '@ne-ui/utils'
 import { computed, ref } from 'vue'
 import { inputProps, inputEmits } from './input'
-import { IpPreviewOpen, IpPreviewCloseOne, IpCloseOne } from 'vue-icons-plus/ip'
+import { PreviewOpen, PreviewCloseOne, CloseOne } from '@icon-park/vue-next'
 // 组件命名
 defineOptions({ name: 'ne-input' })
 
@@ -114,13 +114,13 @@ const showWordCount = computed(() => {
           <!-- 切换密码显示/隐藏 -->
           <ne-icon
             v-if="showPasswordToggle"
-            :icon="pswVisible ? IpPreviewOpen : IpPreviewCloseOne"
+            :icon="pswVisible ? PreviewOpen : PreviewCloseOne"
             @click="togglePswVisible"
           ></ne-icon>
           <!-- 一键清除 -->
           <ne-icon
             v-if="showClearButton"
-            :icon="IpCloseOne"
+            :icon="CloseOne"
             @click="handleClear"
           ></ne-icon>
         </span>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IpPeople, IpPeopleSafe } from 'vue-icons-plus/ip'
+import { People, PeopleSafe } from '@icon-park/vue-next'
 </script>
 
 <template>
@@ -12,11 +12,11 @@ import { IpPeople, IpPeopleSafe } from 'vue-icons-plus/ip'
       <ne-avatar
         src="https://api.dicebear.com/9.x/bottts/svg?seed=Luis&backgroundColor=ffd5dc"
       ></ne-avatar>
-      <ne-avatar :icon="IpPeople"></ne-avatar>
+      <ne-avatar :icon="People"></ne-avatar>
     </ne-avatar-group>
 
     <ne-avatar-group shape="circle">
-      <ne-avatar :icon="IpPeopleSafe"></ne-avatar>
+      <ne-avatar :icon="PeopleSafe"></ne-avatar>
       <ne-avatar
         src="https://api.dicebear.com/9.x/adventurer-neutral/svg?seed=Kingston"
         >Max</ne-avatar

@@ -2,12 +2,12 @@
 
 ## 使用图标
 
-ne-ui 推荐使用 `vue-icons-plus` 作为图标库。
+ne-ui 推荐使用 `@icon-park/vue-next` 作为图标库。
 
 ```bash
-$ yarn add vue-icons-plus
+$ yarn add @icon-park/vue-next
 # or
-$ pnpm install vue-icons-plus --save
+$ pnpm install @icon-park/vue-next --save
 ```
 
 ## 基础用法
