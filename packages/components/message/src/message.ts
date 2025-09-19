@@ -34,7 +34,7 @@ export const messageProps = {
 export type MessageProps = Partial<ExtractPropTypes<typeof messageProps>>
 
 // Message API类型
-export type MessageFn = (options: MessageProps) => void
+export type MessageFn = (options: MessageProps | string) => void
 // Message各类型 API类型
 export type MessageTypedFn = (
   options: Omit<MessageProps, 'type'> | string

@@ -62,8 +62,9 @@ const message = (options: MessageProps) => {
 }
 
 // Message API式调用入口
-const NeMessage = ((options: MessageProps) => {
-  message(options)
+const NeMessage = ((options) => {
+  const normalized = normalizeOptions(options)
+  message(normalized)
 }) as Message
 
 // 格式化传入参数
