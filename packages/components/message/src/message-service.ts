@@ -43,10 +43,12 @@ const message = (options: MessageProps) => {
     // 从实例化数组中删除
     const index = instances.indexOf(container)
     instances.splice(index, 1)
-    // 调整剩余Message的top
-    instances.forEach((instance) => {
-      const top = parseInt(instance.style.top)
-      instance.style.top = `${top - TOP_GAP}px`
+    // 调整后续Message的top
+    instances.forEach((instance, idx) => {
+      if (idx >= index) {
+        const top = parseInt(instance.style.top)
+        instance.style.top = `${top - TOP_GAP}px`
+      }
     })
   }
   // 创建并渲染VNode节点
