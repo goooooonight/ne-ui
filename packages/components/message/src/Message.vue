@@ -22,7 +22,7 @@ const props = defineProps(messageProps)
 
 // 自定义类名
 const classCustom = computed(() => {
-  return [ns.b()]
+  return [ns.b(), props.customClass]
 })
 
 // 自定义图标类名

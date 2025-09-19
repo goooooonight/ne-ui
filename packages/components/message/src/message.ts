@@ -24,6 +24,10 @@ export const messageProps = {
   closable: {
     type: Boolean,
     default: false
+  },
+  // 自定义类名
+  customClass: {
+    type: String
   }
 } as const // 只读
 
