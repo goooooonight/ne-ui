@@ -44,7 +44,10 @@ export default defineConfigWithVueTs(
         FocusEvent: 'readonly',
         Event: 'readonly',
         HTMLInputElement: 'readonly',
-        HTMLTextAreaElement: 'readonly'
+        HTMLTextAreaElement: 'readonly',
+        HTMLDivElement: 'readonly',
+        document: 'readonly',
+        setTimeout: 'readonly'
       }
     },
     rules: {

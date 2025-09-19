@@ -1,6 +1,15 @@
 @use './common/mixin.scss' as *;
 @use './common/var.scss' as *;
 @use './common/function.scss' as *;
+@use './common/config.scss' as *;
+
+// Message容器样式
+.#{$namespace}-message--container{
+  position: fixed;
+  left: 50%;
+  transform:translateX(-50%);
+  transition: 0.4s ease;
+}
 
 // 设置组件CSS变量
 @include b('message') {
@@ -36,21 +45,25 @@
     display: inline-block;
     font-size: get-var-name-css('message', 'content-font-size');
   }
+
+  // Transition 动画样式
+  // 进入和离开的起始/结束状态
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  // 进入和离开的目标/起始状态  
+  &-enter-to,
+  &-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // 进入和离开的过渡效果
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.3s ease;
+  }
 }
-
-// .ne-message-enter-from,
-// .ne-message-leave-to {
-//     opacity: 0;
-//     transform: translateY(-20px);
-// }
-
-// .ne-message-enter-to,
-// .ne-message-leave-from {
-//     opacity: 1;
-//     transform: translateY(0);
-// }
-
-// .ne-message-enter-active,
-// .ne-message-leave-active {
-//     transition: all 0.3s ease;
-// }

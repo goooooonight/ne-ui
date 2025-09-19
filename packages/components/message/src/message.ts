@@ -1,9 +1,10 @@
 import type { PropType, ExtractPropTypes } from 'vue'
 import type { Type } from './type'
 
-/**
- * Message组件的props定义
- */
+// Message默认显示时间
+export const DEFAULT_MESSAGE_DURATION = 3000
+
+// Message组件的props定义
 export const messageProps = {
   // 消息文字
   message: {
@@ -13,7 +14,27 @@ export const messageProps = {
   type: {
     type: String as PropType<Type>,
     default: 'primary'
+  },
+  // 显示时间
+  duration: {
+    type: Number,
+    default: DEFAULT_MESSAGE_DURATION
   }
 } as const // 只读
 
-export type MessageProps = ExtractPropTypes<typeof messageProps>
+export type MessageProps = Partial<ExtractPropTypes<typeof messageProps>>
+
+// Message API类型
+export type MessageFn = (options: MessageProps) => void
+// Message各类型 API类型
+export type MessageTypedFn = (
+  options: Omit<MessageProps, 'type'> | string
+) => void
+// Message类型
+export type Message = MessageFn & {
+  primary: MessageTypedFn
+  success: MessageTypedFn
+  warning: MessageTypedFn
+  info: MessageTypedFn
+  error: MessageTypedFn
+}
