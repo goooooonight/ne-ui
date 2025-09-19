@@ -90,6 +90,15 @@ export default {
               link: '/components/card'
             }
           ]
+        },
+        {
+          text: 'Feedback 反馈组件',
+          items: [
+            {
+              text: 'Message - 消息',
+              link: '/components/message'
+            }
+          ]
         }
       ]
     }
