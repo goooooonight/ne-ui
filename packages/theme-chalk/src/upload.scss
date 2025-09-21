@@ -1,0 +1,48 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+
+// 设置组件CSS变量
+@include b('upload') {
+  // @include set-component-css-var('upload', $upload);
+}
+@include b('upload') {
+  width: fit-content;
+
+  // 原生input样式
+  @include e('input') {
+    display: none;
+  }
+}
+
+// 上传文件列表
+@include b('upload-list') {
+  list-style: none;
+  margin: 10px 0 0;
+  padding-left: 0;
+  color: get-var-name-css('text-color', 'primary');
+
+  @include e('item') {
+    padding: 2px;
+    border-radius: 2px;
+    font-size: get-var-name-css('font-size', 'default');
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: get-var-name-css('transition', 'fast');
+
+    // 交互样式
+    &:hover {
+      color: get-var-name-css('color', 'primary');
+      background-color: get-var-name-css('color', 'primary', 'light', '9');
+    }
+
+    // 列表项间隔
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+  }
+}

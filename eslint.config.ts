@@ -47,7 +47,8 @@ export default defineConfigWithVueTs(
         HTMLTextAreaElement: 'readonly',
         HTMLDivElement: 'readonly',
         document: 'readonly',
-        setTimeout: 'readonly'
+        setTimeout: 'readonly',
+        File: 'readonly'
       }
     },
     rules: {
