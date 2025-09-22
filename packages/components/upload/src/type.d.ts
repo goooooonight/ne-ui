@@ -12,3 +12,14 @@ export interface UploadFile {
 export type UploadFiles = UploadFile[]
 
 // export type UploadRawFile = File & { uid: number }
+
+export interface UploadOptions {
+  action: string
+  file: File
+  name: string
+  method: string
+  headers: Headers | Record<string, string>
+  data: Record<string, unknown>
+  onSuccess: (response: any) => void
+  onError: (error: any) => void
+}

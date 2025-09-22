@@ -48,7 +48,10 @@ export default defineConfigWithVueTs(
         HTMLDivElement: 'readonly',
         document: 'readonly',
         setTimeout: 'readonly',
-        File: 'readonly'
+        File: 'readonly',
+        XMLHttpRequest: 'readonly',
+        FormData: 'readonly',
+        Headers: 'readonly'
       }
     },
     rules: {
