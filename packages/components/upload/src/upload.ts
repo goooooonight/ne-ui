@@ -40,6 +40,10 @@ export const uploadProps = {
     type: Boolean,
     default: false
   },
+  // 限制文件上传数量
+  limit: {
+    type: Number
+  },
   // 文件上传成功钩子
   onSuccess: {
     type: Function as PropType<(response: any) => void>,

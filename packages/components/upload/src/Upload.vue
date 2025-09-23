@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import UploadContent from './UploadContent.vue'
 import UploadList from './UploadList.vue'
 import { uploadProps } from './upload'
@@ -30,6 +30,7 @@ const handleRemove = (file: UploadFile) => {
 // 定义upload-content的props
 const uploadContentProps = {
   ...props,
+  currentFileCount: computed(() => uploadFiles.value.length),
   onStart: handleStart
 }
 </script>

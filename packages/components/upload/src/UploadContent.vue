@@ -5,6 +5,7 @@ import { uploadContentProps } from './upload-content'
 import type { UploadFile, UploadOptions } from './type'
 import { ajaxUpload } from './ajax'
 import UploadDragger from './UploadDragger.vue'
+import NeMessage from '@ne-ui/components/message'
 
 // 创建命名空间
 const ns = createNameSpace('upload')
@@ -39,8 +40,28 @@ const handleChange = (event: Event) => {
 // 上传文件
 const uploadFiles = (files: File[]) => {
   // 解构props
-  const { action, name, method, headers, data, onStart, onSuccess, onError } =
-    props
+  const {
+    action,
+    name,
+    method,
+    headers,
+    data,
+    limit,
+    currentFileCount,
+    onStart,
+    onSuccess,
+    onError
+  } = props
+
+  // 判断上传文件数量是否超出限制
+  const totalFileCount = currentFileCount.value + files.length
+  if (limit !== undefined && limit < files.length) {
+    // 弹出警告消息
+    NeMessage.warning(
+      `您最多可以上传 ${limit} 个文件，本次已选择 ${files.length} 个，总数已达 ${totalFileCount} 个`
+    )
+    return
+  }
 
   // 对files数组进行遍历操作
   files.forEach((file) => {
