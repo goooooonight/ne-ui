@@ -24,13 +24,12 @@
   color: get-var-name-css('text-color', 'primary');
 
   @include e('item') {
-    padding: 2px;
+    padding: 4px;
     border-radius: 2px;
     font-size: get-var-name-css('font-size', 'default');
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
     cursor: pointer;
     transition: get-var-name-css('transition', 'fast');
 
@@ -38,11 +37,32 @@
     &:hover {
       color: get-var-name-css('color', 'primary');
       background-color: get-var-name-css('color', 'primary', 'light', '9');
+
+      // 显示删除图标
+      .#{$namespace}-upload-list__close{
+        opacity: 1;
+      }
     }
 
     // 列表项间隔
     &:not(:last-child) {
       margin-bottom: 4px;
+    }
+  }
+
+  @include e('item-file-name') {
+    margin-left: 4px;
+  }
+
+  // 删除图标
+  @include e('close'){
+    margin-left: auto;
+    color: get-var-name-css('color', 'primary', 'light', '4');
+    transition: get-var-name-css('transition', 'fast');
+    opacity: 0;
+
+    &:hover{
+      color: get-var-name-css('color', 'primary');
     }
   }
 }

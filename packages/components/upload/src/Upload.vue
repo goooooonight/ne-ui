@@ -21,6 +21,12 @@ const handleStart = (uploadFile: UploadFile) => {
   uploadFiles.value = [...uploadFiles.value, uploadFile]
 }
 
+// 处理删除事件
+const handleRemove = (file: UploadFile) => {
+  const index = uploadFiles.value.indexOf(file)
+  uploadFiles.value.splice(index, 1)
+}
+
 // 定义upload-content的props
 const uploadContentProps = {
   ...props,
@@ -32,7 +38,7 @@ const uploadContentProps = {
   <UploadContent v-bind="uploadContentProps">
     <slot></slot>
   </UploadContent>
-  <UploadList :files="uploadFiles"></UploadList>
+  <UploadList :files="uploadFiles" @remove="handleRemove"></UploadList>
 </template>
 
 <style scoped></style>
