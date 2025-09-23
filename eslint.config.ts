@@ -51,7 +51,8 @@ export default defineConfigWithVueTs(
         File: 'readonly',
         XMLHttpRequest: 'readonly',
         FormData: 'readonly',
-        Headers: 'readonly'
+        Headers: 'readonly',
+        DragEvent: 'readonly'
       }
     },
     rules: {

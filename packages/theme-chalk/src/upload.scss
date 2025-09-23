@@ -8,11 +8,16 @@
   // @include set-component-css-var('upload', $upload);
 }
 @include b('upload') {
-  width: fit-content;
+  display: inline-flex;
 
   // 原生input样式
   @include e('input') {
     display: none;
+  }
+
+  // 拖拽上传样式
+  @include when('drag') {
+    display: block;
   }
 }
 
@@ -39,7 +44,7 @@
       background-color: get-var-name-css('color', 'primary', 'light', '9');
 
       // 显示删除图标
-      .#{$namespace}-upload-list__close{
+      .#{$namespace}-upload-list__close {
         opacity: 1;
       }
     }
@@ -50,19 +55,55 @@
     }
   }
 
+  // 文件信息样式
+  @include e('item-info'){
+    display: inline-flex;
+    align-items: center;
+    min-width: 0; // 允许flex子元素收缩到内容宽度以下
+  }
+
+  // 文件名样式
   @include e('item-file-name') {
     margin-left: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   // 删除图标
-  @include e('close'){
+  @include e('close') {
     margin-left: auto;
     color: get-var-name-css('color', 'primary', 'light', '4');
     transition: get-var-name-css('transition', 'fast');
     opacity: 0;
 
-    &:hover{
+    &:hover {
       color: get-var-name-css('color', 'primary');
     }
+  }
+}
+
+// 拖动上传样式
+@include b('dragger') {
+  padding: 40px 10px;
+  border: get-var-name-css('border-color', 'primary') 1px dashed;
+  border-radius: get-var-name-css('border-radius', 'default');
+  background-color: get-var-name-css('fill-color', 'lighter');
+  text-align: center;
+  cursor: pointer;
+
+  // 禁用子元素的鼠标事件，防止拖拽事件冒泡干扰
+  * {
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: get-var-name-css('color', 'primary');
+  }
+
+  // 拖拽互动样式
+  @include when('dragover') {
+    background-color: get-var-name-css('color', 'primary', 'light-9');
+    border-color: get-var-name-css('color', 'primary');
   }
 }

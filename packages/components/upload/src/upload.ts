@@ -35,6 +35,11 @@ export const uploadProps = {
     type: Boolean,
     default: false
   },
+  // 是否拖拽上传
+  drag: {
+    type: Boolean,
+    default: false
+  },
   // 文件上传成功钩子
   onSuccess: {
     type: Function as PropType<(response: any) => void>,
