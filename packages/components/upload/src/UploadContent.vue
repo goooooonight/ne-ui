@@ -51,7 +51,8 @@ const uploadFiles = (files: File[]) => {
     currentFileCount,
     onStart,
     onSuccess,
-    onError
+    onError,
+    onProgress
   } = props
 
   // 判断上传文件数量是否超出限制
@@ -93,6 +94,9 @@ const uploadFiles = (files: File[]) => {
       },
       onError: (error) => {
         onError(error, uploadFile)
+      },
+      onProgress: (event) => {
+        onProgress(event, uploadFile)
       }
     }
 

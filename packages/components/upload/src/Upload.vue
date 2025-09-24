@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import UploadContent from './UploadContent.vue'
 import UploadList from './UploadList.vue'
 import { uploadProps } from './upload'
-import type { UploadFile, UploadFiles } from './type'
+import type { UploadFile, UploadFiles, UploadProgressEvent } from './type'
 
 // 组件命名
 defineOptions({ name: 'ne-upload' })
@@ -20,6 +20,7 @@ const setStatus = (uploadFile: UploadFile, status: string) => {
     (file) => file.uid === uploadFile.uid
   )
   uploadFiles.value[index].status = status
+  return index
 }
 
 // 处理上传开始事件
@@ -53,14 +54,29 @@ const handleError = (error: Error, uploadFile: UploadFile) => {
   props.onError(error, uploadFile, uploadFiles.value)
 }
 
+// 处理上传事件
+const handleProgress = (event: UploadProgressEvent, uploadFile: UploadFile) => {
+  // 更新文件状态为上传中
+  const index = setStatus(uploadFile, 'uploading')
+
+  // 设置文件进度
+  uploadFiles.value[index].percent = event.percent
+
+  console.log(event)
+
+  // 调用用户传入的上传回调
+  props.onProgress(event, uploadFile, uploadFiles.value)
+}
+
 // 定义upload-content的props
 const uploadContentProps = {
   ...props,
   currentFileCount: computed(() => uploadFiles.value.length),
   onStart: handleStart,
+  onRemove: handleRemove,
   onSuccess: handleSuccess,
   onError: handleError,
-  onRemove: handleRemove
+  onProgress: handleProgress
 }
 </script>
 

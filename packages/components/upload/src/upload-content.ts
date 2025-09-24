@@ -1,6 +1,6 @@
 import type { PropType, ExtractPropTypes, ComputedRef } from 'vue'
 import { NOOP, uploadProps } from './upload'
-import type { UploadFile } from './type'
+import type { UploadFile, UploadProgressEvent } from './type'
 
 export const uploadContentProps = {
   ...uploadProps,
@@ -22,6 +22,13 @@ export const uploadContentProps = {
   /** @description 文件上传失败钩子 */
   onError: {
     type: Function as PropType<(error: Error, uploadFile: UploadFile) => void>,
+    default: NOOP
+  },
+  /** @description 文件上传钩子 */
+  onProgress: {
+    type: Function as PropType<
+      (event: UploadProgressEvent, uploadFile: UploadFile) => void
+    >,
     default: NOOP
   }
 } as const

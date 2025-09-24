@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { UploadFile, UploadFiles } from './type'
+import type { UploadFile, UploadFiles, UploadProgressEvent } from './type'
 
 let uidCounter = 1
 
@@ -81,6 +81,17 @@ export const uploadProps = {
   onRemove: {
     type: Function as PropType<
       (uploadFile: UploadFile, uploadFiles: UploadFiles) => void
+    >,
+    default: NOOP
+  },
+  /** @description 文件上传钩子 */
+  onProgress: {
+    type: Function as PropType<
+      (
+        event: UploadProgressEvent,
+        uploadFile: UploadFile,
+        uploadFiles: UploadFiles
+      ) => void
     >,
     default: NOOP
   }
