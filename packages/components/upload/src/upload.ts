@@ -53,6 +53,11 @@ export const uploadBaseProps = {
   /** @description 限制文件上传数量 */
   limit: {
     type: Number
+  },
+  /** @description 是否处于禁用状态 */
+  disabled: {
+    type: Boolean,
+    default: false
   }
 } as const
 

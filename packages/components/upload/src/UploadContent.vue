@@ -16,7 +16,7 @@ const props = defineProps(uploadContentProps)
 
 // 生成自定义类名
 const classCustom = computed(() => {
-  return [ns.b(), ns.is('drag', props.drag)]
+  return [ns.b(), ns.is('drag', props.drag), ns.is('disabled', props.disabled)]
 })
 
 // 绑定原生input ref
@@ -117,6 +117,7 @@ const uploadFiles = (files: File[]) => {
       ref="inputRef"
       :class="ns.e('input')"
       :multiple="multiple"
+      :disabled="disabled"
       @change="handleChange"
     />
   </div>

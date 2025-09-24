@@ -4,7 +4,7 @@ import { createNameSpace } from '@ne-ui/utils'
 import { computed, ref } from 'vue'
 
 // 创建命名空间
-const ns = createNameSpace('dragger')
+const ns = createNameSpace('upload-dragger')
 
 // 获取emits
 const emits = defineEmits(uploadDraggerEmits)

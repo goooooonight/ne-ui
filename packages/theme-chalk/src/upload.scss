@@ -19,6 +19,21 @@
   @include when('drag') {
     display: block;
   }
+
+  // 禁用状态样式
+  @include when('disabled') {
+    cursor: not-allowed;
+
+    .#{$namespace}-upload-dragger {
+      cursor: not-allowed;
+      background-color: get-var-name-css('fill-color', 'light');
+      border-color: get-var-name-css('border-color', 'primary');
+
+      &:hover {
+        border-color: get-var-name-css('border-color', 'primary');
+      }
+    }
+  }
 }
 
 // 上传文件列表
@@ -56,7 +71,7 @@
   }
 
   // 文件信息样式
-  @include e('item-info'){
+  @include e('item-info') {
     display: inline-flex;
     align-items: center;
     min-width: 0; // 允许flex子元素收缩到内容宽度以下
@@ -84,7 +99,7 @@
 }
 
 // 拖动上传样式
-@include b('dragger') {
+@include b('upload-dragger') {
   padding: 40px 10px;
   border: get-var-name-css('border-color', 'primary') 1px dashed;
   border-radius: get-var-name-css('border-radius', 'default');
