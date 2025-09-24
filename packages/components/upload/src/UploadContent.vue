@@ -56,7 +56,7 @@ const uploadFiles = (files: File[]) => {
 
   // 判断上传文件数量是否超出限制
   const totalFileCount = currentFileCount.value + files.length
-  if (limit !== undefined && limit < files.length) {
+  if (limit !== undefined && limit < totalFileCount) {
     // 弹出警告消息
     NeMessage.warning(
       `您最多可以上传 ${limit} 个文件，本次已选择 ${files.length} 个，总数已达 ${totalFileCount} 个`
