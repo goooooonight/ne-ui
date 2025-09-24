@@ -91,7 +91,9 @@ const uploadFiles = (files: File[]) => {
       onSuccess: (response) => {
         onSuccess(response, uploadFile)
       },
-      onError
+      onError: (error) => {
+        onError(error, uploadFile)
+      }
     }
 
     // 发送请求

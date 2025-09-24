@@ -18,6 +18,11 @@ export const uploadContentProps = {
   onSuccess: {
     type: Function as PropType<(response: any, uploadFile: UploadFile) => void>,
     default: NOOP
+  },
+  /** @description 文件上传失败钩子 */
+  onError: {
+    type: Function as PropType<(error: Error, uploadFile: UploadFile) => void>,
+    default: NOOP
   }
 } as const
 

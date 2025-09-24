@@ -67,12 +67,18 @@ export const uploadProps = {
   },
   /** @description 文件上传失败钩子 */
   onError: {
-    type: Function as PropType<(error: any) => void>,
+    type: Function as PropType<
+      (error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => void
+    >,
+    default: NOOP
+  },
+  /** @description 文件删除钩子 */
+  onRemove: {
+    type: Function as PropType<
+      (uploadFile: UploadFile, uploadFiles: UploadFiles) => void
+    >,
     default: NOOP
   }
 } as const
 
-export const uploadEmits = {}
-
 export type UploadProps = ExtractPropTypes<typeof uploadProps>
-export type UploadEmits = typeof uploadEmits

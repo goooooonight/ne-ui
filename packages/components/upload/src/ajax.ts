@@ -37,7 +37,8 @@ export function ajaxUpload(options: UploadOptions): void {
     } else {
       // 上传失败
       if (onError) {
-        onError(`error`)
+        const error = new Error(`HTTP Error: ${xhr.status} ${xhr.statusText}`)
+        onError(error)
       }
     }
   }
@@ -45,7 +46,8 @@ export function ajaxUpload(options: UploadOptions): void {
   // 处理网络错误
   xhr.addEventListener('error', (event) => {
     if (onError) {
-      onError(event)
+      const error = new Error(`Network Error: ${event.type}`)
+      onError(error)
     }
   })
 

@@ -21,5 +21,5 @@ export interface UploadOptions {
   headers: Headers | Record<string, string>
   data: Record<string, unknown>
   onSuccess: (response: any) => void
-  onError: (error: any) => void
+  onError: (error: Error) => void
 }

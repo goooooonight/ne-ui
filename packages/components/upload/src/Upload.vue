@@ -22,12 +22,14 @@ const handleStart = (uploadFile: UploadFile) => {
 }
 
 // 处理删除事件
-const handleRemove = (file: UploadFile) => {
-  const index = uploadFiles.value.indexOf(file)
-  uploadFiles.value.splice(index, 1)
+const handleRemove = (uploadFile: UploadFile) => {
+  // 删除文件列表中对应的文件
+  const index = uploadFiles.value.indexOf(uploadFile)
+  const removeFile = uploadFiles.value.splice(index, 1)[0]
+  props.onRemove(removeFile, uploadFiles.value)
 }
 
-// 处理成功事件
+// 处理上传成功事件
 const handleSuccess = (response: any, uploadFile: UploadFile) => {
   // 更新文件状态为成功
   uploadFile.status = 'success'
@@ -36,12 +38,23 @@ const handleSuccess = (response: any, uploadFile: UploadFile) => {
   props.onSuccess(response, uploadFile, uploadFiles.value)
 }
 
+// 处理上传失败事件
+const handleError = (error: Error, uploadFile: UploadFile) => {
+  // 更新文件状态为失败
+  uploadFile.status = 'error'
+
+  // 调用用户传入的失败回调
+  props.onError(error, uploadFile, uploadFiles.value)
+}
+
 // 定义upload-content的props
 const uploadContentProps = {
   ...props,
   currentFileCount: computed(() => uploadFiles.value.length),
   onStart: handleStart,
-  onSuccess: handleSuccess
+  onSuccess: handleSuccess,
+  onError: handleError,
+  onReomve: handleRemove
 }
 </script>
 
