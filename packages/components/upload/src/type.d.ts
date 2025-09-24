@@ -11,7 +11,7 @@ export interface UploadFile {
 
 export type UploadFiles = UploadFile[]
 
-// export type UploadRawFile = File & { uid: number }
+export type UploadRawFile = File & { uid: number }
 
 export interface UploadOptions {
   action: string

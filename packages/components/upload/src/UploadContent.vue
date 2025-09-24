@@ -2,10 +2,11 @@
 import { ref, computed } from 'vue'
 import { createNameSpace } from '@ne-ui/utils'
 import { uploadContentProps } from './upload-content'
-import type { UploadFile, UploadOptions } from './type'
+import type { UploadFile, UploadOptions, UploadRawFile } from './type'
 import { ajaxUpload } from './ajax'
 import UploadDragger from './UploadDragger.vue'
 import NeMessage from '@ne-ui/components/message'
+import { generateFileUid } from './upload'
 
 // 创建命名空间
 const ns = createNameSpace('upload')
@@ -65,32 +66,37 @@ const uploadFiles = (files: File[]) => {
 
   // 对files数组进行遍历操作
   files.forEach((file) => {
-    const rawFile: UploadFile = {
-      uid: 1,
-      name: file.name,
-      size: file.size,
-      raw: file,
-      status: 'success'
-    }
-    onStart!(rawFile)
+    // 为传入文件生成uid
+    const rawFile = file as UploadRawFile
+    rawFile.uid = generateFileUid()
 
-    // 发送请求
-    upload({
+    // 构建上传文件对象
+    const uploadFile: UploadFile = {
+      uid: rawFile.uid,
+      name: rawFile.name,
+      size: rawFile.size,
+      raw: rawFile,
+      status: 'start'
+    }
+    onStart(uploadFile)
+
+    // 构建上传配置对象
+    const options: UploadOptions = {
       action,
-      file,
+      file: rawFile,
       name,
       method,
       headers: headers || {},
       data: data || {},
-      onSuccess,
+      onSuccess: (response) => {
+        onSuccess(response, uploadFile)
+      },
       onError
-    })
-  })
-}
+    }
 
-// 发送请求
-const upload = (options: UploadOptions) => {
-  ajaxUpload(options)
+    // 发送请求
+    ajaxUpload(options)
+  })
 }
 </script>
 

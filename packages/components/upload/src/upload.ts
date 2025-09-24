@@ -1,58 +1,74 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { UploadFiles } from './type'
+import type { UploadFile, UploadFiles } from './type'
 
-export const uploadProps = {
-  // 请求url
+let uidCounter = 1
+
+/** @description uid生成函数 */
+export function generateFileUid() {
+  return Date.now() + uidCounter++
+}
+
+/** @description 默认空函数 */
+export const NOOP = () => {}
+
+export const uploadBaseProps = {
+  /** @description 请求url */
   action: {
     type: String,
     required: true
   },
-  // 上传文件字段名
+  /** @description 上传文件字段名 */
   name: {
     type: String,
     default: 'file'
   },
-  // 请求方法
+  /** @description 请求方法 */
   method: {
     type: String,
     default: 'POST'
   },
-  // 上传请求头部
+  /** @description 上传请求头部 */
   headers: {
     type: Object as PropType<Headers | Record<string, string>>
   },
-  // 上传请求参数
+  /** @description 上传请求参数 */
   data: {
     type: Object as PropType<Record<string, unknown>>
   },
-  // 上传文件列表
+  /** @description 上传文件列表 */
   filesList: {
     type: Array as PropType<UploadFiles>,
     default: []
   },
-  // 是否允许多选
+  /** @description 是否允许多选 */
   multiple: {
     type: Boolean,
     default: false
   },
-  // 是否拖拽上传
+  /** @description 是否拖拽上传 */
   drag: {
     type: Boolean,
     default: false
   },
-  // 限制文件上传数量
+  /** @description 限制文件上传数量 */
   limit: {
     type: Number
-  },
-  // 文件上传成功钩子
+  }
+} as const
+
+export const uploadProps = {
+  ...uploadBaseProps,
+  /** @description 文件上传成功钩子 */
   onSuccess: {
-    type: Function as PropType<(response: any) => void>,
-    default: () => {}
+    type: Function as PropType<
+      (response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => void
+    >,
+    default: NOOP
   },
-  // 文件上传失败钩子
+  /** @description 文件上传失败钩子 */
   onError: {
     type: Function as PropType<(error: any) => void>,
-    default: () => {}
+    default: NOOP
   }
 } as const
 

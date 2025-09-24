@@ -27,11 +27,21 @@ const handleRemove = (file: UploadFile) => {
   uploadFiles.value.splice(index, 1)
 }
 
+// 处理成功事件
+const handleSuccess = (response: any, uploadFile: UploadFile) => {
+  // 更新文件状态为成功
+  uploadFile.status = 'success'
+
+  // 调用用户传入的成功回调
+  props.onSuccess(response, uploadFile, uploadFiles.value)
+}
+
 // 定义upload-content的props
 const uploadContentProps = {
   ...props,
   currentFileCount: computed(() => uploadFiles.value.length),
-  onStart: handleStart
+  onStart: handleStart,
+  onSuccess: handleSuccess
 }
 </script>
 

@@ -32,7 +32,7 @@ export function ajaxUpload(options: UploadOptions): void {
     if (xhr.status >= 200 && xhr.status < 300) {
       // 上传成功
       if (onSuccess) {
-        onSuccess('success')
+        onSuccess(xhr.response)
       }
     } else {
       // 上传失败

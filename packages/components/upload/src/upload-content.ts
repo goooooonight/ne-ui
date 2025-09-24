@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes, ComputedRef } from 'vue'
-import { uploadProps } from './upload'
+import { NOOP, uploadProps } from './upload'
 import type { UploadFile } from './type'
 
 export const uploadContentProps = {
@@ -9,8 +9,15 @@ export const uploadContentProps = {
     type: Object as PropType<ComputedRef<number>>,
     default: () => 0
   },
+  /** @description 文件上传开始钩子 */
   onStart: {
-    type: Function as PropType<(file: UploadFile) => void>
+    type: Function as PropType<(uploadFile: UploadFile) => void>,
+    default: NOOP
+  },
+  /** @description 文件上传成功钩子 */
+  onSuccess: {
+    type: Function as PropType<(response: any, uploadFile: UploadFile) => void>,
+    default: NOOP
   }
 } as const
 
