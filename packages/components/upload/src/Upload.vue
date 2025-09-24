@@ -14,10 +14,16 @@ const props = defineProps(uploadProps)
 // 上传文件数组
 const uploadFiles = ref<UploadFiles>(props.filesList)
 
+// 设置文件状态
+const setStatus = (uploadFile: UploadFile, status: string) => {
+  const index = uploadFiles.value.findIndex(
+    (file) => file.uid === uploadFile.uid
+  )
+  uploadFiles.value[index].status = status
+}
+
 // 处理上传开始事件
 const handleStart = (uploadFile: UploadFile) => {
-  // const file: UploadFile = uploadFile
-  // console.log(file)
   uploadFiles.value = [...uploadFiles.value, uploadFile]
 }
 
@@ -32,7 +38,7 @@ const handleRemove = (uploadFile: UploadFile) => {
 // 处理上传成功事件
 const handleSuccess = (response: any, uploadFile: UploadFile) => {
   // 更新文件状态为成功
-  uploadFile.status = 'success'
+  setStatus(uploadFile, 'success')
 
   // 调用用户传入的成功回调
   props.onSuccess(response, uploadFile, uploadFiles.value)
@@ -41,7 +47,7 @@ const handleSuccess = (response: any, uploadFile: UploadFile) => {
 // 处理上传失败事件
 const handleError = (error: Error, uploadFile: UploadFile) => {
   // 更新文件状态为失败
-  uploadFile.status = 'error'
+  setStatus(uploadFile, 'error')
 
   // 调用用户传入的失败回调
   props.onError(error, uploadFile, uploadFiles.value)
@@ -54,7 +60,7 @@ const uploadContentProps = {
   onStart: handleStart,
   onSuccess: handleSuccess,
   onError: handleError,
-  onReomve: handleRemove
+  onRemove: handleRemove
 }
 </script>
 
