@@ -25,7 +25,7 @@ export const uploadBaseProps = {
   /** @description 请求url */
   action: {
     type: String,
-    required: true
+    default: '#'
   },
   /** @description 上传文件字段名 */
   name: {
