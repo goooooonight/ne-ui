@@ -101,7 +101,11 @@ const uploadContentProps = {
   <UploadContent v-bind="uploadContentProps">
     <slot></slot>
   </UploadContent>
-  <UploadList :files="uploadFiles" @remove="handleRemove"></UploadList>
+  <UploadList
+    v-if="showFileList"
+    :files="uploadFiles"
+    @remove="handleRemove"
+  ></UploadList>
 </template>
 
 <style scoped></style>

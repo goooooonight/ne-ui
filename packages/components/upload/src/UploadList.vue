@@ -40,7 +40,7 @@ const handleRemove = (file: UploadFile) => {
         <div :class="ns.e('item-file-name')">
           <span>{{ file.name }}</span>
           <div
-            v-show="
+            v-if="
               (file.status === 'uploading' || file.status === 'start') &&
               file.percent !== 100
             "

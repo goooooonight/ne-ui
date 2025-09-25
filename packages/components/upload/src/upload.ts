@@ -63,6 +63,11 @@ export const uploadBaseProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  /** @description 是否显示文件列表 */
+  showFileList: {
+    type: Boolean,
+    default: true
   }
 } as const
 
