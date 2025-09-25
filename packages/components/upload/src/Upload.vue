@@ -28,6 +28,11 @@ const setStatus = (uploadFile: UploadFile, status: string) => {
   return index
 }
 
+// 处理上传前事件
+const handleBeforeUpload = (uploadFile: UploadFile) => {
+  return props.onBeforeUpload(uploadFile, uploadFiles.value)
+}
+
 // 处理上传开始事件
 const handleStart = (uploadFile: UploadFile) => {
   uploadFiles.value = [...uploadFiles.value, uploadFile]
@@ -92,6 +97,7 @@ const handleChange = (uploadFile: UploadFile) => {
 const uploadContentProps = {
   ...props,
   currentFileCount: computed(() => uploadFiles.value.length),
+  onBeforeUpload: handleBeforeUpload,
   onStart: handleStart,
   onRemove: handleRemove,
   onSuccess: handleSuccess,

@@ -9,8 +9,18 @@ export const uploadContentProps = {
     type: Object as PropType<ComputedRef<number>>,
     default: () => 0
   },
+  /** @description 文件上传前钩子 */
+  onBeforeUpload: {
+    type: Function as PropType<(uploadFile: UploadFile) => void>,
+    default: NOOP
+  },
   /** @description 文件上传开始钩子 */
   onStart: {
+    type: Function as PropType<(uploadFile: UploadFile) => void>,
+    default: NOOP
+  },
+  /** @description 文件删除钩子 */
+  onRemove: {
     type: Function as PropType<(uploadFile: UploadFile) => void>,
     default: NOOP
   },

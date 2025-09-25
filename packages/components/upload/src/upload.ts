@@ -73,6 +73,16 @@ export const uploadBaseProps = {
 
 export const uploadProps = {
   ...uploadBaseProps,
+  /** @description 文件上传前钩子 */
+  onBeforeUpload: {
+    type: Function as PropType<
+      (
+        uploadFile: UploadFile,
+        uploadFiles: UploadFiles
+      ) => Promise<boolean | void> | boolean | void
+    >,
+    default: NOOP
+  },
   /** @description 文件上传成功钩子 */
   onSuccess: {
     type: Function as PropType<

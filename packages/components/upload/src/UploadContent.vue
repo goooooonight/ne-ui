@@ -39,7 +39,7 @@ const handleChange = (event: Event) => {
 }
 
 // 上传文件
-const uploadFiles = (files: File[]) => {
+const upload = async (rawFile: UploadRawFile) => {
   // 解构props
   const {
     action,
@@ -47,20 +47,66 @@ const uploadFiles = (files: File[]) => {
     method,
     headers,
     data,
-    limit,
-    currentFileCount,
+    onBeforeUpload,
     onStart,
+    onRemove,
     onSuccess,
     onError,
     onProgress
   } = props
 
+  // 构建上传文件对象
+  const uploadFile: UploadFile = {
+    uid: rawFile.uid,
+    name: rawFile.name,
+    size: rawFile.size,
+    raw: rawFile,
+    status: 'start'
+  }
+
+  // 执行上传开始钩子函数
+  onStart(uploadFile)
+
+  // 执行文件上传前钩子
+  const result = await onBeforeUpload(uploadFile)
+  console.log(result)
+
+  // 只有当 result 明确为 false 时才取消上传
+  if (typeof result === 'boolean' && result === false) {
+    return onRemove(uploadFile)
+  }
+
+  // 构建上传配置对象
+  const options: UploadOptions = {
+    action,
+    file: rawFile,
+    name,
+    method,
+    headers: headers || {},
+    data: data || {},
+    onSuccess: (response) => {
+      onSuccess(response, uploadFile)
+    },
+    onError: (error) => {
+      onError(error, uploadFile)
+    },
+    onProgress: (event) => {
+      onProgress(event, uploadFile)
+    }
+  }
+
+  // 发送请求
+  ajaxUpload(options)
+}
+
+// 上传文件
+const uploadFiles = (files: File[]) => {
   // 判断上传文件数量是否超出限制
-  const totalFileCount = currentFileCount.value + files.length
-  if (limit !== undefined && limit < totalFileCount) {
+  const totalFileCount = props.currentFileCount.value + files.length
+  if (props.limit !== undefined && props.limit < totalFileCount) {
     // 弹出警告消息
     NeMessage.warning(
-      `您最多可以上传 ${limit} 个文件，本次已选择 ${files.length} 个，总数已达 ${totalFileCount} 个`
+      `您最多可以上传 ${props.limit} 个文件，本次已选择 ${files.length} 个，总数已达 ${totalFileCount} 个`
     )
     return
   }
@@ -71,37 +117,8 @@ const uploadFiles = (files: File[]) => {
     const rawFile = file as UploadRawFile
     rawFile.uid = generateFileUid()
 
-    // 构建上传文件对象
-    const uploadFile: UploadFile = {
-      uid: rawFile.uid,
-      name: rawFile.name,
-      size: rawFile.size,
-      raw: rawFile,
-      status: 'start'
-    }
-    onStart(uploadFile)
-
-    // 构建上传配置对象
-    const options: UploadOptions = {
-      action,
-      file: rawFile,
-      name,
-      method,
-      headers: headers || {},
-      data: data || {},
-      onSuccess: (response) => {
-        onSuccess(response, uploadFile)
-      },
-      onError: (error) => {
-        onError(error, uploadFile)
-      },
-      onProgress: (event) => {
-        onProgress(event, uploadFile)
-      }
-    }
-
-    // 发送请求
-    ajaxUpload(options)
+    // 调用上传方法
+    upload(rawFile)
   })
 }
 </script>
