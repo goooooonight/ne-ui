@@ -41,6 +41,9 @@ const handleRemove = (uploadFile: UploadFile) => {
   const index = uploadFiles.value.indexOf(uploadFile)
   const removeFile = uploadFiles.value.splice(index, 1)[0]
   props.onRemove(removeFile, uploadFiles.value)
+
+  // 调用文件状态改变回调
+  handleChange(uploadFile)
 }
 
 // 处理上传成功事件
@@ -52,9 +55,6 @@ const handleSuccess = (response: any, uploadFile: UploadFile) => {
   props.onSuccess(response, uploadFile, uploadFiles.value)
   // 调用文件状态改变回调
   handleChange(uploadFile)
-
-  // 更新 v-model 绑定的 fileList
-  emits('update:fileList', uploadFiles.value)
 }
 
 // 处理上传失败事件
@@ -82,6 +82,9 @@ const handleProgress = (event: UploadProgressEvent, uploadFile: UploadFile) => {
 
 // 处理文件状态改变事件
 const handleChange = (uploadFile: UploadFile) => {
+  // 更新 v-model 绑定的 fileList
+  emits('update:fileList', uploadFiles.value)
+
   props.onChange(uploadFile, uploadFiles.value)
 }
 
