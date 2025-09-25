@@ -75,6 +75,10 @@ export default {
             {
               text: 'Radio - 单选框',
               link: '/components/radio'
+            },
+            {
+              text: 'Upload - 上传',
+              link: '/components/upload'
             }
           ]
         },

@@ -24,9 +24,9 @@
 
 <demo vue="card/CustomClass.vue" />
 
-## Card API
+## API
 
-### Card Props
+### Props
 
 | 属性名       | 类型      | 默认值 | 说明                |
 | ------------ | --------- | ------ | ------------------- |
@@ -38,7 +38,7 @@
 | footer-class | `string`  | —      | footer 的自定义类名 |
 | bordered     | `boolean` | true   | 是否显示卡片边框    |
 
-### Card Slots
+### Slots
 
 | 插槽名  | 说明           |
 | ------- | -------------- |

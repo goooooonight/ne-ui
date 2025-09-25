@@ -16,5 +16,9 @@
   --vp-button-brand-bg: #f8ea7e;
   --vp-button-brand-hover-bg: #fdf2a2;
   --vp-button-brand-active-bg: #e6d992;
+
+  ul {
+    padding: 0;
+  }
 }
 
