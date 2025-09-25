@@ -2,17 +2,22 @@
 import { computed, ref } from 'vue'
 import UploadContent from './UploadContent.vue'
 import UploadList from './UploadList.vue'
-import { uploadProps } from './upload'
+import { generateFileUid, uploadProps, uploadEmits } from './upload'
 import type { UploadFile, UploadFiles, UploadProgressEvent } from './type'
 
 // 组件命名
 defineOptions({ name: 'ne-upload' })
 
-// 获取props
+// 获取 props 和 emits
 const props = defineProps(uploadProps)
+const emits = defineEmits(uploadEmits)
 
-// 上传文件数组
-const uploadFiles = ref<UploadFiles>(props.filesList)
+// 上传文件数组 并规范化为 UploadFiles 类型
+props.fileList.forEach((file) => {
+  file.uid ||= generateFileUid()
+  file.status ||= 'success'
+})
+const uploadFiles = ref<UploadFiles>(props.fileList as UploadFiles)
 
 // 设置文件状态
 const setStatus = (uploadFile: UploadFile, status: string) => {
@@ -43,6 +48,9 @@ const handleSuccess = (response: any, uploadFile: UploadFile) => {
 
   // 调用用户传入的成功回调
   props.onSuccess(response, uploadFile, uploadFiles.value)
+
+  // 更新 v-model 绑定的 fileList
+  emits('update:fileList', uploadFiles.value)
 }
 
 // 处理上传失败事件

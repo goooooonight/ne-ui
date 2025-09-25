@@ -5,9 +5,12 @@ export interface UploadFile {
   url?: string // URL.createObjectURL()
   percent?: number
   raw?: File // 原始文件
-  size: number //上传文件大小
+  size?: number //上传文件大小
   status: string // 上传状态
 }
+
+export type UploadUserFile = Omit<UploadFile, 'status' | 'uid'> &
+  Partial<Pick<UploadFile, 'status' | 'uid'>>
 
 export type UploadFiles = UploadFile[]
 

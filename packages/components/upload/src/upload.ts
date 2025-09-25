@@ -1,5 +1,10 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { UploadFile, UploadFiles, UploadProgressEvent } from './type'
+import type {
+  UploadFile,
+  UploadFiles,
+  UploadProgressEvent,
+  UploadUserFile
+} from './type'
 
 let uidCounter = 1
 
@@ -12,6 +17,11 @@ export function generateFileUid() {
 export const NOOP = () => {}
 
 export const uploadBaseProps = {
+  /** @description 上传文件列表 */
+  fileList: {
+    type: Array as PropType<UploadUserFile[]>,
+    default: []
+  },
   /** @description 请求url */
   action: {
     type: String,
@@ -34,11 +44,6 @@ export const uploadBaseProps = {
   /** @description 上传请求参数 */
   data: {
     type: Object as PropType<Record<string, unknown>>
-  },
-  /** @description 上传文件列表 */
-  filesList: {
-    type: Array as PropType<UploadFiles>,
-    default: []
   },
   /** @description 是否允许多选 */
   multiple: {
@@ -97,4 +102,9 @@ export const uploadProps = {
   }
 } as const
 
+export const uploadEmits = {
+  'update:fileList': (fileList: UploadFiles) => Array.isArray(fileList)
+}
+
 export type UploadProps = ExtractPropTypes<typeof uploadProps>
+export type UploadEmits = typeof uploadEmits
