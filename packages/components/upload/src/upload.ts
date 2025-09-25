@@ -99,6 +99,13 @@ export const uploadProps = {
       ) => void
     >,
     default: NOOP
+  },
+  /** @description 文件状态改变钩子 */
+  onChange: {
+    type: Function as PropType<
+      (uploadFile: UploadFile, uploadFiles: UploadFiles) => void
+    >,
+    default: NOOP
   }
 } as const
 

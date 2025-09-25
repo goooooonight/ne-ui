@@ -31,6 +31,8 @@ const setStatus = (uploadFile: UploadFile, status: string) => {
 // 处理上传开始事件
 const handleStart = (uploadFile: UploadFile) => {
   uploadFiles.value = [...uploadFiles.value, uploadFile]
+  // 调用文件状态改变回调
+  handleChange(uploadFile)
 }
 
 // 处理删除事件
@@ -48,6 +50,8 @@ const handleSuccess = (response: any, uploadFile: UploadFile) => {
 
   // 调用用户传入的成功回调
   props.onSuccess(response, uploadFile, uploadFiles.value)
+  // 调用文件状态改变回调
+  handleChange(uploadFile)
 
   // 更新 v-model 绑定的 fileList
   emits('update:fileList', uploadFiles.value)
@@ -60,6 +64,8 @@ const handleError = (error: Error, uploadFile: UploadFile) => {
 
   // 调用用户传入的失败回调
   props.onError(error, uploadFile, uploadFiles.value)
+  // 调用文件状态改变回调
+  handleChange(uploadFile)
 }
 
 // 处理上传事件
@@ -70,10 +76,13 @@ const handleProgress = (event: UploadProgressEvent, uploadFile: UploadFile) => {
   // 设置文件进度
   uploadFiles.value[index].percent = event.percent
 
-  console.log(event)
-
   // 调用用户传入的上传回调
   props.onProgress(event, uploadFile, uploadFiles.value)
+}
+
+// 处理文件状态改变事件
+const handleChange = (uploadFile: UploadFile) => {
+  props.onChange(uploadFile, uploadFiles.value)
 }
 
 // 定义upload-content的props
