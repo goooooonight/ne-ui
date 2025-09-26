@@ -1,0 +1,23 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+
+// 设置组件CSS变量
+@include b('form-item') {
+  // @include set-component-css-var('upload', $upload);
+}
+
+@include b('form-item') {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include e('label') {
+    color: get-var-name-css('text-color', 'primary');
+  }
+
+  @include e('content') {
+    flex: 1;
+  }
+}
