@@ -1,3 +1,6 @@
+// 命名空间
+export const defaultNameSpace = 'ne'
+
 // bem命名函数
 function _bem(
   prefixName: string,
@@ -39,6 +42,7 @@ function createBem(prefixName: string) {
     name && state ? `is-${name}` : ''
 
   return {
+    namespace: defaultNameSpace,
     b,
     e,
     m,
@@ -52,12 +56,6 @@ function createBem(prefixName: string) {
 
 // 创建命名空间
 export function createNameSpace(name: string) {
-  const prefixName = `ne-${name}`
+  const prefixName = `${defaultNameSpace}-${name}`
   return createBem(prefixName)
 }
-
-//
-//
-// 是否需要增加m-value
-//
-//
