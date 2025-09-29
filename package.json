@@ -25,6 +25,7 @@
     "@ne-ui/components": "workspace:*",
     "@ne-ui/theme-chalk": "workspace:*",
     "@ne-ui/utils": "workspace:*",
+    "async-validator": "^4.2.5",
     "vue": "^3.5.18"
   },
   "devDependencies": {
