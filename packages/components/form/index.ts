@@ -14,5 +14,7 @@ declare module 'vue' {
 
 export * from './src/form'
 export * from './src/form-item'
+export * from './src/form-key'
+export * from './src/form-item-key'
 
 export default NeForm
