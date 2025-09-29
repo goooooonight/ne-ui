@@ -3,6 +3,7 @@ import { createNameSpace } from '@ne-ui/utils'
 import { computed, inject } from 'vue'
 import { checkboxProps, checkboxEmits } from './checkbox'
 import { checkboxGroupKey } from './checkbox-group-key'
+import { formItemKey } from '../../form/src/form-item-key'
 
 // 组件命名
 defineOptions({ name: 'ne-checkbox' })
@@ -24,6 +25,9 @@ const classCustom = computed(() => {
 // 获取 props 和 emits
 const props = defineProps(checkboxProps)
 const emits = defineEmits(checkboxEmits)
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
 
 // 注入CheckboxGroup上下文
 const checkboxGroup = inject(checkboxGroupKey, null)
@@ -109,6 +113,9 @@ const handleChange = (event: Event) => {
     // 触发change事件，传递当前选中的值
     emits('change', newValue)
   }
+
+  // 进行校验
+  formItem?.validate('change')
 }
 </script>
 
