@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { computed, inject, provide, ref } from 'vue'
+import { computed, inject, onMounted, provide, ref } from 'vue'
 import { formItemProps } from './form-item'
 import AsyncValidator from 'async-validator'
 import { formKey } from './form-key'
@@ -113,10 +113,16 @@ const validate = async (trigger?: string): Promise<boolean> => {
   }
 }
 
-// 通过 provide 将 id 提供给子组件
-provide(formItemKey, {
+// 通过 provide 将 form-item 上下文提供给子组件
+const formItemContext = {
   formItemId: formItemId.value,
   validate: validate
+}
+provide(formItemKey, formItemContext)
+
+// 组件挂载时
+onMounted(() => {
+  form?.addField(formItemContext)
 })
 </script>
 

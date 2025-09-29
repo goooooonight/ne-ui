@@ -1,12 +1,13 @@
 import type { InjectionKey } from 'vue'
 import type { FormProps } from './form'
+import type { FormItemContext } from './form-item-key'
 
 /**
  * Form 上下文类型定义
  */
-
-// export interface FormContext extends FormProps {}
-export type FormContext = FormProps
+export interface FormContext extends FormProps {
+  addField: (field: FormItemContext) => void
+}
 
 /**
  * Form 注入键
