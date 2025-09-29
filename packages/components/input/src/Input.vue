@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { computed, ref } from 'vue'
+import { computed, ref, inject, nextTick } from 'vue'
 import { inputProps, inputEmits } from './input'
 import { PreviewOpen, PreviewCloseOne, CloseOne } from '@icon-park/vue-next'
+import { formItemKey } from '../../form/src/form-item-key'
 // 组件命名
 defineOptions({ name: 'ne-input' })
 
@@ -13,6 +14,12 @@ const ns = createNameSpace('input')
 const props = defineProps(inputProps)
 // 定义emit事件
 const emits = defineEmits(inputEmits)
+
+// 输入框 ref
+const inputRef = ref<HTMLInputElement | null>(null)
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
 
 // 生成样式
 const classCustom = computed(() => {
@@ -25,15 +32,26 @@ const inputType = ref(props.showPassword ? 'password' : props.type)
 // 密码是否可见
 const pswVisible = ref(!props.showPassword)
 // 切换密码显示状态
-const togglePswVisible = () => {
+const togglePswVisible = async () => {
   if (props.showPassword) {
     pswVisible.value = !pswVisible.value
     inputType.value = pswVisible.value ? 'text' : 'password'
+
+    // 获取输入框焦点并将光标定位到末尾
+    if (inputRef.value) {
+      await nextTick()
+      const len = inputRef.value.value.length
+      inputRef.value.focus()
+      inputRef.value.setSelectionRange(len, len)
+    }
   }
 }
 
 // 一键清除输入内容
 const handleClear = () => {
+  // 获取输入框焦点
+  inputRef.value?.focus()
+
   emits('update:modelValue', '')
   emits('input', '')
 }
@@ -47,6 +65,9 @@ const handleInput = (event: Event) => {
   emits('update:modelValue', value)
   // 触发input事件
   emits('input', value)
+
+  // 进行校验
+  formItem?.validate('change')
 }
 
 // 处理焦点事件
@@ -57,6 +78,14 @@ const handleFocus = (event: FocusEvent) => {
 // 处理失焦事件
 const handleBlur = (event: FocusEvent) => {
   emits('blur', event)
+  // 进行校验
+  formItem?.validate('blur')
+}
+
+// 处理值改变事件
+const handleChange = () => {
+  // 进行校验
+  formItem?.validate('change')
 }
 
 // 条件渲染 - 是否显示后缀区域
@@ -96,6 +125,7 @@ const showWordCount = computed(() => {
     <!-- 单行输入框 -->
     <div v-if="!isTextarea" :class="ns.e('wrapper')">
       <input
+        :id="formItem?.formItemId"
         :value="modelValue"
         :type="inputType"
         :placeholder="placeholder"
@@ -103,9 +133,11 @@ const showWordCount = computed(() => {
         :minlength="minlength"
         :maxlength="maxlength"
         :class="ns.e('inner')"
+        ref="inputRef"
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
+        @change="handleChange"
         v-bind="$attrs"
       />
       <!-- 后缀内容 -->
@@ -133,6 +165,7 @@ const showWordCount = computed(() => {
     <!-- 多行文本输入框 -->
     <textarea
       v-if="isTextarea"
+      :id="formItem?.formItemId"
       :value="modelValue"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -145,6 +178,7 @@ const showWordCount = computed(() => {
       @input="handleInput"
       @focus="handleFocus"
       @blur="handleBlur"
+      @change="handleChange"
       v-bind="$attrs"
     ></textarea>
     <!-- textarea - 字数显示 -->
