@@ -3,6 +3,7 @@ import { computed, inject } from 'vue'
 import { createNameSpace } from '@ne-ui/utils'
 import { radioProps, radioEmits } from './radio'
 import { radioGroupKey } from './radio-group-key'
+import { formItemKey } from '../../form/src/form-item-key'
 
 // 组件命名
 defineOptions({ name: 'ne-radio' })
@@ -13,6 +14,9 @@ const ns = createNameSpace('radio')
 // 定义props和emits
 const props = defineProps(radioProps)
 const emit = defineEmits(radioEmits)
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
 
 // 注入RadioGroup上下文
 const radioGroup = inject(radioGroupKey, null)
@@ -62,6 +66,9 @@ const handleChange = (event: Event) => {
     // 触发change事件，传递当前选中的值
     emit('change', props.value as string | number | boolean)
   }
+
+  // 进行校验
+  formItem?.validate('change')
 }
 </script>
 

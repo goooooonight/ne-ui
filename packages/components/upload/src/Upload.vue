@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import UploadContent from './UploadContent.vue'
 import UploadList from './UploadList.vue'
 import { generateFileUid, uploadProps, uploadEmits } from './upload'
 import type { UploadFile, UploadFiles, UploadProgressEvent } from './type'
+import { formItemKey } from '../../form/src/form-item-key'
 
 // 组件命名
 defineOptions({ name: 'ne-upload' })
@@ -11,6 +12,9 @@ defineOptions({ name: 'ne-upload' })
 // 获取 props 和 emits
 const props = defineProps(uploadProps)
 const emits = defineEmits(uploadEmits)
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
 
 // 上传文件数组 并规范化为 UploadFiles 类型
 props.fileList.forEach((file) => {
@@ -91,6 +95,9 @@ const handleChange = (uploadFile: UploadFile) => {
   emits('update:fileList', uploadFiles.value)
 
   props.onChange(uploadFile, uploadFiles.value)
+
+  // 进行校验
+  formItem?.validate('change')
 }
 
 // 定义upload-content的props
