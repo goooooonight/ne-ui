@@ -4,7 +4,7 @@ import { provide, ref } from 'vue'
 import { formProps } from './form'
 import { formKey } from './form-key'
 import type { FormItemContext } from './form-item-key'
-// import type { FormValidateCallback } from './type'
+import type { FormValidateCallback } from './type'
 
 // 组件命名
 defineOptions({ name: 'ne-form' })
@@ -24,12 +24,33 @@ const addField = (field: FormItemContext) => {
 }
 
 // 校验表单
-// const validate = (callback?: FormValidateCallback): Promise<void> => {
-const validate = () => {
+const validate = async (callback?: FormValidateCallback): Promise<void> => {
+  // 存储校验失败的字段信息
+  const invalidFields = {}
+
   // 执行每个表单项的校验规则
-  fields.value.forEach(async (field) => {
-    await field.validate()
-  })
+  const validateResults = await Promise.all(
+    fields.value.map(async (field) => {
+      try {
+        return await field.validate()
+      } catch (error) {
+        Object.assign(invalidFields, error)
+        return false
+      }
+    })
+  )
+
+  // 获取所有表单项是否校验成功
+  const isValid = validateResults.every((result) => result === true)
+
+  // 如果传入则执行回调函数
+  if (callback) {
+    if (isValid) {
+      callback(isValid)
+    } else {
+      callback(false, invalidFields)
+    }
+  }
 }
 
 // 向 FormItem 提供上下文

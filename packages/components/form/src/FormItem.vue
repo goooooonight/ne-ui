@@ -109,7 +109,7 @@ const validate = async (trigger?: string): Promise<boolean> => {
     // 校验失败，设置错误信息
     validateStatus.value = 'error'
     validateMessage.value = error.errors[0].message
-    return false
+    return Promise.reject(error)
   }
 }
 
@@ -120,9 +120,11 @@ const formItemContext = {
 }
 provide(formItemKey, formItemContext)
 
-// 组件挂载时
+// 组件挂载时，只有设置了 prop 属性的表单项才需要注册到表单中进行校验
 onMounted(() => {
-  form?.addField(formItemContext)
+  if (props.prop) {
+    form?.addField(formItemContext)
+  }
 })
 </script>
 
