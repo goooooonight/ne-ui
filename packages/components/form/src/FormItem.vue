@@ -80,7 +80,7 @@ const getRulesByTrigger = (trigger?: string) => {
 // 校验错误信息
 const validateMessage = ref<string>('')
 // 校验状态
-const validateStatus = ref<string>('success')
+const validateStatus = ref<string>('')
 
 // 执行表单项校验
 const validate = async (trigger?: string): Promise<boolean> => {
@@ -113,10 +113,17 @@ const validate = async (trigger?: string): Promise<boolean> => {
   }
 }
 
+// 清除表单项的校验信息
+const clearValidate = () => {
+  validateStatus.value = ''
+  validateMessage.value = ''
+}
+
 // 通过 provide 将 form-item 上下文提供给子组件
 const formItemContext = {
   formItemId: formItemId.value,
-  validate: validate
+  validate,
+  clearValidate
 }
 provide(formItemKey, formItemContext)
 

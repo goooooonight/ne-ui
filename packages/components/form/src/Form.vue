@@ -53,6 +53,11 @@ const validate = async (callback?: FormValidateCallback): Promise<void> => {
   }
 }
 
+// 清除所有表单项的校验信息
+const clearValidate = () => {
+  fields.value.forEach((field) => field.clearValidate())
+}
+
 // 向 FormItem 提供上下文
 provide(formKey, {
   ...props,
@@ -61,7 +66,8 @@ provide(formKey, {
 
 // 暴露部分方法
 defineExpose({
-  validate
+  validate,
+  clearValidate
 })
 </script>
 

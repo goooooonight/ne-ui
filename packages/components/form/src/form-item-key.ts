@@ -6,6 +6,7 @@ import type { InjectionKey } from 'vue'
 export interface FormItemContext {
   formItemId: string
   validate: (trigger?: string) => Promise<boolean>
+  clearValidate: () => void
 }
 
 /**
