@@ -6,6 +6,7 @@ import type { FormItemContext } from './form-item-key'
  * Form 上下文类型定义
  */
 export interface FormContext extends FormProps {
+  initialValues: Record<string, any>
   addField: (field: FormItemContext) => void
 }
 

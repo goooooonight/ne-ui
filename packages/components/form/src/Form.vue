@@ -18,9 +18,17 @@ const props = defineProps(formProps)
 // 表单项上下文数组
 const fields = ref<Array<FormItemContext>>([])
 
+// 表单初始值
+const initialValues = ref<Record<string, any>>({})
+
 // 添加表单项上下文
 const addField = (field: FormItemContext) => {
   fields.value.push(field)
+
+  // 获取表单项初始值
+  if (field.prop && props.model) {
+    initialValues.value[field.prop] = props.model[field.prop]
+  }
 }
 
 // 校验表单
@@ -58,16 +66,23 @@ const clearValidate = () => {
   fields.value.forEach((field) => field.clearValidate())
 }
 
+// 重置表单
+const resetFields = () => {
+  fields.value.forEach((field) => field.resetField())
+}
+
 // 向 FormItem 提供上下文
 provide(formKey, {
   ...props,
+  initialValues,
   addField
 })
 
 // 暴露部分方法
 defineExpose({
   validate,
-  clearValidate
+  clearValidate,
+  resetFields
 })
 </script>
 

@@ -119,11 +119,23 @@ const clearValidate = () => {
   validateMessage.value = ''
 }
 
+// 重置表单项
+const resetField = () => {
+  // 清除校验信息
+  clearValidate()
+  // 重置表单项为初始值
+  if (form && form.model && props.prop) {
+    form.model[props.prop] = form.initialValues.value[props.prop]
+  }
+}
+
 // 通过 provide 将 form-item 上下文提供给子组件
 const formItemContext = {
   formItemId: formItemId.value,
+  prop: props.prop,
   validate,
-  clearValidate
+  clearValidate,
+  resetField
 }
 provide(formItemKey, formItemContext)
 
