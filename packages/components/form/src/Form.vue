@@ -4,7 +4,7 @@ import { provide, ref } from 'vue'
 import { formProps } from './form'
 import { formKey } from './form-key'
 import type { FormItemContext } from './form-item-key'
-import type { FormValidateCallback } from './type'
+import type { FormValidateCallback, Arrayable } from './type'
 
 // 组件命名
 defineOptions({ name: 'ne-form' })
@@ -67,8 +67,19 @@ const clearValidate = () => {
 }
 
 // 重置表单
-const resetFields = () => {
-  fields.value.forEach((field) => field.resetField())
+const resetFields = (props?: Arrayable<string>) => {
+  // 如果传入props参数，只重置传入prop的表单项
+  if (props) {
+    fields.value.forEach((field) => {
+      if (field.prop && props.includes(field.prop)) {
+        field.resetField()
+      }
+    })
+  }
+  // 如果没有传入props参数，默认重置所有表单项
+  else {
+    fields.value.forEach((field) => field.resetField())
+  }
 }
 
 // 向 FormItem 提供上下文
