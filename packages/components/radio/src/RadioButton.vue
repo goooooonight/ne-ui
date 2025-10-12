@@ -3,6 +3,7 @@ import { computed, inject } from 'vue'
 import { createNameSpace } from '@ne-ui/utils'
 import { radioButtonProps } from './radio-button'
 import { radioGroupKey } from './radio-group-key'
+import { formItemKey } from '../../form'
 
 // 组件命名
 defineOptions({ name: 'ne-radio-button' })
@@ -12,6 +13,9 @@ const ns = createNameSpace('radio-button')
 
 // 定义props和emits
 const props = defineProps(radioButtonProps)
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
 
 // 注入RadioGroup上下文
 const radioGroup = inject(radioGroupKey, null)
@@ -23,7 +27,11 @@ const isChecked = computed(() => {
 
 // 计算禁用状态
 const isDisabled = computed(() => {
-  return radioGroup?.disabled.value || props.disabled
+  return !!(
+    radioGroup?.disabled.value ||
+    props.disabled ||
+    formItem?.disabled.value
+  )
 })
 
 // 生成样式

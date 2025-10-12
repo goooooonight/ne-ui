@@ -10,6 +10,11 @@ export const formProps = {
   rules: {
     type: Object as PropType<FormRules>
   },
+  /** @description 是否禁用表单 */
+  disabled: {
+    type: Boolean,
+    default: false
+  },
   /** @description 表单项标签宽度 */
   labelWidth: {
     type: [String, Number] as PropType<string | number>,

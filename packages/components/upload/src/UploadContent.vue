@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { createNameSpace } from '@ne-ui/utils'
 import { uploadContentProps } from './upload-content'
 import type { UploadFile, UploadOptions, UploadRawFile } from './type'
@@ -7,6 +7,7 @@ import { ajaxUpload } from './ajax'
 import UploadDragger from './UploadDragger.vue'
 import NeMessage from '@ne-ui/components/message'
 import { generateFileUid } from './upload'
+import { formItemKey } from '../../form'
 
 // 创建命名空间
 const ns = createNameSpace('upload')
@@ -16,11 +17,23 @@ const props = defineProps(uploadContentProps)
 
 // 生成自定义类名
 const classCustom = computed(() => {
-  return [ns.b(), ns.is('drag', props.drag), ns.is('disabled', props.disabled)]
+  return [
+    ns.b(),
+    ns.is('drag', props.drag),
+    ns.is('disabled', isDisabled.value)
+  ]
 })
 
 // 绑定原生input ref
 const inputRef = ref<HTMLInputElement>()
+
+// 注入 FormItem 上下文
+const formItem = inject(formItemKey, null)
+
+// 计算禁用状态
+const isDisabled = computed(() => {
+  return !!(props.disabled || formItem?.disabled.value)
+})
 
 // 处理上传点击事件
 const handleClick = () => {
@@ -138,7 +151,7 @@ const uploadFiles = (files: File[]) => {
       ref="inputRef"
       :class="ns.e('input')"
       :multiple="multiple"
-      :disabled="disabled"
+      :disabled="isDisabled"
       @change="handleChange"
     />
   </div>

@@ -31,7 +31,11 @@ const isChecked = computed(() => {
 
 // 计算禁用状态
 const isDisabled = computed(() => {
-  return radioGroup?.disabled.value || props.disabled
+  return !!(
+    radioGroup?.disabled.value ||
+    props.disabled ||
+    formItem?.disabled.value
+  )
 })
 
 // 计算尺寸

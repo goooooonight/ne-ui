@@ -68,7 +68,11 @@ const isDisabled = computed(() => {
     return true
   }
 
-  return checkboxGroup.disabled.value || props.disabled
+  return !!(
+    checkboxGroup.disabled.value ||
+    props.disabled ||
+    formItem?.disabled.value
+  )
 })
 
 // 计算尺寸
