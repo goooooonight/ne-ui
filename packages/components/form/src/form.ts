@@ -19,6 +19,11 @@ export const formProps = {
   labelPosition: {
     type: String as PropType<'left' | 'right' | 'top'>,
     default: 'right'
+  },
+  /** @description 是否隐藏必填字段标签旁边的红色星号 */
+  hideRequiredAsterisk: {
+    type: Boolean,
+    default: false
   }
 } as const
 

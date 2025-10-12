@@ -66,6 +66,10 @@ const formItemRules = computed(() => {
 
 // 计算当前表单项是否为必填项
 const isRequired = computed(() => {
+  // 如果选择隐藏必填字段标签旁边的红色星号，返回 false
+  if (form?.hideRequiredAsterisk.value === true) {
+    return false
+  }
   return props.required || formItemRules.value.some((rule) => rule.required)
 })
 
