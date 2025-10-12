@@ -18,7 +18,11 @@ const ns = createNameSpace('form-item')
 
 // 生成自定义类
 const classCustom = computed(() => {
-  return [ns.b(), ns.is('error', validateStatus.value === 'error')]
+  return [
+    ns.b(),
+    ns.is('error', validateStatus.value === 'error'),
+    ns.m(`label-${form?.labelPosition.value}`)
+  ]
 })
 
 // 注入 Form 上下文
@@ -166,11 +170,16 @@ const labelStyle = computed(() => {
 
   // 临时表单标签宽度变量
   const labelWidth: string = String(form!.labelWidth.value)
-  const labelWidth: string = String(form!.labelWidth)
+  const labelPosition: string = form!.labelPosition.value
 
-  // 如果 labelWidth 为 auto，设置 margin-left
+  // 如果 labelWidth 为 auto，设置对应方向的 margin
   if (labelWidth === 'auto') {
-    _labelStyle['margin-left'] = `${labelMargin.value}px`
+    // 计算表单标签 margin 的方向
+    if (labelPosition === 'left' || labelPosition === 'right') {
+      const marginPosition =
+        labelPosition === 'left' ? 'margin-right' : 'margin-left'
+      _labelStyle[marginPosition] = `${labelMargin.value}px`
+    }
   }
   // 如果 labelWidth 不为 auto，设置宽度
   else if (labelWidth !== '') {

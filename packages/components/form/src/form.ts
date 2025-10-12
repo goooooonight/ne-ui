@@ -14,6 +14,11 @@ export const formProps = {
   labelWidth: {
     type: [String, Number] as PropType<string | number>,
     default: ''
+  },
+  /** @description 表单项标签位置 */
+  labelPosition: {
+    type: String as PropType<'left' | 'right' | 'top'>,
+    default: 'right'
   }
 } as const
 
