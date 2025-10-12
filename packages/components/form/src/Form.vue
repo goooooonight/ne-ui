@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { provide, ref } from 'vue'
+import { onMounted, provide, ref } from 'vue'
 import { formProps } from './form'
 import { formKey } from './form-key'
 import type { FormItemContext } from './form-item-key'
@@ -16,14 +16,17 @@ const ns = createNameSpace('form')
 const props = defineProps(formProps)
 
 // 表单项上下文数组
-const fields = ref<Array<FormItemContext>>([])
+const fields = ref<FormItemContext[]>([])
 
 // 表单初始值
 const initialValues = ref<Record<string, any>>({})
 
 // 添加表单项上下文
 const addField = (field: FormItemContext) => {
-  fields.value.push(field)
+  fields.value.push({
+    ...field,
+    labelRef: field.labelRef.value
+  })
 
   // 获取表单项初始值
   if (field.prop && props.model) {
@@ -82,10 +85,34 @@ const resetFields = (props?: Arrayable<string>) => {
   }
 }
 
+// 各表单项 label 的 margin
+const labelMargins = ref<Record<string, number>>({})
+
+// 组件挂载时执行
+onMounted(() => {
+  // 当 label-width 设置为 auto 时，计算各表单项 label 的宽度
+  if (props.labelWidth === 'auto') {
+    // 存储各表单项 label 的宽度
+    const labelWidths: number[] = []
+
+    // 遍历各表单项，获取其 label 宽度
+    fields.value.forEach((field) => {
+      labelWidths.push(field.labelRef?.getBoundingClientRect().width || 0)
+    })
+    const maxWidth = Math.max(...labelWidths)
+
+    // 计算各表单项 label 的 margin
+    fields.value.forEach((field, index) => {
+      labelMargins.value[field.prop] = Math.round(maxWidth - labelWidths[index])
+    })
+  }
+})
+
 // 向 FormItem 提供上下文
 provide(formKey, {
   ...props,
   initialValues,
+  labelMargins,
   addField
 })
 

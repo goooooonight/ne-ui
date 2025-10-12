@@ -43,6 +43,7 @@ export default defineConfigWithVueTs(
         MouseEvent: 'readonly',
         FocusEvent: 'readonly',
         Event: 'readonly',
+        HTMLElement: 'readonly',
         HTMLInputElement: 'readonly',
         HTMLTextAreaElement: 'readonly',
         HTMLDivElement: 'readonly',

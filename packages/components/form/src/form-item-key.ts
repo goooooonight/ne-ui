@@ -1,12 +1,12 @@
-import type { InjectionKey } from 'vue'
-import type { FormItemProps } from './form-item'
+import type { InjectionKey, Ref } from 'vue'
 
 /**
  * FormItem 上下文类型定义
  */
 export interface FormItemContext {
   formItemId: string
-  prop: FormItemProps['prop']
+  prop: string
+  labelRef: Ref<HTMLElement | undefined>
   validate: (trigger?: string) => Promise<boolean>
   clearValidate: () => void
   resetField: () => void

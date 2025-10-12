@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { computed, inject, onMounted, provide, ref } from 'vue'
+import { computed, inject, onMounted, provide, ref, watchEffect } from 'vue'
 import { formItemProps } from './form-item'
 import AsyncValidator from 'async-validator'
 import { formKey } from './form-key'
@@ -129,15 +129,53 @@ const resetField = () => {
   }
 }
 
+// 表单标签元素引用
+const labelRef = ref<HTMLElement | undefined>()
+
 // 通过 provide 将 form-item 上下文提供给子组件
 const formItemContext = {
   formItemId: formItemId.value,
-  prop: props.prop,
+  prop: props.prop || '',
+  labelRef,
   validate,
   clearValidate,
   resetField
 }
 provide(formItemKey, formItemContext)
+
+// 表单标签外边距
+const labelMargin = ref<number>(0)
+
+// 响应式监听 labelMargins 的变化，只有在 labelWidth 为 'auto' 时才执行
+watchEffect(() => {
+  if (props.prop && form?.labelWidth === 'auto' && form?.labelMargins.value) {
+    labelMargin.value = form.labelMargins.value[props.prop] || 0
+  } else {
+    labelMargin.value = 0
+  }
+})
+
+// 表单标签样式
+const labelStyle = computed(() => {
+  // 临时表单标签样式变量
+  const _labelStyle: Record<string, string> = {}
+
+  // 临时表单标签宽度变量
+  const labelWidth: string = String(form!.labelWidth)
+
+  // 如果 labelWidth 为 auto，设置 margin-left
+  if (labelWidth === 'auto') {
+    _labelStyle['margin-left'] = `${labelMargin.value}px`
+  }
+  // 如果 labelWidth 不为 auto，设置宽度
+  else if (labelWidth !== '') {
+    // 根据 labelWidth 是否以 px 结尾，判断是否需要添加 px 单位
+    _labelStyle['width'] = labelWidth.endsWith('px')
+      ? labelWidth
+      : `${labelWidth}px`
+  }
+  return _labelStyle
+})
 
 // 组件挂载时，只有设置了 prop 属性的表单项才需要注册到表单中进行校验
 onMounted(() => {
@@ -149,7 +187,12 @@ onMounted(() => {
 
 <template>
   <div :class="classCustom">
-    <div :class="ns.e('label-wrap')">
+    <div
+      v-if="prop"
+      :class="ns.e('label-wrap')"
+      ref="labelRef"
+      :style="labelStyle"
+    >
       <slot name="label">
         <label :class="ns.e('label')" :for="formItemId">{{ label }}</label>
       </slot>
