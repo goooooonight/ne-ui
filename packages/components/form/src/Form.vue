@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { createNameSpace } from '@ne-ui/utils'
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, provide, ref, toRefs } from 'vue'
 import { formProps } from './form'
 import { formKey } from './form-key'
 import type { FormItemContext } from './form-item-key'
@@ -110,7 +110,7 @@ onMounted(() => {
 
 // 向 FormItem 提供上下文
 provide(formKey, {
-  ...props,
+  ...toRefs(props),
   initialValues,
   labelMargins,
   addField

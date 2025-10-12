@@ -50,9 +50,9 @@ const toArray = (
 const formItemRules = computed(() => {
   const _formItemRules = toArray(props.rules)
 
-  if (form?.rules && props.prop) {
+  if (form?.rules?.value && props.prop) {
     // 获取表单校验规则中该表单项对应的校验规则
-    const formRules = toArray(form?.rules[props.prop])
+    const formRules = toArray(form?.rules.value[props.prop])
     _formItemRules.push(...formRules)
   }
 
@@ -85,7 +85,7 @@ const validateStatus = ref<string>('')
 // 执行表单项校验
 const validate = async (trigger?: string): Promise<boolean> => {
   // 如果 prop 属性为空 直接返回
-  if (!props.prop || !form?.model) return false
+  if (!props.prop || !form?.model?.value) return false
 
   // 获取对应校验规则
   const rules = getRulesByTrigger(trigger)
@@ -100,7 +100,7 @@ const validate = async (trigger?: string): Promise<boolean> => {
 
   try {
     // 执行校验
-    await validator.validate({ [props.prop]: form?.model[props.prop] })
+    await validator.validate({ [props.prop]: form?.model.value[props.prop] })
     // 校验成功，清空错误信息
     validateStatus.value = 'success'
     validateMessage.value = ''
@@ -124,8 +124,8 @@ const resetField = () => {
   // 清除校验信息
   clearValidate()
   // 重置表单项为初始值
-  if (form && form.model && props.prop) {
-    form.model[props.prop] = form.initialValues.value[props.prop]
+  if (form && form.model?.value && props.prop) {
+    form.model.value[props.prop] = form.initialValues.value[props.prop]
   }
 }
 
@@ -148,7 +148,11 @@ const labelMargin = ref<number>(0)
 
 // 响应式监听 labelMargins 的变化，只有在 labelWidth 为 'auto' 时才执行
 watchEffect(() => {
-  if (props.prop && form?.labelWidth === 'auto' && form?.labelMargins.value) {
+  if (
+    props.prop &&
+    form?.labelWidth.value === 'auto' &&
+    form?.labelMargins.value
+  ) {
     labelMargin.value = form.labelMargins.value[props.prop] || 0
   } else {
     labelMargin.value = 0
@@ -161,6 +165,7 @@ const labelStyle = computed(() => {
   const _labelStyle: Record<string, string> = {}
 
   // 临时表单标签宽度变量
+  const labelWidth: string = String(form!.labelWidth.value)
   const labelWidth: string = String(form!.labelWidth)
 
   // 如果 labelWidth 为 auto，设置 margin-left

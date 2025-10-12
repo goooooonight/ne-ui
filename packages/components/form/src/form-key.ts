@@ -1,11 +1,11 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { InjectionKey, Ref, ToRefs } from 'vue'
 import type { FormProps } from './form'
 import type { FormItemContext } from './form-item-key'
 
 /**
  * Form 上下文类型定义
  */
-export interface FormContext extends FormProps {
+export interface FormContext extends ToRefs<FormProps> {
   initialValues: Ref<Record<string, any>>
   labelMargins: Ref<Record<string, number>>
   addField: (field: FormItemContext) => void
