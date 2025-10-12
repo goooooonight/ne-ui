@@ -21,7 +21,8 @@ const classCustom = computed(() => {
   return [
     ns.b(),
     ns.is('error', validateStatus.value === 'error'),
-    ns.m(`label-${form?.labelPosition.value}`)
+    ns.m(`label-${form?.labelPosition.value}`),
+    ns.is('required', isRequired.value)
   ]
 })
 
@@ -61,6 +62,11 @@ const formItemRules = computed(() => {
   }
 
   return _formItemRules
+})
+
+// 计算当前表单项是否为必填项
+const isRequired = computed(() => {
+  return props.required || formItemRules.value.some((rule) => rule.required)
 })
 
 // 获取对应触发条件的校验规则

@@ -17,6 +17,10 @@ export const formItemProps = {
   /** @description 原生for属性 */
   for: {
     type: String
+  },
+  /** @description 是否为必填项 */
+  required: {
+    type: Boolean
   }
 } as const
 

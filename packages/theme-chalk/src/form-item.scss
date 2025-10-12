@@ -54,6 +54,15 @@
   @include m('label-top') {
     display: block;
   }
+
+  // 必填项样式
+  @include when('required'){
+    .#{$namespace}-form-item__label::before{
+      content: '*';
+      color: get-var-name-css('color', 'error');
+      margin-right: 4px;
+    }
+  }
 }
 
 // 校验错误信息动画
