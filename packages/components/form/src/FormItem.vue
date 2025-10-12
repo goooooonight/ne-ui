@@ -5,7 +5,7 @@ import { formItemProps } from './form-item'
 import AsyncValidator from 'async-validator'
 import { formKey } from './form-key'
 import type { Arrayable, FormItemRules } from './type'
-import { formItemKey } from './form-item-key'
+import { formItemKey, type FormFieldInfo } from './form-item-key'
 
 // 组件命名
 defineOptions({ name: 'ne-form-item' })
@@ -149,11 +149,8 @@ const labelRef = ref<HTMLElement | undefined>()
 // 通过 provide 将 form-item 上下文提供给子组件
 const formItemContext = {
   formItemId: formItemId.value,
-  prop: props.prop || '',
-  labelRef,
-  validate,
-  clearValidate,
-  resetField
+  disabled: form?.disabled || ref(false),
+  validate
 }
 provide(formItemKey, formItemContext)
 
@@ -201,10 +198,19 @@ const labelStyle = computed(() => {
   return _labelStyle
 })
 
+// 表单字段信息
+const formFieldInfo: FormFieldInfo = {
+  prop: props.prop || '',
+  labelRef,
+  validate,
+  clearValidate,
+  resetField
+}
+
 // 组件挂载时，只有设置了 prop 属性的表单项才需要注册到表单中进行校验
 onMounted(() => {
   if (props.prop) {
-    form?.addField(formItemContext)
+    form?.addField(formFieldInfo)
   }
 })
 </script>

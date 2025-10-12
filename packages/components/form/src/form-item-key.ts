@@ -5,6 +5,14 @@ import type { InjectionKey, Ref } from 'vue'
  */
 export interface FormItemContext {
   formItemId: string
+  disabled: Ref<boolean | undefined>
+  validate: (trigger?: string) => Promise<boolean>
+}
+
+/**
+ * FormItem 字段信息类型定义
+ */
+export interface FormFieldInfo {
   prop: string
   labelRef: Ref<HTMLElement | undefined>
   validate: (trigger?: string) => Promise<boolean>

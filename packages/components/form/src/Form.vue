@@ -3,7 +3,7 @@ import { createNameSpace } from '@ne-ui/utils'
 import { onMounted, provide, ref, toRefs } from 'vue'
 import { formProps } from './form'
 import { formKey } from './form-key'
-import type { FormItemContext } from './form-item-key'
+import type { FormFieldInfo } from './form-item-key'
 import type { FormValidateCallback, Arrayable } from './type'
 
 // 组件命名
@@ -16,13 +16,13 @@ const ns = createNameSpace('form')
 const props = defineProps(formProps)
 
 // 表单项上下文数组
-const fields = ref<FormItemContext[]>([])
+const fields = ref<FormFieldInfo[]>([])
 
 // 表单初始值
 const initialValues = ref<Record<string, any>>({})
 
 // 添加表单项上下文
-const addField = (field: FormItemContext) => {
+const addField = (field: FormFieldInfo) => {
   fields.value.push({
     ...field,
     labelRef: field.labelRef.value
