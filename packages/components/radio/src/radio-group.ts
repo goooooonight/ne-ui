@@ -18,8 +18,7 @@ export const radioGroupProps = {
   },
   // size尺寸
   size: {
-    type: String as PropType<Size>,
-    default: 'default'
+    type: String as PropType<Size>
   }
 }
 
