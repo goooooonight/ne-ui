@@ -33,6 +33,11 @@ export const formProps = {
   hideRequiredAsterisk: {
     type: Boolean,
     default: false
+  },
+  /** @description 是否显示校验错误信息 */
+  showMessage: {
+    type: Boolean,
+    default: true
   }
 } as const
 

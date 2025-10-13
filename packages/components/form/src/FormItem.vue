@@ -21,7 +21,7 @@ const classCustom = computed(() => {
   return [
     ns.b(),
     ns.m(size.value),
-    ns.is('error', validateStatus.value === 'error'),
+    ns.is('error', isShowMessage.value as boolean),
     ns.m(`label-${form?.labelPosition.value}`),
     ns.is('required', isRequired.value)
   ]
@@ -30,6 +30,15 @@ const classCustom = computed(() => {
 // 计算尺寸
 const size = computed(() => {
   return props.size || form?.size?.value
+})
+
+// 计算是否显示校验错误信息
+const isShowMessage = computed(() => {
+  return (
+    validateStatus.value === 'error' &&
+    props.showMessage &&
+    form?.showMessage.value
+  )
 })
 
 // 注入 Form 上下文
@@ -246,7 +255,7 @@ defineExpose({
     <div :class="ns.e('content')">
       <slot></slot>
       <transition :name="`${ns.namespace}-zoom-in-top`">
-        <div v-if="validateStatus === 'error'" :class="ns.e('error')">
+        <div v-if="isShowMessage" :class="ns.e('error')">
           {{ validateMessage }}
         </div>
       </transition>

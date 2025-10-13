@@ -25,6 +25,11 @@ export const formItemProps = {
   /** @description 表单项内组件尺寸 */
   size: {
     type: String as PropType<Size>
+  },
+  /** @description 是否显示校验错误信息 */
+  showMessage: {
+    type: Boolean,
+    default: true
   }
 } as const
 
