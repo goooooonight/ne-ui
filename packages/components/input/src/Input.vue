@@ -26,10 +26,14 @@ const isDisabled = computed(() => {
   return !!(props.disabled || formItem?.disabled.value)
 })
 
+// 计算尺寸
+const size = computed(() => {
+  return props.size || formItem?.size.value
+})
+
 // 生成样式
 const classCustom = computed(() => {
-  const { size } = props
-  return [ns.b(), ns.m(size), ns.is('disabled', isDisabled.value)]
+  return [ns.b(), ns.m(size.value), ns.is('disabled', isDisabled.value)]
 })
 
 // 管理输入框类型（用于密码显示/隐藏功能）

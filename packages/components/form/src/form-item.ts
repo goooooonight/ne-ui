@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { FormItemRules } from './type'
+import type { FormItemRules, Size } from './type'
 
 export const formItemProps = {
   /** @description model 键名 */
@@ -21,6 +21,10 @@ export const formItemProps = {
   /** @description 是否为必填项 */
   required: {
     type: Boolean
+  },
+  /** @description 表单项内组件尺寸 */
+  size: {
+    type: String as PropType<Size>
   }
 } as const
 

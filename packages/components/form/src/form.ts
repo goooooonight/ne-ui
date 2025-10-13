@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue'
-import type { FormRules } from './type'
+import type { FormRules, Size } from './type'
 
 export const formProps = {
   /** @description 表单绑定值 */
@@ -14,6 +14,10 @@ export const formProps = {
   disabled: {
     type: Boolean,
     default: false
+  },
+  /** @description 表单内组件尺寸 */
+  size: {
+    type: String as PropType<Size>
   },
   /** @description 表单项标签宽度 */
   labelWidth: {

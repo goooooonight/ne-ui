@@ -77,7 +77,7 @@ const isDisabled = computed(() => {
 
 // 计算尺寸
 const size = computed(() => {
-  return props.size || checkboxGroup?.size.value
+  return props.size || checkboxGroup?.size.value || formItem?.size.value
 })
 
 // 值改变事件

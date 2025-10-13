@@ -40,7 +40,7 @@ const isDisabled = computed(() => {
 
 // 计算尺寸
 const size = computed(() => {
-  return props.size || radioGroup?.size.value
+  return props.size || radioGroup?.size.value || formItem?.size.value
 })
 
 // 生成样式

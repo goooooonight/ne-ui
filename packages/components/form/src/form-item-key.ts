@@ -6,6 +6,7 @@ import type { InjectionKey, Ref } from 'vue'
 export interface FormItemContext {
   formItemId: string
   disabled: Ref<boolean | undefined>
+  size: Ref<string | undefined>
   validate: (trigger?: string) => Promise<boolean>
 }
 

@@ -20,10 +20,16 @@ const ns = createNameSpace('form-item')
 const classCustom = computed(() => {
   return [
     ns.b(),
+    ns.m(size.value),
     ns.is('error', validateStatus.value === 'error'),
     ns.m(`label-${form?.labelPosition.value}`),
     ns.is('required', isRequired.value)
   ]
+})
+
+// 计算尺寸
+const size = computed(() => {
+  return props.size || form?.size?.value
 })
 
 // 注入 Form 上下文
@@ -150,6 +156,7 @@ const labelRef = ref<HTMLElement | undefined>()
 const formItemContext = {
   formItemId: formItemId.value,
   disabled: form?.disabled || ref(false),
+  size,
   validate
 }
 provide(formItemKey, formItemContext)

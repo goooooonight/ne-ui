@@ -2,6 +2,9 @@ import type { RuleItem, ValidateFieldsError } from 'async-validator'
 
 export type Arrayable<T> = T | T[]
 
+/** @description 组件尺寸类型 */
+export type Size = 'small' | 'default' | 'large'
+
 /** @description 表单项规则 */
 export interface FormItemRules extends RuleItem {
   trigger?: Arrayable<string>
