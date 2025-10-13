@@ -97,7 +97,7 @@ const handleChange = (uploadFile: UploadFile) => {
   props.onChange(uploadFile, uploadFiles.value)
 
   // 进行校验
-  formItem?.validate('change')
+  formItem?.validate('change').catch(() => {})
 }
 
 // 定义upload-content的props

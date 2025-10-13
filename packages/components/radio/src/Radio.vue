@@ -72,7 +72,7 @@ const handleChange = (event: Event) => {
   }
 
   // 进行校验
-  formItem?.validate('change')
+  formItem?.validate('change').catch(() => {})
 }
 </script>
 

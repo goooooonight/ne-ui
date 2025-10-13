@@ -76,7 +76,7 @@ const handleInput = (event: Event) => {
   emits('input', value)
 
   // 进行校验
-  formItem?.validate('change')
+  formItem?.validate('change').catch(() => {})
 }
 
 // 处理焦点事件
@@ -88,13 +88,13 @@ const handleFocus = (event: FocusEvent) => {
 const handleBlur = (event: FocusEvent) => {
   emits('blur', event)
   // 进行校验
-  formItem?.validate('blur')
+  formItem?.validate('blur').catch(() => {})
 }
 
 // 处理值改变事件
 const handleChange = () => {
   // 进行校验
-  formItem?.validate('change')
+  formItem?.validate('change').catch(() => {})
 }
 
 // 条件渲染 - 是否显示后缀区域
