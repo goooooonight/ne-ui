@@ -213,6 +213,15 @@ onMounted(() => {
     form?.addField(formFieldInfo)
   }
 })
+
+// 暴露部分方法
+defineExpose({
+  validateMessage,
+  validateStatus,
+  validate,
+  clearValidate,
+  resetField
+})
 </script>
 
 <template>
