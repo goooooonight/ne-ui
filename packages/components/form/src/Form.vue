@@ -125,7 +125,7 @@ defineExpose({
 </script>
 
 <template>
-  <form :class="ns.b()">
+  <form :class="[ns.b(), ns.is('inline', props.inline)]">
     <slot></slot>
   </form>
 </template>

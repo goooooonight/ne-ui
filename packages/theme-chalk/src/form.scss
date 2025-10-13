@@ -3,12 +3,14 @@
 @use './common/function.scss' as *;
 @use './common/config.scss' as *;
 
-// 设置组件CSS变量
-@include b('form') {
-  // @include set-component-css-var('upload', $upload);
-}
 @include b('form') {
   display: flex;
   flex-direction: column;
   gap: 18px;
+
+  // 行内表单样式
+  @include when('inline') {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }

@@ -38,6 +38,11 @@ export const formProps = {
   showMessage: {
     type: Boolean,
     default: true
+  },
+  /** @description 是否为行内表单模式 */
+  inline: {
+    type: Boolean,
+    default: false
   }
 } as const
 
