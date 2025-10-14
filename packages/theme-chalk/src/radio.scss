@@ -11,7 +11,7 @@
 }
 
 @include b('radio') {
-  line-height: 1.5;
+  height: get-var-name-css('component-size', 'default');
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -113,6 +113,7 @@
   // size 尺寸
   @each $size in ('small', 'large'){
     @include m($size){
+      height: get-var-name-css('component-size', $size);
       font-size: get-var-name-css('font-size', $size);
 
       .#{$namespace}-radio__input{
