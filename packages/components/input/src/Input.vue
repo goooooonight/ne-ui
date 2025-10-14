@@ -101,19 +101,19 @@ const handleChange = () => {
 const showSuffix = computed(() => {
   return (
     (props.showPassword || props.clearable) &&
-    !props.disabled &&
+    !isDisabled.value &&
     props.modelValue
   )
 })
 
 // 条件渲染 - 是否显示密码切换图标
 const showPasswordToggle = computed(() => {
-  return props.showPassword && props.modelValue && !props.disabled
+  return props.showPassword && props.modelValue && !isDisabled.value
 })
 
 // 条件渲染 - 是否显示清除按钮
 const showClearButton = computed(() => {
-  return props.clearable && props.modelValue && !props.disabled
+  return props.clearable && props.modelValue && !isDisabled.value
 })
 
 // 条件渲染 - 是否为多行文本输入框

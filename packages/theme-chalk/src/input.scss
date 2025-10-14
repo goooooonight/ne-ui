@@ -52,6 +52,7 @@
     flex-grow: 1;
     border: none;
     outline: none;
+    color: get-var-name-css('text-color', 'primary');
     background: none;
     appearance: none;
     cursor: inherit;
