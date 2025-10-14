@@ -65,8 +65,19 @@ const validate = async (callback?: FormValidateCallback): Promise<void> => {
 }
 
 // 清除所有表单项的校验信息
-const clearValidate = () => {
-  fields.value.forEach((field) => field.clearValidate())
+const clearValidate = (props?: Arrayable<string>) => {
+  // 如果传入props参数，只重置传入prop的表单项
+  if (props) {
+    fields.value.forEach((field) => {
+      if (field.prop && props.includes(field.prop)) {
+        field.clearValidate()
+      }
+    })
+  }
+  // 如果没有传入props参数，默认重置所有表单项
+  else {
+    fields.value.forEach((field) => field.clearValidate())
+  }
 }
 
 // 重置表单
