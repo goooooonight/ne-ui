@@ -44,8 +44,8 @@ const validate = async (callback?: FormValidateCallback): Promise<void> => {
     fields.value.map(async (field) => {
       try {
         return await field.validate()
-      } catch (error) {
-        Object.assign(invalidFields, error)
+      } catch (error: any) {
+        Object.assign(invalidFields, { [field.prop]: error.errors })
         return false
       }
     })
@@ -54,13 +54,19 @@ const validate = async (callback?: FormValidateCallback): Promise<void> => {
   // 获取所有表单项是否校验成功
   const isValid = validateResults.every((result) => result === true)
 
-  // 如果传入则执行回调函数
+  // 如果传入回调函数则执行
   if (callback) {
     if (isValid) {
       callback(isValid)
     } else {
       callback(false, invalidFields)
     }
+  }
+
+  // 否则返回 Promise
+  if (!callback) {
+    if (isValid) return Promise.resolve()
+    else return Promise.reject(invalidFields)
   }
 }
 
