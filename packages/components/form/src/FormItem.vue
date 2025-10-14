@@ -243,7 +243,7 @@ defineExpose({
 <template>
   <div :class="classCustom">
     <div
-      v-if="prop"
+      v-if="!!(label || $slots.label)"
       :class="ns.e('label-wrap')"
       ref="labelRef"
       :style="labelStyle"
