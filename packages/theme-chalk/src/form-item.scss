@@ -21,7 +21,9 @@
 
   // 内容包裹样式
   @include e('content') {
+    width: 100%;
     flex: 1;
+    overflow: hidden;
   }
 
   // 校验错误样式
