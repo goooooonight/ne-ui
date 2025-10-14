@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 import UploadContent from './UploadContent.vue'
 import UploadList from './UploadList.vue'
 import { generateFileUid, uploadProps, uploadEmits } from './upload'
@@ -16,12 +16,27 @@ const emits = defineEmits(uploadEmits)
 // 注入 FormItem 上下文
 const formItem = inject(formItemKey, null)
 
+// 初始化文件列表
+const initFileList = (fileList: any[]) => {
+  const normalizedList = [...fileList]
+  normalizedList.forEach((file) => {
+    file.uid ||= generateFileUid()
+    file.status ||= 'success'
+  })
+  return normalizedList as UploadFiles
+}
+
 // 上传文件数组 并规范化为 UploadFiles 类型
-props.fileList.forEach((file) => {
-  file.uid ||= generateFileUid()
-  file.status ||= 'success'
-})
-const uploadFiles = ref<UploadFiles>(props.fileList as UploadFiles)
+const uploadFiles = ref<UploadFiles>(initFileList(props.fileList))
+
+// 监听 fileList prop 的变化，确保重置时能正确同步
+watch(
+  () => props.fileList,
+  (newFileList) => {
+    uploadFiles.value = initFileList(newFileList)
+  },
+  { deep: true }
+)
 
 // 设置文件状态
 const setStatus = (uploadFile: UploadFile, status: string) => {

@@ -23,7 +23,7 @@ const handleRemove = (file: UploadFile) => {
 </script>
 
 <template>
-  <ul :class="ns.b()">
+  <ul v-if="files.length > 0" :class="ns.b()">
     <li
       v-for="file in files"
       :key="file.uid"
