@@ -31,13 +31,17 @@
     gap: 12px;
   }
 
-  // 加载环形进度条样式
-  @include e(circular) {
+  // 加载图标样式
+  @include e(icon) {
     width: 32px;
     height: 32px;
-    color: get-var-name-css('color', 'primary');
     animation: #{$namespace}-loading-rotate 2s linear infinite;
+  }
 
+  // 加载环形进度条样式
+  @include e(circular) {
+    color: get-var-name-css('color', 'primary');
+    
     circle {
       animation: #{$namespace}-loading-dash 1.5s ease-in-out infinite;
     }
