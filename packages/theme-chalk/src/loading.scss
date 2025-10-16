@@ -1,0 +1,78 @@
+@use './common/mixin.scss' as *;
+@use './common/var.scss' as *;
+@use './common/function.scss' as *;
+@use './common/config.scss' as *;
+
+// 加载组件样式
+@include b(loading) {
+  @include e(container) {
+    width: fit-content;
+    position: relative;
+  }
+
+  // 加载遮罩层样式
+  @include e(mask) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+
+  // 加载旋转器样式
+  @include e(spinner) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  // 加载环形进度条样式
+  @include e(circular) {
+    width: 32px;
+    height: 32px;
+    color: get-var-name-css('color', 'primary');
+    animation: #{$namespace}-loading-rotate 2s linear infinite;
+
+    circle {
+      animation: #{$namespace}-loading-dash 1.5s ease-in-out infinite;
+    }
+  }
+
+  // 加载文本样式
+  @include e(text) {
+    font-size: get-var-name-css('font-size', 'default');
+    color: get-var-name-css('color', 'primary');
+    margin: 0;
+  }
+}
+
+// 加载组件动画
+@keyframes #{$namespace}-loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// 加载环形进度条动画
+@keyframes #{$namespace}-loading-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -124px;
+  }
+}
