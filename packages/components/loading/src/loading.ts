@@ -8,6 +8,10 @@ export const loadingProps = {
   /** @description 加载文本 */
   text: {
     type: String
+  },
+  /** @description 遮罩背景色 */
+  background: {
+    type: String
   }
 } as const
 

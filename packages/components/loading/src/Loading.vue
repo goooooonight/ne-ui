@@ -16,7 +16,11 @@ defineProps(loadingProps)
   <div :class="ns.e('container')">
     <slot></slot>
 
-    <div :class="ns.e('mask')" v-if="visible">
+    <div
+      :class="ns.e('mask')"
+      v-if="visible"
+      :style="{ backgroundColor: background }"
+    >
       <div :class="ns.e('spinner')">
         <div :class="ns.e('icon')">
           <slot name="icon">
