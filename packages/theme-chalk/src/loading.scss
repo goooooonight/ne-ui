@@ -8,6 +8,13 @@
   @include e(container) {
     width: fit-content;
     position: relative;
+    
+    // 当容器没有内容时，确保有最小尺寸以显示加载动画
+    &:empty,
+    &:has(.#{$namespace}-loading__mask:only-child) {
+      min-width: 32px;
+      min-height: 32px;
+    }
   }
 
   // 加载遮罩层样式
@@ -17,7 +24,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 2000;
+    z-index: 100;
     display: grid;
     place-items: center;
     background-color: rgba(255, 255, 255, 0.9);
@@ -35,6 +42,10 @@
   @include e(icon) {
     width: 32px;
     height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
     animation: #{$namespace}-loading-rotate 2s linear infinite;
   }
 
