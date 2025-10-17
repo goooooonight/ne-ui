@@ -12,6 +12,10 @@ export const loadingProps = {
   /** @description 遮罩背景色 */
   background: {
     type: String
+  },
+  /** @description 延迟显示加载的时间 */
+  delay: {
+    type: Number
   }
 } as const
 

@@ -49,6 +49,7 @@ export default defineConfigWithVueTs(
         HTMLDivElement: 'readonly',
         document: 'readonly',
         setTimeout: 'readonly',
+        clearTimeout: 'readonly',
         File: 'readonly',
         XMLHttpRequest: 'readonly',
         FormData: 'readonly',
