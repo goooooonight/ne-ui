@@ -22,3 +22,13 @@
   }
 }
 
+/* 覆盖 VitePress 侧边栏的 z-index */
+.VPSidebar {
+  z-index: 1000 !important;
+}
+
+/* 覆盖 VitePress 侧边栏背景的 z-index */
+.VPBackdrop {
+  z-index: 998 !important;
+}
+

@@ -103,6 +103,10 @@ export default {
           text: 'Feedback 反馈组件',
           items: [
             {
+              text: 'Loading - 加载',
+              link: '/components/loading'
+            },
+            {
               text: 'Message - 消息',
               link: '/components/message'
             }
