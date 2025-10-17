@@ -3,7 +3,8 @@ import type { ExtractPropTypes } from 'vue'
 export const loadingProps = {
   /** @description 是否显示加载动画 */
   visible: {
-    type: Boolean
+    type: Boolean,
+    default: true
   },
   /** @description 加载文本 */
   text: {
