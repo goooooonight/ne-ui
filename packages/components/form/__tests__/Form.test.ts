@@ -170,7 +170,11 @@ describe('Form组件', () => {
       const emailItem = wrapper.findComponent({ ref: 'emailItem' })
 
       // 先进行校验，预期校验失败
-      await formRef.vm.validate()
+      try {
+        await formRef.vm.validate()
+      } catch {
+        // 校验失败是预期的
+      }
       expect(usernameItem.vm.validateStatus).toBe('error')
       expect(emailItem.vm.validateStatus).toBe('error')
 
@@ -193,7 +197,11 @@ describe('Form组件', () => {
       const emailItem = wrapper.findComponent({ ref: 'emailItem' })
 
       // 先进行校验，预期校验失败
-      await formRef.vm.validate()
+      try {
+        await formRef.vm.validate()
+      } catch {
+        // 校验失败是预期的
+      }
 
       // 只清除用户名字段的校验状态
       formRef.vm.clearValidate(['username'])
