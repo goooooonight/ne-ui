@@ -13,7 +13,7 @@ const open = () => {
   <ne-button plain @click="open">Custom Class</ne-button>
 </template>
 
-<style>
+<style scoped>
 .example {
   font-family: 'Georgia', serif;
   font-style: italic;
