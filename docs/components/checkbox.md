@@ -50,14 +50,14 @@
 | label                 | `string`                          | —      | 多选框的文本标签 |
 | disabled              | `boolean`                         | false  | 是否处于禁用状态 |
 | indeterminate         | `boolean`                         | false  | 是否处于中间状态 |
-| size                  | `string`                          | —      | 多选框尺寸       |
+| size                  | `'small' \| 'default' \| 'large'` | —      | 多选框尺寸       |
 | name                  | `string`                          | —      | 原生 name 属性   |
 
 ### Checkbox Events
 
-| 事件名 | 说明             | 参数                                   |
-| ------ | ---------------- | -------------------------------------- |
-| change | 绑定值改变时触发 | `(value: string \| number \| boolean)` |
+| 事件名 | 说明             | 类型                                           |
+| ------ | ---------------- | ---------------------------------------------- |
+| change | 绑定值改变时触发 | `(value: string \| number \| boolean) => void` |
 
 ### Checkbox Slots
 
@@ -69,19 +69,19 @@
 
 ### CheckboxGroup Props
 
-| 属性名                | 类型                     | 默认值  | 说明               |
-| --------------------- | ------------------------ | ------- | ------------------ |
-| model-value / v-model | `string[]` \| `number[]` | []      | 多选框组合绑定数组 |
-| disabled              | `boolean`                | false   | 是否处于禁用状态   |
-| min                   | `number`                 | —       | 选中值的最小数量   |
-| max                   | `number`                 | —       | 选中值的最大数量   |
-| size                  | `string`                 | default | 多选框尺寸         |
+| 属性名                | 类型                              | 默认值 | 说明               |
+| --------------------- | --------------------------------- | ------ | ------------------ |
+| model-value / v-model | `string[]` \| `number[]`          | []     | 多选框组合绑定数组 |
+| disabled              | `boolean`                         | false  | 是否处于禁用状态   |
+| min                   | `number`                          | —      | 选中值的最小数量   |
+| max                   | `number`                          | —      | 选中值的最大数量   |
+| size                  | `'small' \| 'default' \| 'large'` | —      | 多选框尺寸         |
 
 ### CheckboxGroup Events
 
-| 事件名 | 说明             | 参数                             |
-| ------ | ---------------- | -------------------------------- |
-| change | 绑定值改变时触发 | `(value: string[] \| number[] )` |
+| 事件名 | 说明             | 参数                                     |
+| ------ | ---------------- | ---------------------------------------- |
+| change | 绑定值改变时触发 | `(value: string[] \| number[] ) => void` |
 
 ### CheckboxGroup Slots
 

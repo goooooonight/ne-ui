@@ -1,4 +1,4 @@
-# 按钮
+# Button 按钮
 
 ## 基础用法
 
@@ -52,18 +52,18 @@
 
 ### Props
 
-| 属性名         | 类型      | 默认值  | 说明           |
-| -------------- | --------- | ------- | -------------- |
-| type           | `string`  | default | 按钮类型       |
-| size           | `string`  | default | 按钮尺寸       |
-| round          | `boolean` | false   | 是否为圆角按钮 |
-| plain          | `boolean` | false   | 是否为朴素按钮 |
-| text           | `boolean` | false   | 是否为文字按钮 |
-| circle         | `boolean` | false   | 是否为圆形按钮 |
-| disabled       | `boolean` | false   | 按钮是否禁用   |
-| native-type    | `string`  | button  | 按钮原生类型   |
-| icon           | `object`  | —       | 图标组件       |
-| icon-placement | `string`  | left    | 图标组件位置   |
+| 属性名         | 类型                              | 默认值  | 说明           |
+| -------------- | --------------------------------- | ------- | -------------- |
+| type           | `string`                          | default | 按钮类型       |
+| size           | `'small' \| 'default' \| 'large'` | —       | 按钮尺寸       |
+| round          | `boolean`                         | false   | 是否为圆角按钮 |
+| plain          | `boolean`                         | false   | 是否为朴素按钮 |
+| text           | `boolean`                         | false   | 是否为文字按钮 |
+| circle         | `boolean`                         | false   | 是否为圆形按钮 |
+| disabled       | `boolean`                         | false   | 按钮是否禁用   |
+| native-type    | `string`                          | button  | 按钮原生类型   |
+| icon           | `object`                          | —       | 图标组件       |
+| icon-placement | `string`                          | left    | 图标组件位置   |
 
 ### Events
 

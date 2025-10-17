@@ -31,6 +31,9 @@ export default {
     editLinks: true,
     editLinkText: '编辑此网站',
     repo: 'https://gitee.com/login',
+    search: {
+      provider: 'local'
+    },
     nav: [
       {
         text: 'GitHub',

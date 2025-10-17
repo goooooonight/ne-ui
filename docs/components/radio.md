@@ -42,13 +42,13 @@
 | disabled              | `boolean`                         | false  | 是否处于禁用状态 |
 | name                  | `string`                          | —      | 原生 name 属性   |
 | label                 | `string`                          | —      | 单选框的文本标签 |
-| size                  | `string`                          | —      | 单选框尺寸       |
+| size                  | `'small' \| 'default' \| 'large'` | —      | 单选框尺寸       |
 
 ### Radio Events
 
-| 事件名 | 说明             | 参数                                   |
-| ------ | ---------------- | -------------------------------------- |
-| change | 绑定值改变时触发 | `(value: string \| number \| boolean)` |
+| 事件名 | 说明             | 类型                                           |
+| ------ | ---------------- | ---------------------------------------------- |
+| change | 绑定值改变时触发 | `(value: string \| number \| boolean) => void` |
 
 ### Radio Slots
 
@@ -60,18 +60,18 @@
 
 ### RadioGroup Props
 
-| 属性名                | 类型                              | 默认值  | 说明             |
-| --------------------- | --------------------------------- | ------- | ---------------- |
-| model-value / v-model | `string` \| `number` \| `boolean` | —       | 单选框组合绑定值 |
-| disabled              | `boolean`                         | false   | 是否处于禁用状态 |
-| name                  | `string`                          | —       | 原生 name 属性   |
-| size                  | `string`                          | default | 单选框尺寸       |
+| 属性名                | 类型                              | 默认值 | 说明             |
+| --------------------- | --------------------------------- | ------ | ---------------- |
+| model-value / v-model | `string` \| `number` \| `boolean` | —      | 单选框组合绑定值 |
+| disabled              | `boolean`                         | false  | 是否处于禁用状态 |
+| name                  | `string`                          | —      | 原生 name 属性   |
+| size                  | `'small' \| 'default' \| 'large'` | —      | 单选框尺寸       |
 
 ### RadioGroup Events
 
-| 事件名 | 说明             | 参数                                   |
-| ------ | ---------------- | -------------------------------------- |
-| change | 绑定值改变时触发 | `(value: string \| number \| boolean)` |
+| 事件名 | 说明             | 类型                                           |
+| ------ | ---------------- | ---------------------------------------------- |
+| change | 绑定值改变时触发 | `(value: string \| number \| boolean) => void` |
 
 ### RadioGroup Slots
 
